@@ -88,6 +88,30 @@
     .byline a:focus-visible {
       text-decoration-color: var(--accent);
     }
+    /* content sits above the flock, so the birds fly behind the words */
+    header, main, footer { position: relative; z-index: 2; }
+
+    /* --- flock --- */
+    .flock {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .flock-bird {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 52px;
+      height: 32px;
+      transform-origin: 24px 17px;
+      will-change: transform;
+      /* keeps the pale birds (cockatoo, galah) off the cream background */
+      filter: drop-shadow(0 1px 1.5px rgba(31, 42, 36, 0.22));
+    }
+    .flock-bird svg { display: block; overflow: visible; }
+
     /* --- bird cursor --- */
     html.bird-cursor-on,
     html.bird-cursor-on * { cursor: none; }
@@ -135,6 +159,8 @@
     © 2026 Bird Nerd · Australia
   </footer>
 
+  <div class="flock" id="flock" aria-hidden="true"></div>
+
   <div class="bird-cursor" id="birdCursor" aria-hidden="true">
     <svg viewBox="0 0 48 32" width="48" height="32">
       <path id="farWing" fill="#24523c"
@@ -152,6 +178,242 @@
   </div>
 
   <script>
+    /* ------------------------------------------------------------------
+       Flock — Reynolds boids (separation / alignment / cohesion) with a
+       seek-and-orbit term pulling the flock toward the pointer.
+       ------------------------------------------------------------------ */
+    (function () {
+      var host = document.getElementById('flock');
+      if (!host) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var TAU = Math.PI * 2, DEG = 180 / Math.PI;
+      var W = window.innerWidth, H = window.innerHeight;
+
+      function rnd(a, b) { return a + Math.random() * (b - a); }
+
+      // ---- tuning ----------------------------------------------------
+      var NEIGHBOUR = 78;    // radius for alignment + cohesion
+      var SEPARATE  = 30;    // radius for personal space
+      var W_SEP = 1.9, W_ALI = 1.05, W_COH = 0.85, W_SEEK = 1.3, W_WANDER = 0.4;
+
+      // ---- Australian species ----------------------------------------
+      // body/chest/head/nape/cheek/crest, two wing tones, tail, beak shape.
+      var SPECIES = [
+        { n:'Galah', body:'#e08aa0', chest:'#e8a2b5', head:'#f2d3dc', wingN:'#a9b1b9', wingF:'#7d858d', tail:'#9aa2aa', beak:'#d9cfbe', bk:'parrot', crest:'cockatoo', crestC:'#f7e2e9', size:1.05 },
+        { n:'Sulphur-crested Cockatoo', body:'#f6f2e8', chest:'#fbf8f0', head:'#f8f5ec', wingN:'#e6e0d2', wingF:'#cdc6b6', tail:'#e2dbcb', beak:'#4a463f', bk:'parrot', crest:'cockatoo', crestC:'#f0cb45', size:1.12 },
+        { n:'Rainbow Lorikeet', body:'#3d8f3a', chest:'#dd5528', head:'#2b5ea6', wingN:'#46a03f', wingF:'#2f7a2e', tail:'#2f7a2e', beak:'#e8802a', bk:'parrot', size:0.95 },
+        { n:'Laughing Kookaburra', body:'#e6dac2', chest:'#f0e8d6', head:'#cbbb9c', nape:'#8a6a45', wingN:'#7a6041', wingF:'#5d4830', patch:'#2f6fa8', tail:'#6b5335', beak:'#3d382f', bk:'dagger', size:1.15 },
+        { n:'Crimson Rosella', body:'#c0242b', chest:'#cf2f34', head:'#bb2028', cheek:'#2a4f9b', wingN:'#8f1c22', wingF:'#6d151a', tail:'#2a4f9b', beak:'#d8cfc0', bk:'parrot', size:1.0 },
+        { n:'Australian Magpie', body:'#2b2a28', chest:'#33322f', head:'#242322', nape:'#f2f0ea', wingN:'#eae7e0', wingF:'#3a3936', tail:'#2b2a28', beak:'#cdd5db', bk:'point', size:1.1 },
+        { n:'Green Rosella', body:'#9aad38', chest:'#c8cf42', head:'#d2d64a', cheek:'#3a5fa8', wingN:'#7f9a33', wingF:'#4f6b28', tail:'#3f6b8a', beak:'#d8cfc0', bk:'parrot', size:1.0 },
+        { n:'Gang-gang Cockatoo', body:'#7c7f84', chest:'#8b8e93', head:'#b03029', wingN:'#6e7176', wingF:'#565a5f', tail:'#5f6266', beak:'#cfc6b4', bk:'parrot', crest:'gangang', crestC:'#c23a30', size:1.05 },
+        { n:'Eastern Rosella', body:'#4a8c3d', chest:'#e6c33f', head:'#c3252a', cheek:'#f4f1e8', wingN:'#3f7a34', wingF:'#2d5926', tail:'#3f6b8a', beak:'#d8cfc0', bk:'parrot', size:1.0 },
+        { n:'Superb Fairy-wren', body:'#3a3936', chest:'#e8e2d2', head:'#2f7fd0', cheek:'#7fb8e8', wingN:'#5a5a54', wingF:'#41413c', tail:'#2a4f8a', tailLen:2.0, beak:'#2b2a28', bk:'point', size:0.68 },
+        { n:'Willie Wagtail', body:'#2a2927', chest:'#f2f0ea', head:'#242322', wingN:'#3a3936', wingF:'#2a2927', tail:'#2a2927', tailLen:1.7, beak:'#242322', bk:'point', size:0.72 },
+        { n:'Budgerigar', body:'#7bbf3f', chest:'#8fc94c', head:'#e4da48', wingN:'#5f6b3a', wingF:'#464f2b', tail:'#3f5f8a', beak:'#cfc6b4', bk:'parrot', size:0.75 },
+        { n:'Red-tailed Black Cockatoo', body:'#2a2724', chest:'#332f2b', head:'#221f1d', wingN:'#3a3632', wingF:'#221f1d', tail:'#b8352c', beak:'#c9bfad', bk:'parrot', crest:'cockatoo', crestC:'#2a2724', size:1.18 },
+        { n:'Rainbow Bee-eater', body:'#3fa08a', chest:'#e6c94a', head:'#4faa74', wingN:'#c78a3a', wingF:'#8f6a2a', tail:'#2f6b7a', tailLen:1.8, beak:'#242322', bk:'dagger', size:0.8 },
+        { n:'Scarlet Honeyeater', body:'#cb2a27', chest:'#e0413a', head:'#c02220', wingN:'#6b3a30', wingF:'#4a2a24', tail:'#5a332b', beak:'#2b2a28', bk:'point', size:0.62 },
+        { n:'Welcome Swallow', body:'#2c3f68', chest:'#e8dcc8', head:'#2a3a60', cheek:'#b5552e', wingN:'#35497a', wingF:'#22304f', tail:'#22304f', tailLen:1.9, beak:'#242322', bk:'point', size:0.72 }
+      ];
+
+      var BEAKS = {
+        parrot: 'M37.2 14.2 Q 43.2 14.4 42.4 17.2 Q 40.6 18.8 37.6 18.1 Z',
+        point:  'M37.8 15 L46.5 16.2 L37.8 17.8 Z',
+        dagger: 'M37.8 15.2 L49 16.4 L37.8 17.7 Z'
+      };
+      var CRESTS = {
+        cockatoo: 'M30.5 11.5 Q 32 1.5 38.5 4 Q 34.5 8.5 35.6 11.8 Z',
+        gangang:  'M31 11.5 Q 33 4.5 36.8 6.8 Q 35 9.6 35.9 11.9 Z'
+      };
+
+      function makeBird(sp) {
+        var tipX = rnd(0, 7), tipY = rnd(-3, 3);          // wing tip varies per bird
+        var tl = sp.tailLen || 1;
+        var svg =
+          '<svg viewBox="0 0 52 32" width="52" height="32">' +
+            '<path class="fw" fill="' + sp.wingF + '" d="M24 17 Q 17 6 ' + (tipX + 2) + ' ' + (tipY + 3) + ' Q 13 13 16 18 Z"/>' +
+            '<path fill="' + sp.tail + '" d="M11 18 L' + (11 - 10 * tl) + ' 12.5 L' + (11 - 7 * tl) + ' 18 L' + (11 - 10 * tl) + ' 23.5 Z"/>' +
+            '<ellipse cx="22" cy="18" rx="11" ry="5.6" fill="' + sp.body + '"/>' +
+            (sp.chest ? '<ellipse cx="28" cy="19.4" rx="6" ry="4.1" fill="' + sp.chest + '"/>' : '') +
+            (sp.nape  ? '<ellipse cx="29.8" cy="13.2" rx="3.4" ry="2.7" fill="' + sp.nape + '"/>' : '') +
+            (sp.crest ? '<path fill="' + sp.crestC + '" d="' + CRESTS[sp.crest] + '"/>' : '') +
+            '<circle cx="33.5" cy="15" r="4.6" fill="' + sp.head + '"/>' +
+            (sp.cheek ? '<circle cx="34.8" cy="16.6" r="1.9" fill="' + sp.cheek + '"/>' : '') +
+            '<path fill="' + sp.beak + '" d="' + BEAKS[sp.bk] + '"/>' +
+            '<circle cx="35" cy="13.6" r="0.95" fill="#1d1b19"/>' +
+            '<circle cx="35.3" cy="13.3" r="0.32" fill="#fff" opacity=".85"/>' +
+            (sp.patch ? '<ellipse cx="19" cy="16.4" rx="4.2" ry="2.3" fill="' + sp.patch + '" transform="rotate(-12 19 16.4)"/>' : '') +
+            '<path class="nw" fill="' + sp.wingN + '" d="M23 17 Q 16 5 ' + tipX + ' ' + tipY + ' Q 12 12 15 18 Z"/>' +
+          '</svg>';
+
+        var el = document.createElement('div');
+        el.className = 'flock-bird';
+        el.innerHTML = svg;
+
+        var ang = rnd(0, TAU), sp0 = rnd(90, 170);
+        return {
+          species: sp.n,
+          el: el,
+          nw: el.querySelector('.nw'),
+          fw: el.querySelector('.fw'),
+          x: rnd(0, W), y: rnd(0, H),
+          vx: Math.cos(ang) * sp0, vy: Math.sin(ang) * sp0,
+          maxSpeed: rnd(230, 400),
+          maxForce: rnd(700, 1100),
+          // depth variety, nudged by the species' real-world size
+          scale: rnd(0.34, 0.74) * (sp.size || 1),
+          ring: rnd(34, 118),            // personal orbit radius round the pointer
+          swirl: Math.random() < 0.5 ? -1 : 1,
+          flapMul: rnd(0.85, 1.45),
+          phase: rnd(0, TAU),
+          wander: rnd(0, TAU),
+          heading: ang
+        };
+      }
+
+      var COUNT = Math.max(9, Math.min(24, Math.round(W * H / 48000)));
+
+      // shuffled round-robin: every species shows up before any repeats
+      var bag = SPECIES.slice();
+      for (var s0 = bag.length - 1; s0 > 0; s0--) {
+        var k = Math.floor(Math.random() * (s0 + 1));
+        var t0 = bag[s0]; bag[s0] = bag[k]; bag[k] = t0;
+      }
+
+      var birds = [];
+      var frag = document.createDocumentFragment();
+      for (var i = 0; i < COUNT; i++) {
+        var b = makeBird(bag[i % bag.length]);
+        birds.push(b);
+        frag.appendChild(b.el);
+      }
+      host.appendChild(frag);
+
+      // ---- what the flock chases -------------------------------------
+      var hasPointer = false;
+      var tx = W * 0.5, ty = H * 0.45;
+      var drift = 0;
+
+      window.addEventListener('mousemove', function (e) {
+        hasPointer = true; tx = e.clientX; ty = e.clientY;
+      }, { passive: true });
+      window.addEventListener('touchmove', function (e) {
+        if (!e.touches.length) return;
+        hasPointer = true; tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+      }, { passive: true });
+      window.addEventListener('resize', function () {
+        W = window.innerWidth; H = window.innerHeight;
+      });
+
+      function limit(x, y, max) {
+        var m = Math.sqrt(x * x + y * y);
+        if (m > max && m > 0) { var k = max / m; return [x * k, y * k]; }
+        return [x, y];
+      }
+
+      var last = 0;
+      function step(now) {
+        var dt = last ? Math.min((now - last) / 1000, 0.04) : 0.016;
+        last = now;
+
+        // with no pointer yet, wander a slow Lissajous so the flock still flies
+        if (!hasPointer) {
+          drift += dt * 0.32;
+          tx = W * (0.5 + 0.32 * Math.sin(drift));
+          ty = H * (0.42 + 0.24 * Math.sin(drift * 1.37));
+        }
+
+        for (var i = 0; i < birds.length; i++) {
+          var b = birds[i];
+          var sepX = 0, sepY = 0, sepN = 0;
+          var aliX = 0, aliY = 0, cohX = 0, cohY = 0, nbr = 0;
+
+          for (var j = 0; j < birds.length; j++) {
+            if (i === j) continue;
+            var o = birds[j];
+            var dx = o.x - b.x, dy = o.y - b.y;
+            var d2 = dx * dx + dy * dy;
+            if (d2 > NEIGHBOUR * NEIGHBOUR || d2 === 0) continue;
+            var d = Math.sqrt(d2);
+
+            // 1. separation — steer away, weighted by 1/d so close is urgent
+            if (d < SEPARATE) { sepX -= dx / d / d; sepY -= dy / d / d; sepN++; }
+            // 2. alignment — match neighbours' heading
+            aliX += o.vx; aliY += o.vy;
+            // 3. cohesion — drift toward the local centre of mass
+            cohX += o.x; cohY += o.y;
+            nbr++;
+          }
+
+          var fx = 0, fy = 0, s;
+          if (sepN) {
+            s = limit(sepX * 6000, sepY * 6000, b.maxForce);
+            fx += s[0] * W_SEP; fy += s[1] * W_SEP;
+          }
+          if (nbr) {
+            s = limit(aliX / nbr - b.vx, aliY / nbr - b.vy, b.maxForce);
+            fx += s[0] * W_ALI; fy += s[1] * W_ALI;
+            s = limit((cohX / nbr - b.x) * 2.2, (cohY / nbr - b.y) * 2.2, b.maxForce);
+            fx += s[0] * W_COH; fy += s[1] * W_COH;
+          }
+
+          // seek the pointer, but hold a personal ring and circle it, so the
+          // flock forms a swirling shell instead of collapsing to one point
+          var gx = tx - b.x, gy = ty - b.y;
+          var gd = Math.sqrt(gx * gx + gy * gy) || 1;
+          var nx = gx / gd, ny = gy / gd;
+          var radial = (gd - b.ring) / 150;                  // <0 = too close
+          radial = Math.max(-1, Math.min(1, radial)) * b.maxSpeed;
+          var tanW = b.maxSpeed * 0.85 * (1 - Math.min(1, Math.abs(gd - b.ring) / 260));
+          var desX = nx * radial + -ny * b.swirl * tanW;
+          var desY = ny * radial + nx * b.swirl * tanW;
+          s = limit(desX - b.vx, desY - b.vy, b.maxForce);
+          fx += s[0] * W_SEEK; fy += s[1] * W_SEEK;
+
+          // a little noise so it never looks mechanical
+          b.wander += rnd(-3.2, 3.2) * dt;
+          fx += Math.cos(b.wander) * b.maxForce * W_WANDER;
+          fy += Math.sin(b.wander) * b.maxForce * W_WANDER;
+
+          // integrate
+          b.vx += fx * dt; b.vy += fy * dt;
+          var v = limit(b.vx, b.vy, b.maxSpeed);
+          b.vx = v[0]; b.vy = v[1];
+          b.x += b.vx * dt; b.y += b.vy * dt;
+
+          // wrap with a margin so nobody pops in mid-screen
+          var m = 70;
+          if (b.x < -m) b.x = W + m; else if (b.x > W + m) b.x = -m;
+          if (b.y < -m) b.y = H + m; else if (b.y > H + m) b.y = -m;
+
+          // ---- draw --------------------------------------------------
+          var speed = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
+          var eff = Math.min(speed / b.maxSpeed, 1);
+          b.phase += (3 + eff * 11) * b.flapMul * dt * TAU;
+          if (b.phase > TAU) b.phase -= TAU;
+          var wing = Math.sin(b.phase) * (14 + eff * 34);
+          b.nw.setAttribute('transform', 'rotate(' + (-wing) + ' 23.5 17)');
+          b.fw.setAttribute('transform', 'rotate(' + (-wing * 0.62) + ' 23.5 17)');
+
+          var want = Math.atan2(b.vy, b.vx);
+          var dh = want - b.heading;
+          while (dh > Math.PI) dh -= TAU;
+          while (dh < -Math.PI) dh += TAU;
+          b.heading += dh * Math.min(1, dt * 9);
+          var flip = Math.abs(b.heading) > Math.PI / 2 ? -1 : 1;
+
+          b.el.style.transform =
+            'translate3d(' + (b.x - 24) + 'px,' + (b.y - 17) + 'px,0) ' +
+            'rotate(' + (b.heading * DEG) + 'deg) ' +
+            'scale(' + b.scale + ',' + (b.scale * flip) + ')';
+        }
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    })();
+
     (function () {
       var el = document.getElementById('birdCursor');
       if (!el) return;
