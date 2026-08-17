@@ -88,6 +88,25 @@
     .byline a:focus-visible {
       text-decoration-color: var(--accent);
     }
+    /* --- bird cursor --- */
+    html.bird-cursor-on,
+    html.bird-cursor-on * { cursor: none; }
+    .bird-cursor {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 48px;
+      height: 32px;
+      pointer-events: none;
+      z-index: 9999;
+      /* pivot on the beak tip so the bird turns about the real pointer */
+      transform-origin: 46px 16.2px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      will-change: transform;
+      filter: drop-shadow(0 2px 3px rgba(31, 42, 36, 0.25));
+    }
+    .bird-cursor svg { display: block; overflow: visible; }
     footer {
       text-align: center;
       padding: 1.5rem;
@@ -115,5 +134,112 @@
   <footer>
     © 2026 Bird Nerd · Australia
   </footer>
+
+  <div class="bird-cursor" id="birdCursor" aria-hidden="true">
+    <svg viewBox="0 0 48 32" width="48" height="32">
+      <path id="farWing" fill="#24523c"
+            d="M24 17 Q 17 6 5 3 Q 13 13 16 18 Z"/>
+      <g fill="#2f6b4f">
+        <path d="M11 18 L1 12.5 L3.5 18 L1 23.5 Z"/>
+        <ellipse cx="22" cy="18" rx="11" ry="5.6"/>
+        <circle cx="33.5" cy="15" r="4.6"/>
+      </g>
+      <path d="M37.8 15 L46 16.2 L37.8 17.8 Z" fill="#d98b2b"/>
+      <circle cx="35" cy="13.6" r="0.9" fill="#faf7f0"/>
+      <path id="nearWing" fill="#3d8560"
+            d="M23 17 Q 16 5 3 1 Q 12 12 15 18 Z"/>
+    </svg>
+  </div>
+
+  <script>
+    (function () {
+      var el = document.getElementById('birdCursor');
+      if (!el) return;
+
+      // Only for real pointers, and never when reduced motion is requested —
+      // hiding the native cursor is hostile if the replacement can't move.
+      if (!window.matchMedia('(pointer: fine)').matches) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var nearWing = document.getElementById('nearWing');
+      var farWing = document.getElementById('farWing');
+      var TAU = Math.PI * 2;
+      var DEG = 180 / Math.PI;
+
+      // shoulder point the wings pivot around, in viewBox units
+      var SX = 23.5, SY = 17;
+
+      var targetX = 0, targetY = 0;          // where the pointer actually is
+      var x = 0, y = 0;                      // where the bird is drawn
+      var heading = 0, phase = 0;
+      var shown = false, primed = false;
+      var last = 0;
+
+      document.documentElement.classList.add('bird-cursor-on');
+
+      window.addEventListener('mousemove', function (e) {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        if (!primed) { x = targetX; y = targetY; primed = true; }
+        if (!shown) { shown = true; el.style.opacity = '1'; }
+      }, { passive: true });
+
+      // don't leave a stray bird hovering when the pointer leaves the page
+      document.addEventListener('mouseleave', function () {
+        shown = false;
+        el.style.opacity = '0';
+      });
+      document.addEventListener('mouseenter', function () {
+        if (primed) { shown = true; el.style.opacity = '1'; }
+      });
+
+      function frame(now) {
+        var dt = last ? Math.min((now - last) / 1000, 0.05) : 0.016;
+        last = now;
+
+        // ease toward the pointer; tight enough to still aim with
+        var prevX = x, prevY = y;
+        x += (targetX - x) * Math.min(1, dt * 18);
+        y += (targetY - y) * Math.min(1, dt * 18);
+
+        var vx = x - prevX, vy = y - prevY;
+        var speed = Math.sqrt(vx * vx + vy * vy) / (dt || 0.016); // px/sec
+        var eff = Math.min(speed / 1400, 1);                      // 0..1
+
+        // flap rate and wing throw both scale with speed; a slow idle
+        // flutter keeps it alive when the pointer is parked
+        var rate = 2.6 + eff * 15;
+        var amp = 11 + eff * 40;
+        phase += rate * dt * TAU;
+        if (phase > TAU) phase -= TAU;
+
+        var wing = Math.sin(phase) * amp;
+        nearWing.setAttribute('transform', 'rotate(' + (-wing) + ' ' + SX + ' ' + SY + ')');
+        farWing.setAttribute('transform', 'rotate(' + (-wing * 0.62) + ' ' + SX + ' ' + SY + ')');
+
+        // face the direction of travel, but only once actually moving,
+        // so a parked bird doesn't spin on pixel jitter
+        if (speed > 45) {
+          var want = Math.atan2(vy, vx);
+          var d = want - heading;
+          while (d > Math.PI) d -= TAU;
+          while (d < -Math.PI) d += TAU;
+          heading += d * Math.min(1, dt * 12);
+        }
+
+        // flip rather than fly upside down when heading left
+        var flip = Math.abs(heading) > Math.PI / 2 ? -1 : 1;
+        // gentle bob while gliding
+        var bob = (1 - eff) * Math.sin(phase * 0.5) * 1.5;
+
+        el.style.transform =
+          'translate3d(' + (x - 46) + 'px,' + (y - 16.2 + bob) + 'px,0) ' +
+          'rotate(' + (heading * DEG) + 'deg) scaleY(' + flip + ')';
+
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    })();
+  </script>
 </body>
 </html>
