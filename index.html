@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bird Nerd — for people who look up</title>
+  <meta name="description" content="Bird Nerd: shirts, bags and flashcards for Australian bird lovers. Coming soon.">
+  <style>
+    :root {
+      --ink: #1f2a24;
+      --paper: #faf7f0;
+      --accent: #2f6b4f;
+      --accent-soft: #dcebe2;
+      --muted: #6b7a72;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .logo {
+      font-size: 1.9rem;
+      line-height: 1;
+    }
+    .wordmark {
+      font-size: 1.25rem;
+      letter-spacing: 0.06em;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-family: system-ui, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      max-width: 16ch;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--muted);
+      font-family: system-ui, sans-serif;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="logo">🦜</span>
+    <span class="wordmark">Bird Nerd</span>
+  </header>
+  <main>
+    <span class="badge">Coming soon</span>
+    <h1>Good things come to those who look up.</h1>
+  </main>
+  <footer>
+    © 2026 Bird Nerd · Australia
+  </footer>
+</body>
+</html>
