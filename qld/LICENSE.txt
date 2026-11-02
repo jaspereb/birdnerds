@@ -1,0 +1,39 @@
+Birds of Queensland flash cards (Bird Nerd)
+Copyright (c) 2026 Hannah Barrenger. All rights reserved.
+
+PERSONAL PROJECT. Bird Nerd is a personal project. It is not run by a government agency,
+scientific body or professional organisation. "We" and "us" mean the copyright holder and
+everyone who has contributed to Bird Nerd.
+
+This app and its content (card text, species accounts, range maps, illustrations, design and
+source code) are proprietary. They are not open source and are not released under any open licence.
+
+1. FREE PERSONAL USE. You may, free of charge, open and install this app and use it for your
+   own personal, non-commercial study and field identification.
+
+2. YOU MAY NOT, without our prior written permission:
+   (a) copy, download in bulk, scrape, republish, mirror or redistribute the app or any of its
+       cards, text, illustrations or code, in whole or in part;
+   (b) use any part of it in another product, course, publication, app, website or dataset,
+       including for training machine-learning models;
+   (c) sell, rent, sublicense or otherwise commercialise it; or
+   (d) remove or alter this notice or any copyright notice.
+
+3. CHANGES. We may change, withdraw or start charging for this app, or for some of its
+   content or features, at any time. Free access now does not grant any right to continued free
+   access or to future versions.
+
+4. NO GUARANTEE OF ACCURACY. The app and all of its content are provided "as is" for general
+   interest and study only. We give no guarantee or warranty of any kind that any of it is
+   accurate, complete or up to date. Species information may contain errors and is not a
+   substitute for official sources, field guides or survey guidelines.
+
+5. NO LIABILITY. To the fullest extent permitted by law, we accept no liability at all for any
+   loss, damage, injury or cost arising from any use of, or reliance on, this app or its
+   content, however it is caused (including by negligence). You use it entirely at your own
+   risk. Nothing in this licence excludes any right you have under the Australian Consumer Law
+   that cannot lawfully be excluded.
+
+6. Governed by the laws of Queensland, Australia.
+
+Permission requests: contact Bird Nerd via birdnerd.com.au

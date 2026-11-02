@@ -1,0 +1,24 @@
+Bird Nerd website and apps
+Copyright (c) 2026 Hannah Barrenger. All rights reserved.
+
+PERSONAL PROJECT. Bird Nerd is a personal project. It is not run by a government agency,
+scientific body or professional organisation. "We" and "us" mean the copyright holder and
+everyone who has contributed to Bird Nerd.
+
+NOT OPEN SOURCE. This repository is public only so it can be hosted with GitHub Pages.
+No licence is granted to copy, modify, redistribute or reuse any code, text, illustrations or
+other content in it, except as stated in qld/LICENSE.txt for personal use of the
+Birds of Queensland app.
+
+NO GUARANTEE OF ACCURACY. Everything here, including species information, identification
+tips, illustrations and range maps, is provided "as is" for general interest and study only.
+We give no guarantee or warranty of any kind that any of it is accurate, complete or up to
+date. It is not a substitute for official sources, field guides or survey guidelines.
+
+NO LIABILITY. To the fullest extent permitted by law, we accept no liability at all for any
+loss, damage, injury or cost arising from any use of, or reliance on, this website, its apps
+or any of their content, however it is caused (including by negligence). You use them
+entirely at your own risk. Nothing in this licence excludes any right you have under the
+Australian Consumer Law that cannot lawfully be excluded.
+
+Permission requests: contact Bird Nerd via birdnerd.com.au
