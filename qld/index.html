@@ -96,9 +96,11 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
 .appbar,.studybar,.installhint,.legend{display:none}
 .lic{margin-top:14px;font-size:11.5px;opacity:.85}
 .lic a{color:inherit}
+.ic{width:1.2em;height:1.2em;vertical-align:-.25em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic.sx{width:.95em;height:.95em;vertical-align:-.12em;stroke-width:2.4}
 
 /* study mode: one card at a time */
-body.study{padding:0;height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden;overscroll-behavior:none}
+body.study{padding:0 env(safe-area-inset-right) 0 env(safe-area-inset-left);height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden;overscroll-behavior:none}
 body.study .masthead,body.study .controls,body.study .colophon{display:none}
 body.study .appbar{display:flex;align-items:center;gap:6px;overflow:hidden;padding:calc(env(safe-area-inset-top) + 8px) 12px 8px;border-bottom:1px solid var(--line)}
 .appbar .ttl{font-weight:600;font-size:15px;white-space:nowrap;margin-right:auto}
@@ -176,7 +178,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
   .fit .co,.fit svg.lines{display:none}
   .fit .dot{width:16px;height:16px;border:1.5px solid #fff;background:var(--acc);box-shadow:0 1px 4px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center}
   .fit .dot::after{content:attr(data-k);color:#fff;font:700 10px/1 system-ui,sans-serif}
-  .legend{display:block;list-style:none;margin:0;padding:0 0 0 8px;flex:1;min-width:0;position:relative;z-index:1}
+  .legend{display:block;list-style:none;margin:0;padding:0 0 0 8px;flex:1;min-width:0}   /* no z-index: Safari then shows it through the flipped card */
   .legend li{position:relative;padding:3px 0 3px 25px;font-size:13px;line-height:1.3;color:#4a4e40;border-top:1px solid #ecebe2}
   .legend li:first-child{border-top:0}
   .legend li i{position:absolute;left:0;top:4px;width:17px;height:17px;border-radius:50%;background:var(--acc);color:#fff;font:700 10px/17px system-ui,sans-serif;text-align:center;font-style:normal}
@@ -202,8 +204,8 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
   <button data-filter="eastcoast">East Coast &amp; Wetlands</button>
   <button data-filter="inland">Inland &amp; West</button>
   <button data-filter="statewide">Statewide</button>
-  <button data-filter="review">Not yet known</button><span class="sep"></span><button id="shuffle">Shuffle ⤮</button><button id="order">In order</button>
-  <button id="flipall">Flip deck ⟲</button><button id="mode">Study mode ▶</button><button class="install" hidden>Install app ⤓</button>
+  <button data-filter="review">Not yet known</button><span class="sep"></span><button id="shuffle">Shuffle <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 4h4v4M4 20 20 4M20 16v4h-4M14 14l6 6M4 4l5 5"/></svg></button><button id="order">In order</button>
+  <button id="flipall">Flip deck <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4v6h6M5.5 15a8 8 0 1 0 1.9-8.4L3 10"/></svg></button><button id="mode">Study mode ▶</button><button class="install" hidden>Install app ⤓</button>
 </div>
 <div class="appbar">
   <span class="ttl">Birds of <em>QLD</em></span>
@@ -213,9 +215,9 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <option value="inland">Inland &amp; West</option><option value="statewide">Statewide</option>
     <option value="review">Not yet known</option>
   </select>
-  <button id="shuffle2" title="Shuffle" aria-label="Shuffle">⤮</button>
+  <button id="shuffle2" title="Shuffle" aria-label="Shuffle"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 4h4v4M4 20 20 4M20 16v4h-4M14 14l6 6M4 4l5 5"/></svg></button>
   <button id="order2" title="Back to field-guide order" aria-label="In order">1→</button>
-  <button id="mode2" title="Grid view" aria-label="Grid view">▦</button>
+  <button id="mode2" title="Grid view" aria-label="Grid view"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></button>
 </div>
 <main class="deck">
 <article class="card" data-slug="southern-cassowary" data-n="1" data-zone="WET_TROPICS_PLUS_CY" tabindex="0" role="button" aria-label="Card I — press to flip">
@@ -228,7 +230,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Casque</b> tall blade-like keratin helmet</li><li><i>2</i><b>Neck</b> bare vivid blue skin, red nape</li><li><i>3</i><b>Wattles</b> two pendulous red lobes</li><li><i>4</i><b>Plumage</b> coarse glossy black, hair-like</li><li><i>5</i><b>Feet</b> 3 toes; 12 cm dagger claw</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♀ larger</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span>
     <span class="num">No. I</span>
   </div>
   <div class="face back">
@@ -275,7 +277,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Head</b> coral-red band, grey-green crown</li><li><i>2</i><b>Dewlap</b> black bristled pouch under the chin</li><li><i>3</i><b>Plumage</b> uniform silvery-grey body</li><li><i>4</i><b>Wingtips</b> black primaries show in flight</li><li><i>5</i><b>Legs</b> long, dark grey-black</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♀ smaller</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> smaller</span>
     <span class="num">No. II</span>
   </div>
   <div class="face back">
@@ -322,7 +324,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Crown</b> iridescent metallic blue-green cap</li><li><i>2</i><b>Gorget</b> triangular metallic throat shield</li><li><i>3</i><b>Body</b> velvet black with oily purple sheen</li><li><i>4</i><b>Bill</b> long, slender, gently decurved</li><li><i>5</i><b>Breast band</b> bronze-olive wash below the gorget</li></ol>
     
-    <span class="sex">Adult ♂</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></span>
     <span class="num">No. III</span>
   </div>
   <div class="face back">
@@ -369,7 +371,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Crown &amp; nape</b> glistening golden patch, silky sheen</li><li><i>2</i><b>Underparts</b> golden-yellow, throat to undertail</li><li><i>3</i><b>Upperparts</b> contrasting olive-brown</li><li><i>4</i><b>Tail</b> largely golden</li><li><i>5</i><b>Eye</b> pale straw eye</li></ol>
     
-    <span class="sex">Adult ♂</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></span>
     <span class="num">No. IV</span>
   </div>
   <div class="face back">
@@ -416,7 +418,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Crown</b> azure, flared pale-blue ear tufts</li><li><i>2</i><b>Throat</b> black throat and nape band</li><li><i>3</i><b>Shoulders</b> chestnut patches on blue upper back</li><li><i>4</i><b>Tail</b> short, broad, blue</li><li><i>5</i><b>Belly</b> clean white against blackish wings</li></ol>
     
-    <span class="sex">Adult ♂</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></span>
     <span class="num">No. V</span>
   </div>
   <div class="face back">
@@ -463,7 +465,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Cap</b> black cap, pale-yellow forehead</li><li><i>2</i><b>Body</b> turquoise face and underparts</li><li><i>3</i><b>Shoulder</b> golden-yellow wing-covert patch</li><li><i>4</i><b>Belly</b> salmon-pink lower belly to undertail</li><li><i>5</i><b>Tail</b> long, dark blue-black</li></ol>
     
-    <span class="sex">Adult ♂</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></span>
     <span class="num">No. VI</span>
   </div>
   <div class="face back">
@@ -510,7 +512,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Crest</b> tall, spiky, swept-back crest</li><li><i>2</i><b>Cheek</b> bare crimson patch</li><li><i>3</i><b>Bill</b> massive grey-black hook</li><li><i>4</i><b>Plumage</b> uniform smoky grey-black</li><li><i>5</i><b>Tail</b> broad, all black</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♀ smaller bill</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> smaller bill</span>
     <span class="num">No. VII</span>
   </div>
   <div class="face back">
@@ -557,7 +559,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Body</b> brilliant emerald green (male)</li><li><i>2</i><b>Flanks</b> scarlet flanks and underwing</li><li><i>3</i><b>Bill</b> candy-orange, yellow tip</li><li><i>4</i><b>Wing edge</b> blue outer flight feathers</li><li><i>5</i><b>Tail</b> short, dark green, pale yellow tip</li></ol>
     
-    <span class="sex">Adult ♂  (♀ crimson &amp; blue)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> crimson &amp; blue)</span>
     <span class="num">No. VIII</span>
   </div>
   <div class="face back">
@@ -745,7 +747,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Eye stripe</b> broad dark band through the eye</li><li><i>2</i><b>Bill</b> massive</li><li><i>3</i><b>Shoulder</b> small sky-blue spotted patch</li><li><i>4</i><b>Underparts</b> off-white, faintly barred</li><li><i>5</i><b>Tail</b> rufous, barred dark, white-tipped</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♀ larger</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span>
     <span class="num">No. XII</span>
   </div>
   <div class="face back">
@@ -839,7 +841,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Camouflage</b> silver-grey, streaked black</li><li><i>2</i><b>Bill</b> wide, hooked, bristle-fringed</li><li><i>3</i><b>Eye</b> large, yellow, side-facing</li><li><i>4</i><b>Posture</b> bolt-upright broken-branch pose</li><li><i>5</i><b>Underparts</b> pale grey, finely dark-streaked</li></ol>
     
-    <span class="sex">Adult ♂, grey morph</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>, grey morph</span>
     <span class="num">No. XIV</span>
   </div>
   <div class="face back">
@@ -885,8 +887,8 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
       <i class="dot" data-k="1" style="left:31.2%;top:17.9%"></i><i class="dot" data-k="2" style="left:32.6%;top:37.5%"></i><i class="dot" data-k="3" style="left:44.5%;top:50.0%"></i><i class="dot" data-k="4" style="left:67.2%;top:48.2%"></i><i class="dot" data-k="5" style="left:53.0%;top:80.9%"></i><div class="co l" style="top:25.0%"><b>Head &amp; neck</b><span>bare bright-red skin</span></div><div class="co l" style="top:39.0%"><b>Wattle</b><span>yellow throat wattle (male)</span></div><div class="co l" style="top:65.0%"><b>Plumage</b><span>sooty black, loose and coarse</span></div><div class="co r" style="top:44.1%"><b>Tail</b><span>large fan, flattened vertically</span></div><div class="co r" style="top:68.1%"><b>Feet</b><span>powerful</span></div>
     </div>
     <ol class="legend"><li><i>1</i><b>Head &amp; neck</b> bare bright-red skin</li><li><i>2</i><b>Wattle</b> yellow throat wattle (male)</li><li><i>3</i><b>Plumage</b> sooty black, loose and coarse</li><li><i>4</i><b>Tail</b> large fan, flattened vertically</li><li><i>5</i><b>Feet</b> powerful</li></ol>
-    <figure class="inset tr"><img src="img/australian-brush-turkey-inset.fcdd7486.webp" loading="lazy" decoding="async" alt="Breeding ♂ detail"><figcaption>Breeding ♂</figcaption></figure>
-    <span class="sex">Adult ♂</span>
+    <figure class="inset tr"><img src="img/australian-brush-turkey-inset.fcdd7486.webp" loading="lazy" decoding="async" alt="Breeding ♂ detail"><figcaption>Breeding <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></figcaption></figure>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></span>
     <span class="num">No. XV</span>
   </div>
   <div class="face back">
@@ -933,7 +935,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Neck</b> snake-like S-kink, white stripe</li><li><i>2</i><b>Bill</b> straight, finely pointed dagger</li><li><i>3</i><b>Body</b> brown-black, chestnut breast (male)</li><li><i>4</i><b>Wing</b> silvery-white streaking</li><li><i>5</i><b>Tail</b> long, broad, stiff fan</li></ol>
     
-    <span class="sex">Adult ♂  (♀ pale below)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> pale below)</span>
     <span class="num">No. XVI</span>
   </div>
   <div class="face back">
@@ -1121,7 +1123,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Comb</b> fleshy red-pink forehead wattle</li><li><i>2</i><b>Neck</b> golden wash on foreneck</li><li><i>3</i><b>Breast band</b> broad black band, white belly</li><li><i>4</i><b>Upperparts</b> plain grey-brown</li><li><i>5</i><b>Feet</b> very long spider-like toes</li></ol>
     
-    <span class="sex">Adult — ♀ larger</span>
+    <span class="sex">Adult — <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span>
     <span class="num">No. XX</span>
   </div>
   <div class="face back">
@@ -1168,7 +1170,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Head</b> domed knob on the black crown</li><li><i>2</i><b>Bill</b> hooked, orange-pink</li><li><i>3</i><b>Neck</b> long, slender and all black</li><li><i>4</i><b>Body</b> white underparts and saddle</li><li><i>5</i><b>Legs</b> orange</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♂ larger</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> larger</span>
     <span class="num">No. XXI</span>
   </div>
   <div class="face back">
@@ -1211,11 +1213,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/little-buttonquail.fd2e08d7.webp" loading="lazy" decoding="async" alt="Mystery bird plate XXII">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="18.5" y1="43.0" x2="32.5" y2="41.1"/><line x1="18.5" y1="9.0" x2="28.4" y2="16.5"/><line x1="18.5" y1="23.0" x2="23.4" y2="20.0"/><line x1="81.5" y1="11.0" x2="56.3" y2="32.1"/><line x1="18.5" y1="77.0" x2="45.0" y2="62.5"/></svg>
-      <i class="dot" data-k="1" style="left:32.5%;top:41.1%"></i><i class="dot" data-k="2" style="left:28.4%;top:16.5%"></i><i class="dot" data-k="3" style="left:23.4%;top:20.0%"></i><i class="dot" data-k="4" style="left:56.3%;top:32.1%"></i><i class="dot" data-k="5" style="left:45.0%;top:62.5%"></i><div class="co l" style="top:43.0%"><b>Breast</b><span>♀ plain rufous-orange</span></div><div class="co l" style="top:9.0%"><b>Eye</b><span>pale whitish-cream iris</span></div><div class="co l" style="top:23.0%"><b>Bill</b><span>stout, pale blue-grey bill</span></div><div class="co r" style="top:11.0%"><b>Upperparts</b><span>rufous, streaked white</span></div><div class="co l" style="top:77.0%"><b>Belly</b><span>white belly and flanks, unbarred</span></div>
+      <i class="dot" data-k="1" style="left:32.5%;top:41.1%"></i><i class="dot" data-k="2" style="left:28.4%;top:16.5%"></i><i class="dot" data-k="3" style="left:23.4%;top:20.0%"></i><i class="dot" data-k="4" style="left:56.3%;top:32.1%"></i><i class="dot" data-k="5" style="left:45.0%;top:62.5%"></i><div class="co l" style="top:43.0%"><b>Breast</b><span><svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> plain rufous-orange</span></div><div class="co l" style="top:9.0%"><b>Eye</b><span>pale whitish-cream iris</span></div><div class="co l" style="top:23.0%"><b>Bill</b><span>stout, pale blue-grey bill</span></div><div class="co r" style="top:11.0%"><b>Upperparts</b><span>rufous, streaked white</span></div><div class="co l" style="top:77.0%"><b>Belly</b><span>white belly and flanks, unbarred</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Breast</b> ♀ plain rufous-orange</li><li><i>2</i><b>Eye</b> pale whitish-cream iris</li><li><i>3</i><b>Bill</b> stout, pale blue-grey bill</li><li><i>4</i><b>Upperparts</b> rufous, streaked white</li><li><i>5</i><b>Belly</b> white belly and flanks, unbarred</li></ol>
+    <ol class="legend"><li><i>1</i><b>Breast</b> <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> plain rufous-orange</li><li><i>2</i><b>Eye</b> pale whitish-cream iris</li><li><i>3</i><b>Bill</b> stout, pale blue-grey bill</li><li><i>4</i><b>Upperparts</b> rufous, streaked white</li><li><i>5</i><b>Belly</b> white belly and flanks, unbarred</li></ol>
     
-    <span class="sex">Adult ♀  (♂ smaller, duller)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> smaller, duller)</span>
     <span class="num">No. XXII</span>
   </div>
   <div class="face back">
@@ -1225,12 +1227,12 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
         <p class="sci">Turnix velox</p>
         <p class="fam">Turnicidae · Buttonquails</p>
       </div>
-      <div class="hmeta"><span class="num">No. XXII</span><span class="size">12–16 cm; ♀ larger</span><span class="chip ">Least Concern</span></div>
+      <div class="hmeta"><span class="num">No. XXII</span><span class="size">12–16 cm; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span><span class="chip ">Least Concern</span></div>
     </header>
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Breast</b> — ♀ plain rufous-orange; face, throat, breast</li><li><b>Eye</b> — pale whitish-cream iris</li><li><b>Bill</b> — stout, pale blue-grey bill</li><li><b>Upperparts</b> — rufous, streaked white; flecked black</li><li><b>Belly</b> — white belly and flanks, unbarred</li></ul>
+        <ul class="feat"><li><b>Breast</b> — <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> plain rufous-orange; face, throat, breast</li><li><b>Eye</b> — pale whitish-cream iris</li><li><b>Bill</b> — stout, pale blue-grey bill</li><li><b>Upperparts</b> — rufous, streaked white; flecked black</li><li><b>Belly</b> — white belly and flanks, unbarred</li></ul>
         <div class="sexes">Reversed dimorphism. Female larger: unmarked rufous-orange face, throat and breast, rufous upperparts streaked white. Male smaller, paler and duller, breast buff with darker scalloping. Juvenile like male but spotted and scalloped below.</div>
         <h4>Behaviour</h4><p>Eats grass seeds, green shoots and insects, scratching on the ground mainly at night and dusk. Solitary, in pairs or small groups; nomadic and abundant after good seasons. Runs through grass and is seldom seen unless flushed.</p>
       </div>
@@ -1403,7 +1405,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Eye</b> broad scarlet eye-ring of bare skin</li><li><i>2</i><b>Head</b> plain pale blue-grey</li><li><i>3</i><b>Wing</b> grey-brown, finely spotted white</li><li><i>4</i><b>Tail</b> long and narrow</li><li><i>5</i><b>Belly</b> clean white belly and undertail</li></ol>
     
-    <span class="sex">Adult ♂  (♀ browner)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> browner)</span>
     <span class="num">No. XXVI</span>
   </div>
   <div class="face back">
@@ -1507,7 +1509,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
         <p class="sci">Centropus phasianinus</p>
         <p class="fam">Cuculidae · Cuckoos &amp; coucals</p>
       </div>
-      <div class="hmeta"><span class="num">No. XXVIII</span><span class="size">50–70 cm; ♀ larger</span><span class="chip ">Least Concern</span></div>
+      <div class="hmeta"><span class="num">No. XXVIII</span><span class="size">50–70 cm; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span><span class="chip ">Least Concern</span></div>
     </header>
     <div class="cols">
       <div class="col">
@@ -1540,11 +1542,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/pacific-koel.408aa3c8.webp" loading="lazy" decoding="async" alt="Mystery bird plate XXIX">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="18.5" y1="33.0" x2="52.9" y2="36.6"/><line x1="18.5" y1="5.0" x2="67.9" y2="11.4"/><line x1="81.5" y1="11.0" x2="75.6" y2="10.2"/><line x1="18.5" y1="59.0" x2="32.1" y2="67.9"/><line x1="81.5" y1="57.0" x2="61.3" y2="57.2"/></svg>
-      <i class="dot" data-k="1" style="left:52.9%;top:36.6%"></i><i class="dot" data-k="2" style="left:67.9%;top:11.4%"></i><i class="dot" data-k="3" style="left:75.6%;top:10.2%"></i><i class="dot" data-k="4" style="left:32.1%;top:67.9%"></i><i class="dot" data-k="5" style="left:61.3%;top:57.2%"></i><div class="co l" style="top:33.0%"><b>Plumage</b><span>♂ entirely glossy blue-black</span></div><div class="co l" style="top:5.0%"><b>Eye</b><span>striking crimson-red iris</span></div><div class="co r" style="top:11.0%"><b>Bill</b><span>stout, pale ivory to greenish-horn</span></div><div class="co l" style="top:59.0%"><b>Tail</b><span>long, broad and round-tipped</span></div><div class="co r" style="top:57.0%"><b>Legs</b><span>dark blue-grey legs and feet</span></div>
+      <i class="dot" data-k="1" style="left:52.9%;top:36.6%"></i><i class="dot" data-k="2" style="left:67.9%;top:11.4%"></i><i class="dot" data-k="3" style="left:75.6%;top:10.2%"></i><i class="dot" data-k="4" style="left:32.1%;top:67.9%"></i><i class="dot" data-k="5" style="left:61.3%;top:57.2%"></i><div class="co l" style="top:33.0%"><b>Plumage</b><span><svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> entirely glossy blue-black</span></div><div class="co l" style="top:5.0%"><b>Eye</b><span>striking crimson-red iris</span></div><div class="co r" style="top:11.0%"><b>Bill</b><span>stout, pale ivory to greenish-horn</span></div><div class="co l" style="top:59.0%"><b>Tail</b><span>long, broad and round-tipped</span></div><div class="co r" style="top:57.0%"><b>Legs</b><span>dark blue-grey legs and feet</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Plumage</b> ♂ entirely glossy blue-black</li><li><i>2</i><b>Eye</b> striking crimson-red iris</li><li><i>3</i><b>Bill</b> stout, pale ivory to greenish-horn</li><li><i>4</i><b>Tail</b> long, broad and round-tipped</li><li><i>5</i><b>Legs</b> dark blue-grey legs and feet</li></ol>
+    <ol class="legend"><li><i>1</i><b>Plumage</b> <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> entirely glossy blue-black</li><li><i>2</i><b>Eye</b> striking crimson-red iris</li><li><i>3</i><b>Bill</b> stout, pale ivory to greenish-horn</li><li><i>4</i><b>Tail</b> long, broad and round-tipped</li><li><i>5</i><b>Legs</b> dark blue-grey legs and feet</li></ol>
     
-    <span class="sex">Adult ♂  (♀ spotted brown)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> spotted brown)</span>
     <span class="num">No. XXIX</span>
   </div>
   <div class="face back">
@@ -1559,7 +1561,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Plumage</b> — ♂ entirely glossy blue-black</li><li><b>Eye</b> — striking crimson-red iris</li><li><b>Bill</b> — stout, pale ivory to greenish-horn</li><li><b>Tail</b> — long, broad and round-tipped</li><li><b>Legs</b> — dark blue-grey legs and feet</li></ul>
+        <ul class="feat"><li><b>Plumage</b> — <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> entirely glossy blue-black</li><li><b>Eye</b> — striking crimson-red iris</li><li><b>Bill</b> — stout, pale ivory to greenish-horn</li><li><b>Tail</b> — long, broad and round-tipped</li><li><b>Legs</b> — dark blue-grey legs and feet</li></ul>
         <div class="sexes">Male glossy blue-black with red eye and pale bill. Female glossy brown above, densely spotted white, with black crown and moustache and a buff stripe between; underparts buff, finely barred black. Juvenile rufous-buff, spotted and barred, eye dark.</div>
         <h4>Behaviour</h4><p>Feeds in the canopy on fruit, especially native and introduced figs, with some insects. Solitary and shy, but very vocal by day and night when breeding. Common in coastal QLD and increasing in towns.</p>
       </div>
@@ -1732,7 +1734,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Bill</b> huge, down-curved</li><li><i>2</i><b>Head</b> plain, streaky</li><li><i>3</i><b>Upperparts</b> brown</li><li><i>4</i><b>Breast</b> buff-brown, densely streaked</li><li><i>5</i><b>Legs</b> long, blue-grey</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♀ longer bill</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> longer bill</span>
     <span class="num">No. XXXIII</span>
   </div>
   <div class="face back">
@@ -1742,7 +1744,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
         <p class="sci">Numenius madagascariensis</p>
         <p class="fam">Scolopacidae · Sandpipers &amp; allies</p>
       </div>
-      <div class="hmeta"><span class="num">No. XXXIII</span><span class="size">60–66 cm; ♀ bill c. 18–19 cm</span><span class="chip chip-warn">EPBC Critically Endangered · QLD Critically Endangered</span></div>
+      <div class="hmeta"><span class="num">No. XXXIII</span><span class="size">60–66 cm; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> bill c. 18–19 cm</span><span class="chip chip-warn">EPBC Critically Endangered · QLD Critically Endangered</span></div>
     </header>
     <div class="cols">
       <div class="col">
@@ -1775,11 +1777,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/black-necked-stork.b04c4da4.webp" loading="lazy" decoding="async" alt="Mystery bird plate XXXIV">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="81.5" y1="21.0" x2="36.8" y2="23.1"/><line x1="18.5" y1="23.0" x2="29.9" y2="22.2"/><line x1="18.5" y1="9.0" x2="34.8" y2="11.7"/><line x1="81.5" y1="35.0" x2="55.2" y2="41.0"/><line x1="81.5" y1="61.0" x2="52.6" y2="60.8"/></svg>
-      <i class="dot" data-k="1" style="left:36.8%;top:23.1%"></i><i class="dot" data-k="2" style="left:29.9%;top:22.2%"></i><i class="dot" data-k="3" style="left:34.8%;top:11.7%"></i><i class="dot" data-k="4" style="left:55.2%;top:41.0%"></i><i class="dot" data-k="5" style="left:52.6%;top:60.8%"></i><div class="co r" style="top:21.0%"><b>Neck</b><span>glossy black</span></div><div class="co l" style="top:23.0%"><b>Bill</b><span>massive, straight black dagger</span></div><div class="co l" style="top:9.0%"><b>Eye</b><span>yellow iris (♀)</span></div><div class="co r" style="top:35.0%"><b>Wing</b><span>broad black band across white wing</span></div><div class="co r" style="top:61.0%"><b>Legs</b><span>very long, coral-red</span></div>
+      <i class="dot" data-k="1" style="left:36.8%;top:23.1%"></i><i class="dot" data-k="2" style="left:29.9%;top:22.2%"></i><i class="dot" data-k="3" style="left:34.8%;top:11.7%"></i><i class="dot" data-k="4" style="left:55.2%;top:41.0%"></i><i class="dot" data-k="5" style="left:52.6%;top:60.8%"></i><div class="co r" style="top:21.0%"><b>Neck</b><span>glossy black</span></div><div class="co l" style="top:23.0%"><b>Bill</b><span>massive, straight black dagger</span></div><div class="co l" style="top:9.0%"><b>Eye</b><span>yellow iris (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>)</span></div><div class="co r" style="top:35.0%"><b>Wing</b><span>broad black band across white wing</span></div><div class="co r" style="top:61.0%"><b>Legs</b><span>very long, coral-red</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Neck</b> glossy black</li><li><i>2</i><b>Bill</b> massive, straight black dagger</li><li><i>3</i><b>Eye</b> yellow iris (♀)</li><li><i>4</i><b>Wing</b> broad black band across white wing</li><li><i>5</i><b>Legs</b> very long, coral-red</li></ol>
+    <ol class="legend"><li><i>1</i><b>Neck</b> glossy black</li><li><i>2</i><b>Bill</b> massive, straight black dagger</li><li><i>3</i><b>Eye</b> yellow iris (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>)</li><li><i>4</i><b>Wing</b> broad black band across white wing</li><li><i>5</i><b>Legs</b> very long, coral-red</li></ol>
     
-    <span class="sex">Adult ♀  (♂ has dark eye)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> has dark eye)</span>
     <span class="num">No. XXXIV</span>
   </div>
   <div class="face back">
@@ -1794,7 +1796,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Neck</b> — glossy black; green and purple sheen</li><li><b>Bill</b> — massive, straight black dagger</li><li><b>Eye</b> — yellow iris (♀); dark brown in ♂</li><li><b>Wing</b> — broad black band across white wing</li><li><b>Legs</b> — very long, coral-red</li></ul>
+        <ul class="feat"><li><b>Neck</b> — glossy black; green and purple sheen</li><li><b>Bill</b> — massive, straight black dagger</li><li><b>Eye</b> — yellow iris (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>); dark brown in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></li><li><b>Wing</b> — broad black band across white wing</li><li><b>Legs</b> — very long, coral-red</li></ul>
         <div class="sexes">Male: head and neck black glossed green and purple; white body; black wing band and tail; black bill; coral-red legs; dark brown eye. Female identical but with a yellow eye. Juvenile dull brown with a greyish-white belly and dusky legs; adult plumage gained over several years.</div>
         <h4>Behaviour</h4><p>Eats fish, eels, crustaceans, frogs, reptiles and insects, stalking in water 5–30 cm deep and lunging or leaping at prey. Single birds, pairs or family groups; sedentary or partly nomadic. Fairly common in the north, scarce in the south-east.</p>
       </div>
@@ -1826,7 +1828,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Crest</b> short, pointed crest on the nape</li><li><i>2</i><b>Eye</b> golden-yellow, prominent, &#x27;pop-eyed&#x27;</li><li><i>3</i><b>Head</b> grey head, neck and upper breast</li><li><i>4</i><b>Underparts</b> white, boldly barred rufous-brown</li><li><i>5</i><b>Vent</b> rufous-buff thighs and undertail</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♀ larger</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span>
     <span class="num">No. XXXV</span>
   </div>
   <div class="face back">
@@ -1873,7 +1875,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Shoulder</b> black patch on the folded wing</li><li><i>2</i><b>Eye</b> red, set in a black &#x27;comma&#x27;</li><li><i>3</i><b>Head</b> white face, head and underparts</li><li><i>4</i><b>Upperparts</b> pale ash-grey back and wings</li><li><i>5</i><b>Legs</b> short, bright yellow</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♀ larger</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span>
     <span class="num">No. XXXVI</span>
   </div>
   <div class="face back">
@@ -1920,7 +1922,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Plumage</b> dark brown</li><li><i>2</i><b>Head</b> paler, buff-streaked head</li><li><i>3</i><b>Bill</b> black bill</li><li><i>4</i><b>Shoulder</b> pale buff bar across the inner wing</li><li><i>5</i><b>Tail</b> long, shallow-forked</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♀ larger</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span>
     <span class="num">No. XXXVII</span>
   </div>
   <div class="face back">
@@ -1967,7 +1969,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Head</b> pale sandy, finely streaked</li><li><i>2</i><b>Bill</b> small, dark grey</li><li><i>3</i><b>Wings</b> sandy-brown coverts</li><li><i>4</i><b>Underparts</b> pale sandy-buff, finely streaked</li><li><i>5</i><b>Tail</b> long, rounded, plain pale brown</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♀ larger</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span>
     <span class="num">No. XXXVIII</span>
   </div>
   <div class="face back">
@@ -2014,7 +2016,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Head</b> white head and breast</li><li><i>2</i><b>Body</b> rich chestnut body and wings</li><li><i>3</i><b>Wingtips</b> black primary tips at the wingtip</li><li><i>4</i><b>Bill</b> pale horn-yellow, strongly hooked</li><li><i>5</i><b>Tail</b> short, rounded, chestnut</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♀ larger</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span>
     <span class="num">No. XXXIX</span>
   </div>
   <div class="face back">
@@ -2061,7 +2063,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Head</b> white head, neck and underparts</li><li><i>2</i><b>Wings</b> slate-grey back and folded wings</li><li><i>3</i><b>Bill</b> large, grey with a darker tip</li><li><i>4</i><b>Legs</b> bare, cream-white</li><li><i>5</i><b>Tail</b> short wedge</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♀ larger</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span>
     <span class="num">No. XL</span>
   </div>
   <div class="face back">
@@ -2108,7 +2110,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Facial disc</b> chestnut owl-like disc</li><li><i>2</i><b>Underparts</b> chestnut, densely white-spotted</li><li><i>3</i><b>Wings</b> blue-grey, spotted and barred darker</li><li><i>4</i><b>Tail</b> long, wedge-tipped</li><li><i>5</i><b>Legs</b> very long, slender, bright yellow</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♀ larger</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span>
     <span class="num">No. XLI</span>
   </div>
   <div class="face back">
@@ -2155,7 +2157,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Plumage</b> blackish-brown overall</li><li><i>2</i><b>Nape</b> tawny-bronze hackles on the nape</li><li><i>3</i><b>Bill</b> massive</li><li><i>4</i><b>Legs</b> feathered to the toes</li><li><i>5</i><b>Tail</b> long, wedge-shaped (diamond-tipped)</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♀ larger</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span>
     <span class="num">No. XLII</span>
   </div>
   <div class="face back">
@@ -2249,7 +2251,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Eye</b> large, yellow</li><li><i>2</i><b>Underparts</b> off-white with bold dark V-chevrons</li><li><i>3</i><b>Upperparts</b> dark grey-brown, barred white</li><li><i>4</i><b>Feet</b> massive yellow toes</li><li><i>5</i><b>Head</b> small for body</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♂ larger</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> larger</span>
     <span class="num">No. XLIV</span>
   </div>
   <div class="face back">
@@ -2339,11 +2341,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/glossy-black-cockatoo.03ac714c.webp" loading="lazy" decoding="async" alt="Mystery bird plate XLVI">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="18.5" y1="19.0" x2="51.4" y2="18.4"/><line x1="81.5" y1="15.0" x2="59.6" y2="15.6"/><line x1="18.5" y1="5.0" x2="53.6" y2="7.2"/><line x1="81.5" y1="43.0" x2="55.7" y2="42.6"/><line x1="18.5" y1="65.0" x2="41.1" y2="72.3"/></svg>
-      <i class="dot" data-k="1" style="left:51.4%;top:18.4%"></i><i class="dot" data-k="2" style="left:59.6%;top:15.6%"></i><i class="dot" data-k="3" style="left:53.6%;top:7.2%"></i><i class="dot" data-k="4" style="left:55.7%;top:42.6%"></i><i class="dot" data-k="5" style="left:41.1%;top:72.3%"></i><div class="co l" style="top:19.0%"><b>Head</b><span>dull brown head and neck (♂)</span></div><div class="co r" style="top:15.0%"><b>Bill</b><span>very broad, bulbous grey bill</span></div><div class="co l" style="top:5.0%"><b>Crest</b><span>small, rounded, hardly visible</span></div><div class="co r" style="top:43.0%"><b>Body</b><span>sooty black body and wings</span></div><div class="co l" style="top:65.0%"><b>Tail</b><span>bright red panels</span></div>
+      <i class="dot" data-k="1" style="left:51.4%;top:18.4%"></i><i class="dot" data-k="2" style="left:59.6%;top:15.6%"></i><i class="dot" data-k="3" style="left:53.6%;top:7.2%"></i><i class="dot" data-k="4" style="left:55.7%;top:42.6%"></i><i class="dot" data-k="5" style="left:41.1%;top:72.3%"></i><div class="co l" style="top:19.0%"><b>Head</b><span>dull brown head and neck (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</span></div><div class="co r" style="top:15.0%"><b>Bill</b><span>very broad, bulbous grey bill</span></div><div class="co l" style="top:5.0%"><b>Crest</b><span>small, rounded, hardly visible</span></div><div class="co r" style="top:43.0%"><b>Body</b><span>sooty black body and wings</span></div><div class="co l" style="top:65.0%"><b>Tail</b><span>bright red panels</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Head</b> dull brown head and neck (♂)</li><li><i>2</i><b>Bill</b> very broad, bulbous grey bill</li><li><i>3</i><b>Crest</b> small, rounded, hardly visible</li><li><i>4</i><b>Body</b> sooty black body and wings</li><li><i>5</i><b>Tail</b> bright red panels</li></ol>
+    <ol class="legend"><li><i>1</i><b>Head</b> dull brown head and neck (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><i>2</i><b>Bill</b> very broad, bulbous grey bill</li><li><i>3</i><b>Crest</b> small, rounded, hardly visible</li><li><i>4</i><b>Body</b> sooty black body and wings</li><li><i>5</i><b>Tail</b> bright red panels</li></ol>
     
-    <span class="sex">Adult ♂  (♀ yellow head patches)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> yellow head patches)</span>
     <span class="num">No. XLVI</span>
   </div>
   <div class="face back">
@@ -2358,7 +2360,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Head</b> — dull brown head and neck (♂)</li><li><b>Bill</b> — very broad, bulbous grey bill</li><li><b>Crest</b> — small, rounded, hardly visible</li><li><b>Body</b> — sooty black body and wings</li><li><b>Tail</b> — bright red panels; unbarred in males</li></ul>
+        <ul class="feat"><li><b>Head</b> — dull brown head and neck (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><b>Bill</b> — very broad, bulbous grey bill</li><li><b>Crest</b> — small, rounded, hardly visible</li><li><b>Body</b> — sooty black body and wings</li><li><b>Tail</b> — bright red panels; unbarred in males</li></ul>
         <div class="sexes">Male sooty black with brown-washed head and plain bright red tail panels. Female browner, with irregular yellow patches on head and neck, and orange-red tail panels barred black. Juvenile like female but spotted yellow on breast, belly and flanks; young males gradually lose the yellow.</div>
         <h4>Behaviour</h4><p>Specialist on she-oak seed, crushing closed cones with the bulbous bill and feeding for much of the day. Pairs, trios or small groups; larger gatherings at drinking sites before roosting. Quiet and inconspicuous; uncommon and patchily distributed.</p>
       </div>
@@ -2390,7 +2392,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Mask</b> black mask from forehead through eye</li><li><i>2</i><b>Eyebrow</b> yellow eyebrow</li><li><i>3</i><b>Throat</b> bright lemon-yellow throat</li><li><i>4</i><b>Upperparts</b> dark olive-brown</li><li><i>5</i><b>Legs</b> long, pale pinkish-cream legs</li></ol>
     
-    <span class="sex">Adult ♂  (♀ mask brown)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> mask brown)</span>
     <span class="num">No. XLVII</span>
   </div>
   <div class="face back">
@@ -2578,7 +2580,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Brow</b> rufous-red eye patch</li><li><i>2</i><b>Head</b> grey crown and face</li><li><i>3</i><b>Back</b> brown saddle contrasts with grey</li><li><i>4</i><b>Underparts</b> boldly streaked white, edged black</li><li><i>5</i><b>Bill</b> fine, black, slightly decurved</li></ol>
     
-    <span class="sex">Adult ♂  (♀ rufous breast streaks)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> rufous breast streaks)</span>
     <span class="num">No. LI</span>
   </div>
   <div class="face back">
@@ -2640,7 +2642,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Eyebrow</b> — pale buff brow over dark eye-stripe</li><li><b>Head</b> — plain greyish-brown crown and face</li><li><b>Throat</b> — pale buff-grey; ♂ black streaks below</li><li><b>Underparts</b> — lower breast streaked black and buff</li><li><b>Undertail</b> — coverts barred black and white</li></ul>
+        <ul class="feat"><li><b>Eyebrow</b> — pale buff brow over dark eye-stripe</li><li><b>Head</b> — plain greyish-brown crown and face</li><li><b>Throat</b> — pale buff-grey; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> black streaks below</li><li><b>Underparts</b> — lower breast streaked black and buff</li><li><b>Undertail</b> — coverts barred black and white</li></ul>
         <div class="sexes">Sexes nearly alike: buff brow, dark eye-stripe, streaked lower breast. Male has a short band of black-edged streaks on the upper breast; female&#x27;s are rufous. Juvenile duller, with fainter streaking and a pale rufous lower belly. Cape York birds much darker.</div>
         <h4>Behaviour</h4><p>Eats insects, mostly ants, probed from bark as it hops up trunks or picked from the ground and fallen logs; sometimes pounces from a perch. Sedentary family groups on permanent territories. Common in good woodland, declining in fragments.</p>
       </div>
@@ -2668,11 +2670,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/spotted-pardalote.b628c3b3.webp" loading="lazy" decoding="async" alt="Mystery bird plate LIII">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="81.5" y1="7.0" x2="64.5" y2="17.2"/><line x1="81.5" y1="21.0" x2="61.9" y2="22.1"/><line x1="81.5" y1="41.0" x2="67.5" y2="32.4"/><line x1="18.5" y1="49.0" x2="46.7" y2="35.0"/><line x1="18.5" y1="7.0" x2="28.2" y2="28.3"/></svg>
-      <i class="dot" data-k="1" style="left:64.5%;top:17.2%"></i><i class="dot" data-k="2" style="left:61.9%;top:22.1%"></i><i class="dot" data-k="3" style="left:67.5%;top:32.4%"></i><i class="dot" data-k="4" style="left:46.7%;top:35.0%"></i><i class="dot" data-k="5" style="left:28.2%;top:28.3%"></i><div class="co r" style="top:7.0%"><b>Crown</b><span>black, densely spotted white</span></div><div class="co r" style="top:21.0%"><b>Eyebrow</b><span>long white brow above grey face</span></div><div class="co r" style="top:41.0%"><b>Throat</b><span>bright yellow throat (♂)</span></div><div class="co l" style="top:49.0%"><b>Wings</b><span>black with neat white spots</span></div><div class="co l" style="top:7.0%"><b>Rump</b><span>red rump, yellow undertail</span></div>
+      <i class="dot" data-k="1" style="left:64.5%;top:17.2%"></i><i class="dot" data-k="2" style="left:61.9%;top:22.1%"></i><i class="dot" data-k="3" style="left:67.5%;top:32.4%"></i><i class="dot" data-k="4" style="left:46.7%;top:35.0%"></i><i class="dot" data-k="5" style="left:28.2%;top:28.3%"></i><div class="co r" style="top:7.0%"><b>Crown</b><span>black, densely spotted white</span></div><div class="co r" style="top:21.0%"><b>Eyebrow</b><span>long white brow above grey face</span></div><div class="co r" style="top:41.0%"><b>Throat</b><span>bright yellow throat (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</span></div><div class="co l" style="top:49.0%"><b>Wings</b><span>black with neat white spots</span></div><div class="co l" style="top:7.0%"><b>Rump</b><span>red rump, yellow undertail</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Crown</b> black, densely spotted white</li><li><i>2</i><b>Eyebrow</b> long white brow above grey face</li><li><i>3</i><b>Throat</b> bright yellow throat (♂)</li><li><i>4</i><b>Wings</b> black with neat white spots</li><li><i>5</i><b>Rump</b> red rump, yellow undertail</li></ol>
+    <ol class="legend"><li><i>1</i><b>Crown</b> black, densely spotted white</li><li><i>2</i><b>Eyebrow</b> long white brow above grey face</li><li><i>3</i><b>Throat</b> bright yellow throat (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><i>4</i><b>Wings</b> black with neat white spots</li><li><i>5</i><b>Rump</b> red rump, yellow undertail</li></ol>
     
-    <span class="sex">Adult ♂  (♀ duller)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> duller)</span>
     <span class="num">No. LIII</span>
   </div>
   <div class="face back">
@@ -2687,8 +2689,8 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Crown</b> — black, densely spotted white</li><li><b>Eyebrow</b> — long white brow above grey face</li><li><b>Throat</b> — bright yellow throat (♂)</li><li><b>Wings</b> — black with neat white spots</li><li><b>Rump</b> — red rump; yellow undertail</li></ul>
-        <div class="sexes">♂ black crown, wings and tail spotted white; white brow, grey face, bright yellow throat, buff underparts, red rump. ♀ duller, with buff-yellow crown spots and a pale cream to yellowish throat. Juvenile duller still, crown dull and largely unspotted, throat pale.</div>
+        <ul class="feat"><li><b>Crown</b> — black, densely spotted white</li><li><b>Eyebrow</b> — long white brow above grey face</li><li><b>Throat</b> — bright yellow throat (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><b>Wings</b> — black with neat white spots</li><li><b>Rump</b> — red rump; yellow undertail</li></ul>
+        <div class="sexes"><svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> black crown, wings and tail spotted white; white brow, grey face, bright yellow throat, buff underparts, red rump. <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> duller, with buff-yellow crown spots and a pale cream to yellowish throat. Juvenile duller still, crown dull and largely unspotted, throat pale.</div>
         <h4>Behaviour</h4><p>Gleans lerps, psyllids and other small insects, plus sugary leaf exudates, from eucalypt foliage high in the canopy. Pairs or small groups, joining mixed flocks in winter. Common in SEQ; largely sedentary with some altitudinal movement.</p>
       </div>
       <div class="col colr">
@@ -2860,7 +2862,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Throat</b> black chin and throat</li><li><i>2</i><b>Face</b> short white whisker below the eye</li><li><i>3</i><b>Eye</b> red iris</li><li><i>4</i><b>Underparts</b> lemon-yellow breast and belly</li><li><i>5</i><b>Upperparts</b> olive-green back</li></ol>
     
-    <span class="sex">Adult ♂  (♀ pale-throated)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> pale-throated)</span>
     <span class="num">No. LVII</span>
   </div>
   <div class="face back">
@@ -2875,8 +2877,8 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Throat</b> — black chin and throat; Cape York ♂</li><li><b>Face</b> — short white whisker below the eye</li><li><b>Eye</b> — red iris; tiny white spot before eye</li><li><b>Underparts</b> — lemon-yellow breast and belly</li><li><b>Upperparts</b> — olive-green back; browner wings and tail</li></ul>
-        <div class="sexes">♂ olive above, yellow below, red eye; Cape York ♂ (personata) has a black chin and throat with a white whisker stripe; southern ♂ (flavida) throat yellowish to dusky, black reduced or absent. ♀ lacks dark throat, has white loral spot. Juvenile duller, eye brown.</div>
+        <ul class="feat"><li><b>Throat</b> — black chin and throat; Cape York <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></li><li><b>Face</b> — short white whisker below the eye</li><li><b>Eye</b> — red iris; tiny white spot before eye</li><li><b>Underparts</b> — lemon-yellow breast and belly</li><li><b>Upperparts</b> — olive-green back; browner wings and tail</li></ul>
+        <div class="sexes"><svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> olive above, yellow below, red eye; Cape York <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> (personata) has a black chin and throat with a white whisker stripe; southern <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> (flavida) throat yellowish to dusky, black reduced or absent. <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> lacks dark throat, has white loral spot. Juvenile duller, eye brown.</div>
         <h4>Behaviour</h4><p>Feeds on small insects and spiders, gleaned from leaves or taken while hovering at foliage tips. In pairs or small family parties, sometimes with mixed flocks. Fairly common in the Wet Tropics and on Cape York; scarcer south of Mackay.</p>
       </div>
       <div class="col colr">
@@ -3252,7 +3254,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
       <div class="col">
         <h4>Description</h4>
         <ul class="feat"><li><b>Face</b> — narrow black mask; bill to just behind eye</li><li><b>Throat</b> — white to very pale grey</li><li><b>Mantle</b> — pale blue-grey; crown, back and coverts</li><li><b>Underparts</b> — pale grey breast; clean white belly</li><li><b>Bill</b> — black; slimmer than Black-faced&#x27;s</li></ul>
-        <div class="sexes">Sexes alike; adult ♂ has a tiny white spot above the rear of the eye. Pale morph: grey above, black mask bill-to-eye, white throat and belly. Dark morph (mainly south-east): black head, throat and breast, barred below. Juvenile browner and mottled, with a faint mask.</div>
+        <div class="sexes">Sexes alike; adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> has a tiny white spot above the rear of the eye. Pale morph: grey above, black mask bill-to-eye, white throat and belly. Dark morph (mainly south-east): black head, throat and breast, barred below. Juvenile browner and mottled, with a faint mask.</div>
         <h4>Behaviour</h4><p>Gleans insects and other invertebrates from foliage and hawks them in flight; also takes some fruit, seeds and nectar. Single birds, pairs or small groups; mostly resident with some seasonal movement. Fairly common in the north, scarcer in the south.</p>
       </div>
       <div class="col colr">
@@ -3373,11 +3375,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/varied-triller.ca695c88.webp" loading="lazy" decoding="async" alt="Mystery bird plate LXVIII">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="81.5" y1="13.0" x2="44.7" y2="17.5"/><line x1="81.5" y1="27.0" x2="50.0" y2="27.5"/><line x1="18.5" y1="19.0" x2="46.0" y2="34.7"/><line x1="18.5" y1="33.0" x2="43.4" y2="43.5"/><line x1="81.5" y1="83.0" x2="61.9" y2="54.0"/></svg>
-      <i class="dot" data-k="1" style="left:44.7%;top:17.5%"></i><i class="dot" data-k="2" style="left:50.0%;top:27.5%"></i><i class="dot" data-k="3" style="left:46.0%;top:34.7%"></i><i class="dot" data-k="4" style="left:43.4%;top:43.5%"></i><i class="dot" data-k="5" style="left:61.9%;top:54.0%"></i><div class="co r" style="top:13.0%"><b>Head</b><span>white eyebrow</span></div><div class="co r" style="top:27.0%"><b>Back</b><span>glossy black (♂)</span></div><div class="co l" style="top:19.0%"><b>Wing</b><span>white covert streaks and edges</span></div><div class="co l" style="top:33.0%"><b>Underparts</b><span>white, faint grey barring</span></div><div class="co r" style="top:83.0%"><b>Vent</b><span>cinnamon-buff</span></div>
+      <i class="dot" data-k="1" style="left:44.7%;top:17.5%"></i><i class="dot" data-k="2" style="left:50.0%;top:27.5%"></i><i class="dot" data-k="3" style="left:46.0%;top:34.7%"></i><i class="dot" data-k="4" style="left:43.4%;top:43.5%"></i><i class="dot" data-k="5" style="left:61.9%;top:54.0%"></i><div class="co r" style="top:13.0%"><b>Head</b><span>white eyebrow</span></div><div class="co r" style="top:27.0%"><b>Back</b><span>glossy black (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</span></div><div class="co l" style="top:19.0%"><b>Wing</b><span>white covert streaks and edges</span></div><div class="co l" style="top:33.0%"><b>Underparts</b><span>white, faint grey barring</span></div><div class="co r" style="top:83.0%"><b>Vent</b><span>cinnamon-buff</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Head</b> white eyebrow</li><li><i>2</i><b>Back</b> glossy black (♂)</li><li><i>3</i><b>Wing</b> white covert streaks and edges</li><li><i>4</i><b>Underparts</b> white, faint grey barring</li><li><i>5</i><b>Vent</b> cinnamon-buff</li></ol>
+    <ol class="legend"><li><i>1</i><b>Head</b> white eyebrow</li><li><i>2</i><b>Back</b> glossy black (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><i>3</i><b>Wing</b> white covert streaks and edges</li><li><i>4</i><b>Underparts</b> white, faint grey barring</li><li><i>5</i><b>Vent</b> cinnamon-buff</li></ol>
     
-    <span class="sex">Adult ♂  (♀ browner)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> browner)</span>
     <span class="num">No. LXVIII</span>
   </div>
   <div class="face back">
@@ -3392,7 +3394,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Head</b> — white eyebrow; black crown and eye-stripe</li><li><b>Back</b> — glossy black in ♂; brownish-grey in ♀</li><li><b>Wing</b> — black; white covert streaks and edges</li><li><b>Underparts</b> — white; fine grey barring on breast, flanks</li><li><b>Vent</b> — cinnamon-buff; lower belly and undertail</li></ul>
+        <ul class="feat"><li><b>Head</b> — white eyebrow; black crown and eye-stripe</li><li><b>Back</b> — glossy black in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>; brownish-grey in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg></li><li><b>Wing</b> — black; white covert streaks and edges</li><li><b>Underparts</b> — white; fine grey barring on breast, flanks</li><li><b>Vent</b> — cinnamon-buff; lower belly and undertail</li></ul>
         <div class="sexes">Male glossy black above with white eyebrow, black eye-stripe and white-streaked wing coverts; white below, finely barred grey, vent cinnamon-buff. Female browner-grey above with buff brow; underparts greyer, more heavily barred. Juvenile like female, mottled buff above.</div>
         <h4>Behaviour</h4><p>Eats fruit (notably figs) plus insects, seeds and some nectar, mostly in the outer foliage of the mid to upper canopy, occasionally near the ground. Single birds or pairs. Sedentary; common in the Wet Tropics and on Cape York, less so in the south-east.</p>
       </div>
@@ -3424,7 +3426,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Head</b> grey-brown, dark eye-line</li><li><i>2</i><b>Wing</b> black, white shoulder bar</li><li><i>3</i><b>Back</b> grey-brown when non-breeding</li><li><i>4</i><b>Underparts</b> white to buff-white, unmarked</li><li><i>5</i><b>Bill</b> short, slender and black</li></ol>
     <figure class="inset tr"><img src="img/white-winged-triller-inset.9ba0f136.webp" loading="lazy" decoding="async" alt="Breeding detail"><figcaption>Breeding</figcaption></figure>
-    <span class="sex">Adult ♂ non-breeding (♀ similar)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> non-breeding (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> similar)</span>
     <span class="num">No. LXIX</span>
   </div>
   <div class="face back">
@@ -3440,7 +3442,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
       <div class="col">
         <h4>Description</h4>
         <ul class="feat"><li><b>Head</b> — grey-brown; faint pale brow, dark eye-line</li><li><b>Wing</b> — black; white shoulder bar and edgings</li><li><b>Back</b> — grey-brown when non-breeding; grey rump</li><li><b>Underparts</b> — white to buff-white, unmarked</li><li><b>Bill</b> — short, slender and black</li></ul>
-        <div class="sexes">Breeding ♂ glossy black crown, face and back, black wings with broad white shoulder and edgings, grey rump, white below. Non-breeding (eclipse) ♂ grey-brown above but keeps black-and-white wings. Female brown above, buff-white below, wings brown edged buff. Juvenile mottled buff.</div>
+        <div class="sexes">Breeding <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> glossy black crown, face and back, black wings with broad white shoulder and edgings, grey rump, white below. Non-breeding (eclipse) <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> grey-brown above but keeps black-and-white wings. Female brown above, buff-white below, wings brown edged buff. Juvenile mottled buff.</div>
         <h4>Behaviour</h4><p>Eats mainly insects, gleaned from foliage, hawked in the air or taken on the ground; also some fruit, seeds and nectar. Pairs or loose flocks; strongly nomadic and migratory, appearing in numbers where insects are plentiful. Common, especially inland.</p>
       </div>
       <div class="col colr">
@@ -3467,11 +3469,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/red-tailed-black-cockatoo.caa40cab.webp" loading="lazy" decoding="async" alt="Mystery bird plate LXX">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="18.5" y1="9.0" x2="46.4" y2="10.9"/><line x1="18.5" y1="37.0" x2="44.8" y2="24.0"/><line x1="18.5" y1="51.0" x2="47.1" y2="40.7"/><line x1="81.5" y1="71.6" x2="60.1" y2="72.3"/><line x1="18.5" y1="23.0" x2="49.3" y2="20.7"/></svg>
-      <i class="dot" data-k="1" style="left:46.4%;top:10.9%"></i><i class="dot" data-k="2" style="left:44.8%;top:24.0%"></i><i class="dot" data-k="3" style="left:47.1%;top:40.7%"></i><i class="dot" data-k="4" style="left:60.1%;top:72.3%"></i><i class="dot" data-k="5" style="left:49.3%;top:20.7%"></i><div class="co l" style="top:9.0%"><b>Crest</b><span>full rounded helmet crest</span></div><div class="co l" style="top:37.0%"><b>Bill</b><span>massive dark-grey bill (♂)</span></div><div class="co l" style="top:51.0%"><b>Body</b><span>glossy black, unspotted in adult ♂</span></div><div class="co r" style="top:71.6%"><b>Tail</b><span>scarlet panels (♂)</span></div><div class="co l" style="top:23.0%"><b>Eye</b><span>dark eye; no coloured eye-ring</span></div>
+      <i class="dot" data-k="1" style="left:46.4%;top:10.9%"></i><i class="dot" data-k="2" style="left:44.8%;top:24.0%"></i><i class="dot" data-k="3" style="left:47.1%;top:40.7%"></i><i class="dot" data-k="4" style="left:60.1%;top:72.3%"></i><i class="dot" data-k="5" style="left:49.3%;top:20.7%"></i><div class="co l" style="top:9.0%"><b>Crest</b><span>full rounded helmet crest</span></div><div class="co l" style="top:37.0%"><b>Bill</b><span>massive dark-grey bill (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</span></div><div class="co l" style="top:51.0%"><b>Body</b><span>glossy black, unspotted in adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></span></div><div class="co r" style="top:71.6%"><b>Tail</b><span>scarlet panels (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</span></div><div class="co l" style="top:23.0%"><b>Eye</b><span>dark eye; no coloured eye-ring</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Crest</b> full rounded helmet crest</li><li><i>2</i><b>Bill</b> massive dark-grey bill (♂)</li><li><i>3</i><b>Body</b> glossy black, unspotted in adult ♂</li><li><i>4</i><b>Tail</b> scarlet panels (♂)</li><li><i>5</i><b>Eye</b> dark eye; no coloured eye-ring</li></ol>
-    <figure class="inset tr"><img src="img/red-tailed-black-cockatoo-inset.23f80d1f.webp" loading="lazy" decoding="async" alt="Female ♀ detail"><figcaption>Female ♀</figcaption></figure>
-    <span class="sex">Adult ♂  (♀ yellow-spotted)</span>
+    <ol class="legend"><li><i>1</i><b>Crest</b> full rounded helmet crest</li><li><i>2</i><b>Bill</b> massive dark-grey bill (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><i>3</i><b>Body</b> glossy black, unspotted in adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></li><li><i>4</i><b>Tail</b> scarlet panels (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><i>5</i><b>Eye</b> dark eye; no coloured eye-ring</li></ol>
+    <figure class="inset tr"><img src="img/red-tailed-black-cockatoo-inset.23f80d1f.webp" loading="lazy" decoding="async" alt="Female ♀ detail"><figcaption>Female <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg></figcaption></figure>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> yellow-spotted)</span>
     <span class="num">No. LXX</span>
   </div>
   <div class="face back">
@@ -3486,8 +3488,8 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Crest</b> — full rounded helmet crest; raised when alert</li><li><b>Bill</b> — massive dark-grey bill (♂); whitish in ♀</li><li><b>Body</b> — glossy black, unspotted in adult ♂</li><li><b>Tail</b> — scarlet panels (♂); black centre and tip</li><li><b>Eye</b> — dark brown eye; no bare coloured eye-ring</li></ul>
-        <div class="sexes">Adult ♂ glossy black with dark-grey bill and scarlet tail panels. ♀ brownish-black, spotted pale yellow on head, neck and wing coverts, barred yellow below, with orange-yellow tail panels barred black and a whitish bill. Juvenile like ♀; young ♂ gain red tail over ~4 years.</div>
+        <ul class="feat"><li><b>Crest</b> — full rounded helmet crest; raised when alert</li><li><b>Bill</b> — massive dark-grey bill (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>); whitish in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg></li><li><b>Body</b> — glossy black, unspotted in adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></li><li><b>Tail</b> — scarlet panels (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>); black centre and tip</li><li><b>Eye</b> — dark brown eye; no bare coloured eye-ring</li></ul>
+        <div class="sexes">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> glossy black with dark-grey bill and scarlet tail panels. <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> brownish-black, spotted pale yellow on head, neck and wing coverts, barred yellow below, with orange-yellow tail panels barred black and a whitish bill. Juvenile like <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>; young <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> gain red tail over ~4 years.</div>
         <h4>Behaviour</h4><p>Eats seeds of eucalypts (especially bloodwoods), casuarinas, acacias and grevilleas, plus fruit; often feeds on the ground on fallen seed and weeds. Gregarious, from pairs to flocks of hundreds; common in the north, declined in SEQ and NSW.</p>
       </div>
       <div class="col colr">
@@ -3501,7 +3503,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
 </svg><p class="zlabel">Statewide (suitable habitat)</p></div>
         <h4>Distribution</h4><p>Northern and eastern QLD: Cape York, the Gulf plains, Wet Tropics and the Townsville–Mackay–Rockhampton coast and woodlands inland; now patchy in SEQ. Ssp. samueli along Channel Country rivers in the south-west.</p>
         <h4>Habitat</h4><p>Eucalypt woodland and open forest, especially bloodwood country, riverine woodland and coastal casuarinas; also farmland, parks and street trees in towns such as Townsville.</p>
-        <h4>Breeding</h4><p>Mainly autumn–winter (c. May–Sep) in QLD. Lays 1 white egg (rarely 2) in a deep vertical hollow of a tall, often dead eucalypt; ♀ alone incubates c. 30 days.</p>
+        <h4>Breeding</h4><p>Mainly autumn–winter (c. May–Sep) in QLD. Lays 1 white egg (rarely 2) in a deep vertical hollow of a tall, often dead eucalypt; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> alone incubates c. 30 days.</p>
       </div>
     </div>
     <footer class="foot"><span>BirdNerd study deck · QLD Series</span><span>QLD: nominate banksii in the north and east (incl. former macrorhynchus); samueli on SW rivers. EPBC-listed graptogyne and naso absent.</span></footer>
@@ -3514,11 +3516,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/yellow-tailed-black-cockatoo.6225b4c9.webp" loading="lazy" decoding="async" alt="Mystery bird plate LXXI">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="81.5" y1="17.0" x2="44.7" y2="16.9"/><line x1="18.5" y1="13.0" x2="40.8" y2="16.6"/><line x1="18.5" y1="27.0" x2="37.0" y2="19.7"/><line x1="18.5" y1="41.0" x2="43.5" y2="37.1"/><line x1="18.5" y1="79.0" x2="60.1" y2="79.4"/></svg>
-      <i class="dot" data-k="1" style="left:44.7%;top:16.9%"></i><i class="dot" data-k="2" style="left:40.8%;top:16.6%"></i><i class="dot" data-k="3" style="left:37.0%;top:19.7%"></i><i class="dot" data-k="4" style="left:43.5%;top:37.1%"></i><i class="dot" data-k="5" style="left:60.1%;top:79.4%"></i><div class="co r" style="top:17.0%"><b>Cheek</b><span>yellow ear patch</span></div><div class="co l" style="top:13.0%"><b>Eye-ring</b><span>pink to red bare eye-ring (♂)</span></div><div class="co l" style="top:27.0%"><b>Bill</b><span>grey-black bill (♂)</span></div><div class="co l" style="top:41.0%"><b>Body</b><span>brownish-black, fringed yellow</span></div><div class="co l" style="top:79.0%"><b>Tail</b><span>long; broad pale-yellow panels</span></div>
+      <i class="dot" data-k="1" style="left:44.7%;top:16.9%"></i><i class="dot" data-k="2" style="left:40.8%;top:16.6%"></i><i class="dot" data-k="3" style="left:37.0%;top:19.7%"></i><i class="dot" data-k="4" style="left:43.5%;top:37.1%"></i><i class="dot" data-k="5" style="left:60.1%;top:79.4%"></i><div class="co r" style="top:17.0%"><b>Cheek</b><span>yellow ear patch</span></div><div class="co l" style="top:13.0%"><b>Eye-ring</b><span>pink to red bare eye-ring (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</span></div><div class="co l" style="top:27.0%"><b>Bill</b><span>grey-black bill (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</span></div><div class="co l" style="top:41.0%"><b>Body</b><span>brownish-black, fringed yellow</span></div><div class="co l" style="top:79.0%"><b>Tail</b><span>long; broad pale-yellow panels</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Cheek</b> yellow ear patch</li><li><i>2</i><b>Eye-ring</b> pink to red bare eye-ring (♂)</li><li><i>3</i><b>Bill</b> grey-black bill (♂)</li><li><i>4</i><b>Body</b> brownish-black, fringed yellow</li><li><i>5</i><b>Tail</b> long; broad pale-yellow panels</li></ol>
+    <ol class="legend"><li><i>1</i><b>Cheek</b> yellow ear patch</li><li><i>2</i><b>Eye-ring</b> pink to red bare eye-ring (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><i>3</i><b>Bill</b> grey-black bill (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><i>4</i><b>Body</b> brownish-black, fringed yellow</li><li><i>5</i><b>Tail</b> long; broad pale-yellow panels</li></ol>
     
-    <span class="sex">Adult ♂  (♀ pale bill, grey ring)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> pale bill, grey ring)</span>
     <span class="num">No. LXXI</span>
   </div>
   <div class="face back">
@@ -3533,8 +3535,8 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Cheek</b> — yellow ear patch; small and dull in ♂</li><li><b>Eye-ring</b> — pink to red bare eye-ring (♂)</li><li><b>Bill</b> — grey-black bill (♂); pale horn in ♀</li><li><b>Body</b> — brownish-black; feathers fringed yellow</li><li><b>Tail</b> — long; broad pale-yellow panels, flecked</li></ul>
-        <div class="sexes">Adult ♂: small, dull yellow ear patch, pink-red eye-ring, grey-black bill, yellow tail panels lightly flecked. ♀: larger, brighter cheek patch, grey eye-ring, pale horn bill, more heavily flecked tail panels. Juvenile like ♀; young ♂ bill darkens by 2–4 years.</div>
+        <ul class="feat"><li><b>Cheek</b> — yellow ear patch; small and dull in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></li><li><b>Eye-ring</b> — pink to red bare eye-ring (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><b>Bill</b> — grey-black bill (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>); pale horn in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg></li><li><b>Body</b> — brownish-black; feathers fringed yellow</li><li><b>Tail</b> — long; broad pale-yellow panels, flecked</li></ul>
+        <div class="sexes">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>: small, dull yellow ear patch, pink-red eye-ring, grey-black bill, yellow tail panels lightly flecked. <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>: larger, brighter cheek patch, grey eye-ring, pale horn bill, more heavily flecked tail panels. Juvenile like <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>; young <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> bill darkens by 2–4 years.</div>
         <h4>Behaviour</h4><p>Feeds on seeds of banksias, hakeas, casuarinas, eucalypts and plantation pines, and on wood-boring larvae. Pairs and family groups join flocks, sometimes 100+ outside breeding. Common in SEQ, scarce further north; declining in parts of its range.</p>
       </div>
       <div class="col colr">
@@ -3548,7 +3550,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
 </svg><p class="zlabel">South-east &amp; central-east</p></div>
         <h4>Distribution</h4><p>South-east Queensland from the NSW border and Granite Belt to the Sunshine Coast, Bunya Mtns and Burnett, thinning north to Gladstone, the Berserker Range near Rockhampton and the Carnarvon–Blackdown ranges.</p>
         <h4>Habitat</h4><p>Eucalypt forest and woodland, coastal banksia and casuarina heath, and exotic pine plantations; flocks also visit suburban parks and gardens to feed.</p>
-        <h4>Breeding</h4><p>Mainly autumn–winter in QLD (c. Apr–Jul). 1–2 white eggs in a large hollow high in an old eucalypt; ♀ incubates c. 4 weeks while ♂ feeds her. Usually one young raised.</p>
+        <h4>Breeding</h4><p>Mainly autumn–winter in QLD (c. Apr–Jul). 1–2 white eggs in a large hollow high in an old eucalypt; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> incubates c. 4 weeks while <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> feeds her. Usually one young raised.</p>
       </div>
     </div>
     <footer class="foot"><span>BirdNerd study deck · QLD Series</span><span>Nominate funerea throughout QLD; xanthanotus (incl. whiteae of some authors) in SA, western Vic and Tasmania.</span></footer>
@@ -3561,11 +3563,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/major-mitchells-cockatoo.00b3d539.webp" loading="lazy" decoding="async" alt="Mystery bird plate LXXII">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="81.5" y1="17.0" x2="44.7" y2="17.3"/><line x1="18.5" y1="49.0" x2="43.4" y2="32.1"/><line x1="81.5" y1="41.0" x2="53.9" y2="42.8"/><line x1="18.5" y1="35.0" x2="38.1" y2="29.0"/><line x1="18.5" y1="21.0" x2="42.4" y2="24.9"/></svg>
-      <i class="dot" data-k="1" style="left:44.7%;top:17.3%"></i><i class="dot" data-k="2" style="left:43.4%;top:32.1%"></i><i class="dot" data-k="3" style="left:53.9%;top:42.8%"></i><i class="dot" data-k="4" style="left:38.1%;top:29.0%"></i><i class="dot" data-k="5" style="left:42.4%;top:24.9%"></i><div class="co r" style="top:17.0%"><b>Crest</b><span>red &amp; yellow bands when raised</span></div><div class="co l" style="top:49.0%"><b>Head</b><span>salmon-pink face, neck and breast</span></div><div class="co r" style="top:41.0%"><b>Mantle</b><span>white back and wings</span></div><div class="co l" style="top:35.0%"><b>Bill</b><span>pale horn-white bill</span></div><div class="co l" style="top:21.0%"><b>Eye</b><span>dark brown (♂); pinkish-red (♀)</span></div>
+      <i class="dot" data-k="1" style="left:44.7%;top:17.3%"></i><i class="dot" data-k="2" style="left:43.4%;top:32.1%"></i><i class="dot" data-k="3" style="left:53.9%;top:42.8%"></i><i class="dot" data-k="4" style="left:38.1%;top:29.0%"></i><i class="dot" data-k="5" style="left:42.4%;top:24.9%"></i><div class="co r" style="top:17.0%"><b>Crest</b><span>red &amp; yellow bands when raised</span></div><div class="co l" style="top:49.0%"><b>Head</b><span>salmon-pink face, neck and breast</span></div><div class="co r" style="top:41.0%"><b>Mantle</b><span>white back and wings</span></div><div class="co l" style="top:35.0%"><b>Bill</b><span>pale horn-white bill</span></div><div class="co l" style="top:21.0%"><b>Eye</b><span>dark brown (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>); pinkish-red (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>)</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Crest</b> red &amp; yellow bands when raised</li><li><i>2</i><b>Head</b> salmon-pink face, neck and breast</li><li><i>3</i><b>Mantle</b> white back and wings</li><li><i>4</i><b>Bill</b> pale horn-white bill</li><li><i>5</i><b>Eye</b> dark brown (♂); pinkish-red (♀)</li></ol>
+    <ol class="legend"><li><i>1</i><b>Crest</b> red &amp; yellow bands when raised</li><li><i>2</i><b>Head</b> salmon-pink face, neck and breast</li><li><i>3</i><b>Mantle</b> white back and wings</li><li><i>4</i><b>Bill</b> pale horn-white bill</li><li><i>5</i><b>Eye</b> dark brown (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>); pinkish-red (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>)</li></ol>
     
-    <span class="sex">Adult ♂  (♀ red-pink eye)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> red-pink eye)</span>
     <span class="num">No. LXXII</span>
   </div>
   <div class="face back">
@@ -3580,8 +3582,8 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Crest</b> — tall; white folded, red &amp; yellow raised</li><li><b>Head</b> — salmon-pink face, neck and breast</li><li><b>Mantle</b> — white back and wings; faint pink wash</li><li><b>Bill</b> — pale horn-white bill</li><li><b>Eye</b> — dark brown in ♂; pinkish-red in ♀</li></ul>
-        <div class="sexes">Sexes similar. ♂ has dark brown iris and narrower yellow crest band; ♀ pinkish-red iris and broader yellow band. Juvenile duller and paler pink, with brown iris and a less clearly banded crest. Rarely hybridises with Galah.</div>
+        <ul class="feat"><li><b>Crest</b> — tall; white folded, red &amp; yellow raised</li><li><b>Head</b> — salmon-pink face, neck and breast</li><li><b>Mantle</b> — white back and wings; faint pink wash</li><li><b>Bill</b> — pale horn-white bill</li><li><b>Eye</b> — dark brown in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>; pinkish-red in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg></li></ul>
+        <div class="sexes">Sexes similar. <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> has dark brown iris and narrower yellow crest band; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> pinkish-red iris and broader yellow band. Juvenile duller and paler pink, with brown iris and a less clearly banded crest. Rarely hybridises with Galah.</div>
         <h4>Behaviour</h4><p>Feeds mostly on the ground on seeds of native grasses, melons, cypress pine and saltbush, plus roots, bulbs and insect larvae. Pairs or small parties; larger flocks where food is rich. Uncommon and declining; largely sedentary near water.</p>
       </div>
       <div class="col colr">
@@ -3608,11 +3610,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/galah.aa325b78.webp" loading="lazy" decoding="async" alt="Mystery bird plate LXXIII">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="18.5" y1="9.0" x2="27.5" y2="14.2"/><line x1="18.5" y1="43.0" x2="32.5" y2="32.1"/><line x1="81.5" y1="25.0" x2="31.1" y2="25.0"/><line x1="81.5" y1="47.0" x2="50.0" y2="50.0"/><line x1="18.5" y1="29.0" x2="25.3" y2="30.3"/></svg>
-      <i class="dot" data-k="1" style="left:27.5%;top:14.2%"></i><i class="dot" data-k="2" style="left:32.5%;top:32.1%"></i><i class="dot" data-k="3" style="left:31.1%;top:25.0%"></i><i class="dot" data-k="4" style="left:50.0%;top:50.0%"></i><i class="dot" data-k="5" style="left:25.3%;top:30.3%"></i><div class="co l" style="top:9.0%"><b>Crest</b><span>pale pink to whitish cap</span></div><div class="co l" style="top:43.0%"><b>Face</b><span>deep rose-pink face, neck and breast</span></div><div class="co r" style="top:25.0%"><b>Eye</b><span>pink eye-ring; dark-brown iris (♂)</span></div><div class="co r" style="top:47.0%"><b>Wings</b><span>silver-grey back, wings and rump</span></div><div class="co l" style="top:29.0%"><b>Bill</b><span>pale horn bill</span></div>
+      <i class="dot" data-k="1" style="left:27.5%;top:14.2%"></i><i class="dot" data-k="2" style="left:32.5%;top:32.1%"></i><i class="dot" data-k="3" style="left:31.1%;top:25.0%"></i><i class="dot" data-k="4" style="left:50.0%;top:50.0%"></i><i class="dot" data-k="5" style="left:25.3%;top:30.3%"></i><div class="co l" style="top:9.0%"><b>Crest</b><span>pale pink to whitish cap</span></div><div class="co l" style="top:43.0%"><b>Face</b><span>deep rose-pink face, neck and breast</span></div><div class="co r" style="top:25.0%"><b>Eye</b><span>pink eye-ring; dark-brown iris (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</span></div><div class="co r" style="top:47.0%"><b>Wings</b><span>silver-grey back, wings and rump</span></div><div class="co l" style="top:29.0%"><b>Bill</b><span>pale horn bill</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Crest</b> pale pink to whitish cap</li><li><i>2</i><b>Face</b> deep rose-pink face, neck and breast</li><li><i>3</i><b>Eye</b> pink eye-ring; dark-brown iris (♂)</li><li><i>4</i><b>Wings</b> silver-grey back, wings and rump</li><li><i>5</i><b>Bill</b> pale horn bill</li></ol>
+    <ol class="legend"><li><i>1</i><b>Crest</b> pale pink to whitish cap</li><li><i>2</i><b>Face</b> deep rose-pink face, neck and breast</li><li><i>3</i><b>Eye</b> pink eye-ring; dark-brown iris (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><i>4</i><b>Wings</b> silver-grey back, wings and rump</li><li><i>5</i><b>Bill</b> pale horn bill</li></ol>
     
-    <span class="sex">Adult ♂  (♀ pink-red eye)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> pink-red eye)</span>
     <span class="num">No. LXXIII</span>
   </div>
   <div class="face back">
@@ -3627,8 +3629,8 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Crest</b> — pale pink to whitish cap; short crest</li><li><b>Face</b> — deep rose-pink face, neck and breast</li><li><b>Eye</b> — bare pinkish eye-ring; dark-brown iris (♂)</li><li><b>Wings</b> — silver-grey back, wings and rump</li><li><b>Bill</b> — pale horn bill; grey legs</li></ul>
-        <div class="sexes">Sexes alike except iris: dark brown in ♂, pink to red-brown in ♀. Juvenile duller, with greyish wash on crown, crest and breast, smooth whitish eye-ring and brown iris. Western roseicapilla has a grey-white, not pink, eye-ring.</div>
+        <ul class="feat"><li><b>Crest</b> — pale pink to whitish cap; short crest</li><li><b>Face</b> — deep rose-pink face, neck and breast</li><li><b>Eye</b> — bare pinkish eye-ring; dark-brown iris (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><b>Wings</b> — silver-grey back, wings and rump</li><li><b>Bill</b> — pale horn bill; grey legs</li></ul>
+        <div class="sexes">Sexes alike except iris: dark brown in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>, pink to red-brown in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>. Juvenile duller, with greyish wash on crown, crest and breast, smooth whitish eye-ring and brown iris. Western roseicapilla has a grey-white, not pink, eye-ring.</div>
         <h4>Behaviour</h4><p>Feeds mainly on the ground on grass and weed seeds and spilt grain, also roots, shoots and insect larvae. Pairs bond for life; gathers in flocks of hundreds outside breeding. Abundant and increasing; a crop pest in places.</p>
       </div>
       <div class="col colr">
@@ -3655,11 +3657,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/cockatiel.6f9502b8.webp" loading="lazy" decoding="async" alt="Mystery bird plate LXXIV">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="81.5" y1="7.0" x2="65.9" y2="21.4"/><line x1="81.5" y1="37.0" x2="68.5" y2="32.1"/><line x1="81.5" y1="23.0" x2="66.5" y2="28.7"/><line x1="81.5" y1="53.0" x2="58.4" y2="47.3"/><line x1="18.5" y1="67.0" x2="38.4" y2="66.3"/></svg>
-      <i class="dot" data-k="1" style="left:65.9%;top:21.4%"></i><i class="dot" data-k="2" style="left:68.5%;top:32.1%"></i><i class="dot" data-k="3" style="left:66.5%;top:28.7%"></i><i class="dot" data-k="4" style="left:58.4%;top:47.3%"></i><i class="dot" data-k="5" style="left:38.4%;top:66.3%"></i><div class="co r" style="top:7.0%"><b>Crest</b><span>long, thin, upswept crest</span></div><div class="co r" style="top:37.0%"><b>Face</b><span>bright yellow face and forehead (♂)</span></div><div class="co r" style="top:23.0%"><b>Cheek</b><span>round orange ear patch</span></div><div class="co r" style="top:53.0%"><b>Wing</b><span>bold white panel on folded wing</span></div><div class="co l" style="top:67.0%"><b>Tail</b><span>long, pointed, dark grey</span></div>
+      <i class="dot" data-k="1" style="left:65.9%;top:21.4%"></i><i class="dot" data-k="2" style="left:68.5%;top:32.1%"></i><i class="dot" data-k="3" style="left:66.5%;top:28.7%"></i><i class="dot" data-k="4" style="left:58.4%;top:47.3%"></i><i class="dot" data-k="5" style="left:38.4%;top:66.3%"></i><div class="co r" style="top:7.0%"><b>Crest</b><span>long, thin, upswept crest</span></div><div class="co r" style="top:37.0%"><b>Face</b><span>bright yellow face and forehead (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</span></div><div class="co r" style="top:23.0%"><b>Cheek</b><span>round orange ear patch</span></div><div class="co r" style="top:53.0%"><b>Wing</b><span>bold white panel on folded wing</span></div><div class="co l" style="top:67.0%"><b>Tail</b><span>long, pointed, dark grey</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Crest</b> long, thin, upswept crest</li><li><i>2</i><b>Face</b> bright yellow face and forehead (♂)</li><li><i>3</i><b>Cheek</b> round orange ear patch</li><li><i>4</i><b>Wing</b> bold white panel on folded wing</li><li><i>5</i><b>Tail</b> long, pointed, dark grey</li></ol>
+    <ol class="legend"><li><i>1</i><b>Crest</b> long, thin, upswept crest</li><li><i>2</i><b>Face</b> bright yellow face and forehead (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><i>3</i><b>Cheek</b> round orange ear patch</li><li><i>4</i><b>Wing</b> bold white panel on folded wing</li><li><i>5</i><b>Tail</b> long, pointed, dark grey</li></ol>
     
-    <span class="sex">Adult ♂  (♀ grey face)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> grey face)</span>
     <span class="num">No. LXXIV</span>
   </div>
   <div class="face back">
@@ -3674,8 +3676,8 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Crest</b> — long, thin, upswept crest; grey-yellow</li><li><b>Face</b> — bright yellow face and forehead (♂)</li><li><b>Cheek</b> — round orange ear patch</li><li><b>Wing</b> — bold white panel on folded wing</li><li><b>Tail</b> — long, pointed, dark grey; plain below (♂)</li></ul>
-        <div class="sexes">Adult ♂: bright yellow face, forehead and crest, vivid orange ear patch, plain dark tail. ♀: face greyish with faint yellow wash, duller ear patch, undertail barred yellow and flight feathers spotted yellow. Juvenile like ♀; young ♂ moult to adult face at 6–9 months.</div>
+        <ul class="feat"><li><b>Crest</b> — long, thin, upswept crest; grey-yellow</li><li><b>Face</b> — bright yellow face and forehead (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><b>Cheek</b> — round orange ear patch</li><li><b>Wing</b> — bold white panel on folded wing</li><li><b>Tail</b> — long, pointed, dark grey; plain below (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li></ul>
+        <div class="sexes">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>: bright yellow face, forehead and crest, vivid orange ear patch, plain dark tail. <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>: face greyish with faint yellow wash, duller ear patch, undertail barred yellow and flight feathers spotted yellow. Juvenile like <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>; young <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> moult to adult face at 6–9 months.</div>
         <h4>Behaviour</h4><p>Eats seeds of grasses, herbs, acacias and crops such as sorghum and sunflower, mostly gathered on the ground. In pairs or flocks, up to hundreds at water. Common inland; strongly nomadic, with influxes after good rain.</p>
       </div>
       <div class="col colr">
@@ -3722,7 +3724,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
       <div class="col">
         <h4>Description</h4>
         <ul class="feat"><li><b>Bill</b> — very long, slender upper mandible</li><li><b>Face</b> — orange-red lores and forehead</li><li><b>Eye-ring</b> — bare blue-grey skin around the eye</li><li><b>Throat</b> — orange-red band across throat</li><li><b>Crest</b> — short white crest, rarely raised</li></ul>
-        <div class="sexes">Sexes alike; ♂ averages slightly larger with a longer bill. Plumage white with orange-red lores, forehead and throat band, yellow wash under wings and tail, and bare blue-grey eye-ring. Juvenile similar but with a shorter bill and less red.</div>
+        <div class="sexes">Sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> averages slightly larger with a longer bill. Plumage white with orange-red lores, forehead and throat band, yellow wash under wings and tail, and bare blue-grey eye-ring. Juvenile similar but with a shorter bill and less red.</div>
         <h4>Behaviour</h4><p>Digs for roots, corms, bulbs and seeds on lawns and pasture, also takes grain and fallen fruit; often mixes with Little Corellas and Galahs. Highly social. In QLD local and mostly urban; can damage turf, crops and fittings.</p>
       </div>
       <div class="col colr">
@@ -3800,7 +3802,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Crest</b> long sulphur-yellow crest</li><li><i>2</i><b>Bill</b> large, hooked, grey-black bill</li><li><i>3</i><b>Eye</b> bare white eye-ring</li><li><i>4</i><b>Ear-coverts</b> faint pale-yellow wash on cheeks</li><li><i>5</i><b>Plumage</b> all white</li></ol>
     
-    <span class="sex">Adult ♂  (♀ red-brown eye)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> red-brown eye)</span>
     <span class="num">No. LXXVII</span>
   </div>
   <div class="face back">
@@ -3815,7 +3817,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Crest</b> — long sulphur-yellow crest; tips curl up at rest</li><li><b>Bill</b> — large, hooked, grey-black bill</li><li><b>Eye</b> — bare white eye-ring; dark iris (♂)</li><li><b>Ear-coverts</b> — faint pale-yellow wash on cheeks</li><li><b>Plumage</b> — all white; yellow wash under tail</li></ul>
+        <ul class="feat"><li><b>Crest</b> — long sulphur-yellow crest; tips curl up at rest</li><li><b>Bill</b> — large, hooked, grey-black bill</li><li><b>Eye</b> — bare white eye-ring; dark iris (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><b>Ear-coverts</b> — faint pale-yellow wash on cheeks</li><li><b>Plumage</b> — all white; yellow wash under tail</li></ul>
         <div class="sexes">Sexes alike in plumage; at close range the male&#x27;s iris is dark brown to black and the female&#x27;s red-brown. Juveniles closely resemble adults. Ssp. fitzroyi of the southern Gulf/NW Qld has a pale blue (not white) bare eye-ring and a slightly longer crest.</div>
         <h4>Behaviour</h4><p>Eats seeds of grasses, herbs and crops, plus nuts, berries, roots, bulbs and insect larvae, often dug from the ground or torn from trees. Pairs and family groups join flocks of tens to hundreds; common to abundant, often a crop and urban pest.</p>
       </div>
@@ -3890,11 +3892,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/musk-lorikeet.6e93dc32.webp" loading="lazy" decoding="async" alt="Mystery bird plate LXXIX">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="81.5" y1="7.0" x2="41.3" y2="15.1"/><line x1="18.5" y1="5.0" x2="38.4" y2="9.3"/><line x1="18.5" y1="35.0" x2="42.9" y2="32.1"/><line x1="18.5" y1="19.0" x2="32.0" y2="18.7"/><line x1="81.5" y1="21.0" x2="45.1" y2="18.7"/></svg>
-      <i class="dot" data-k="1" style="left:41.3%;top:15.1%"></i><i class="dot" data-k="2" style="left:38.4%;top:9.3%"></i><i class="dot" data-k="3" style="left:42.9%;top:32.1%"></i><i class="dot" data-k="4" style="left:32.0%;top:18.7%"></i><i class="dot" data-k="5" style="left:45.1%;top:18.7%"></i><div class="co r" style="top:7.0%"><b>Face</b><span>red forehead and band through eye</span></div><div class="co l" style="top:5.0%"><b>Crown</b><span>blue crown patch (smaller in ♀)</span></div><div class="co l" style="top:35.0%"><b>Breast</b><span>yellow patch on side of breast</span></div><div class="co l" style="top:19.0%"><b>Bill</b><span>black bill with red tip</span></div><div class="co r" style="top:21.0%"><b>Nape</b><span>bronze-olive wash on nape and mantle</span></div>
+      <i class="dot" data-k="1" style="left:41.3%;top:15.1%"></i><i class="dot" data-k="2" style="left:38.4%;top:9.3%"></i><i class="dot" data-k="3" style="left:42.9%;top:32.1%"></i><i class="dot" data-k="4" style="left:32.0%;top:18.7%"></i><i class="dot" data-k="5" style="left:45.1%;top:18.7%"></i><div class="co r" style="top:7.0%"><b>Face</b><span>red forehead and band through eye</span></div><div class="co l" style="top:5.0%"><b>Crown</b><span>blue crown patch (smaller in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>)</span></div><div class="co l" style="top:35.0%"><b>Breast</b><span>yellow patch on side of breast</span></div><div class="co l" style="top:19.0%"><b>Bill</b><span>black bill with red tip</span></div><div class="co r" style="top:21.0%"><b>Nape</b><span>bronze-olive wash on nape and mantle</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Face</b> red forehead and band through eye</li><li><i>2</i><b>Crown</b> blue crown patch (smaller in ♀)</li><li><i>3</i><b>Breast</b> yellow patch on side of breast</li><li><i>4</i><b>Bill</b> black bill with red tip</li><li><i>5</i><b>Nape</b> bronze-olive wash on nape and mantle</li></ol>
+    <ol class="legend"><li><i>1</i><b>Face</b> red forehead and band through eye</li><li><i>2</i><b>Crown</b> blue crown patch (smaller in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>)</li><li><i>3</i><b>Breast</b> yellow patch on side of breast</li><li><i>4</i><b>Bill</b> black bill with red tip</li><li><i>5</i><b>Nape</b> bronze-olive wash on nape and mantle</li></ol>
     
-    <span class="sex">Adult ♂  (♀ less blue on crown)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> less blue on crown)</span>
     <span class="num">No. LXXIX</span>
   </div>
   <div class="face back">
@@ -3909,7 +3911,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Face</b> — red forehead and band through eye to ear</li><li><b>Crown</b> — blue crown patch (smaller in ♀)</li><li><b>Breast</b> — yellow patch on side of breast</li><li><b>Bill</b> — black bill with red tip</li><li><b>Nape</b> — bronze-olive wash on nape and mantle</li></ul>
+        <ul class="feat"><li><b>Face</b> — red forehead and band through eye to ear</li><li><b>Crown</b> — blue crown patch (smaller in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>)</li><li><b>Breast</b> — yellow patch on side of breast</li><li><b>Bill</b> — black bill with red tip</li><li><b>Nape</b> — bronze-olive wash on nape and mantle</li></ul>
         <div class="sexes">Sexes similar; the female has less blue on the crown and is slightly duller. Juvenile duller overall, with less extensive red on the face, little or no blue on the crown and a brownish bill. In flight all show a golden-yellow underside to the tail.</div>
         <h4>Behaviour</h4><p>Feeds mainly on eucalypt nectar and pollen taken with a brush-tipped tongue; also fruit, seeds, insects and larvae, and sometimes orchard fruit. Gregarious and noisy, often with other lorikeets; nomadic, following flowering. Uncommon in Qld.</p>
       </div>
@@ -3941,7 +3943,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Face</b> red forehead, lores, eye-surround</li><li><i>2</i><b>Bill</b> small, all-black bill</li><li><i>3</i><b>Eye</b> golden or orange-yellow iris</li><li><i>4</i><b>Nape</b> bronze-olive wash on nape and mantle</li><li><i>5</i><b>Body</b> green, yellower below</li></ol>
     
-    <span class="sex">Adult ♂  (♀ duller)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> duller)</span>
     <span class="num">No. LXXX</span>
   </div>
   <div class="face back">
@@ -3988,7 +3990,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Face</b> crimson face, edged yellow</li><li><i>2</i><b>Crown</b> dull violet-blue crown patch</li><li><i>3</i><b>Shoulder</b> red patch at bend of wing</li><li><i>4</i><b>Wing</b> blue wing coverts</li><li><i>5</i><b>Tail</b> long, pointed, dull red above</li></ol>
     
-    <span class="sex">Adult ♂  (♀ slightly duller)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> slightly duller)</span>
     <span class="num">No. LXXXI</span>
   </div>
   <div class="face back">
@@ -4034,8 +4036,8 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
       <i class="dot" data-k="1" style="left:28.9%;top:16.9%"></i><i class="dot" data-k="2" style="left:20.3%;top:22.8%"></i><i class="dot" data-k="3" style="left:24.3%;top:22.0%"></i><i class="dot" data-k="4" style="left:40.1%;top:33.4%"></i><i class="dot" data-k="5" style="left:73.1%;top:67.3%"></i><div class="co l" style="top:5.0%"><b>Head</b><span>all-scarlet head and underparts</span></div><div class="co l" style="top:35.0%"><b>Bill</b><span>orange-red upper, black lower</span></div><div class="co l" style="top:21.0%"><b>Eye</b><span>yellow iris in adults</span></div><div class="co r" style="top:29.0%"><b>Wing</b><span>pale green stripe on coverts</span></div><div class="co r" style="top:63.0%"><b>Tail</b><span>long, broad, blackish-green</span></div>
     </div>
     <ol class="legend"><li><i>1</i><b>Head</b> all-scarlet head and underparts</li><li><i>2</i><b>Bill</b> orange-red upper, black lower</li><li><i>3</i><b>Eye</b> yellow iris in adults</li><li><i>4</i><b>Wing</b> pale green stripe on coverts</li><li><i>5</i><b>Tail</b> long, broad, blackish-green</li></ol>
-    <figure class="inset tr"><img src="img/australian-king-parrot-inset.d544b9b8.webp" loading="lazy" decoding="async" alt="Female ♀ detail"><figcaption>Female ♀</figcaption></figure>
-    <span class="sex">Adult ♂  (♀ green-headed)</span>
+    <figure class="inset tr"><img src="img/australian-king-parrot-inset.d544b9b8.webp" loading="lazy" decoding="async" alt="Female ♀ detail"><figcaption>Female <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg></figcaption></figure>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> green-headed)</span>
     <span class="num">No. LXXXII</span>
   </div>
   <div class="face back">
@@ -4050,7 +4052,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Head</b> — all-scarlet head, neck and underparts (♂)</li><li><b>Bill</b> — orange-red upper mandible; black lower mandible</li><li><b>Eye</b> — yellow iris in adults; brown in juveniles</li><li><b>Wing</b> — deep green; pale green stripe on coverts</li><li><b>Tail</b> — long, broad, blackish-green</li></ul>
+        <ul class="feat"><li><b>Head</b> — all-scarlet head, neck and underparts (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><b>Bill</b> — orange-red upper mandible; black lower mandible</li><li><b>Eye</b> — yellow iris in adults; brown in juveniles</li><li><b>Wing</b> — deep green; pale green stripe on coverts</li><li><b>Tail</b> — long, broad, blackish-green</li></ul>
         <div class="sexes">Male: scarlet head, neck and underparts, blue band on hindneck, blue rump, pale green shoulder stripe, orange-red and black bill, yellow iris. Female: green head and breast, red belly and undertail, dark grey bill, small or no shoulder stripe. Juvenile like female, with brown iris.</div>
         <h4>Behaviour</h4><p>Eats seeds, fruit, berries, nuts, blossoms and buds, mostly in trees but also on the ground; raids orchards and visits feeders. In pairs or small family groups, larger flocks in autumn–winter. Common in SEQ; tame around habitation.</p>
       </div>
@@ -4078,11 +4080,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/red-winged-parrot.04ce2463.webp" loading="lazy" decoding="async" alt="Mystery bird plate LXXXIII">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="18.5" y1="9.0" x2="57.3" y2="11.6"/><line x1="18.5" y1="29.0" x2="52.1" y2="27.1"/><line x1="81.5" y1="39.0" x2="56.5" y2="39.0"/><line x1="81.5" y1="17.0" x2="65.4" y2="16.2"/><line x1="18.5" y1="43.0" x2="41.3" y2="84.7"/></svg>
-      <i class="dot" data-k="1" style="left:57.3%;top:11.6%"></i><i class="dot" data-k="2" style="left:52.1%;top:27.1%"></i><i class="dot" data-k="3" style="left:56.5%;top:39.0%"></i><i class="dot" data-k="4" style="left:65.4%;top:16.2%"></i><i class="dot" data-k="5" style="left:41.3%;top:84.7%"></i><div class="co l" style="top:9.0%"><b>Head</b><span>bright lime-green head</span></div><div class="co l" style="top:29.0%"><b>Mantle</b><span>black back and scapulars (♂)</span></div><div class="co r" style="top:39.0%"><b>Wing</b><span>large scarlet patch on wing coverts</span></div><div class="co r" style="top:17.0%"><b>Bill</b><span>coral-red; orange-red iris</span></div><div class="co l" style="top:43.0%"><b>Tail</b><span>green, narrow yellow tip</span></div>
+      <i class="dot" data-k="1" style="left:57.3%;top:11.6%"></i><i class="dot" data-k="2" style="left:52.1%;top:27.1%"></i><i class="dot" data-k="3" style="left:56.5%;top:39.0%"></i><i class="dot" data-k="4" style="left:65.4%;top:16.2%"></i><i class="dot" data-k="5" style="left:41.3%;top:84.7%"></i><div class="co l" style="top:9.0%"><b>Head</b><span>bright lime-green head</span></div><div class="co l" style="top:29.0%"><b>Mantle</b><span>black back and scapulars (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</span></div><div class="co r" style="top:39.0%"><b>Wing</b><span>large scarlet patch on wing coverts</span></div><div class="co r" style="top:17.0%"><b>Bill</b><span>coral-red; orange-red iris</span></div><div class="co l" style="top:43.0%"><b>Tail</b><span>green, narrow yellow tip</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Head</b> bright lime-green head</li><li><i>2</i><b>Mantle</b> black back and scapulars (♂)</li><li><i>3</i><b>Wing</b> large scarlet patch on wing coverts</li><li><i>4</i><b>Bill</b> coral-red; orange-red iris</li><li><i>5</i><b>Tail</b> green, narrow yellow tip</li></ol>
-    <figure class="inset bl"><img src="img/red-winged-parrot-inset.3c385930.webp" loading="lazy" decoding="async" alt="Female ♀ detail"><figcaption>Female ♀</figcaption></figure>
-    <span class="sex">Adult ♂  (♀ green-backed)</span>
+    <ol class="legend"><li><i>1</i><b>Head</b> bright lime-green head</li><li><i>2</i><b>Mantle</b> black back and scapulars (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><i>3</i><b>Wing</b> large scarlet patch on wing coverts</li><li><i>4</i><b>Bill</b> coral-red; orange-red iris</li><li><i>5</i><b>Tail</b> green, narrow yellow tip</li></ol>
+    <figure class="inset bl"><img src="img/red-winged-parrot-inset.3c385930.webp" loading="lazy" decoding="async" alt="Female ♀ detail"><figcaption>Female <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg></figcaption></figure>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> green-backed)</span>
     <span class="num">No. LXXXIII</span>
   </div>
   <div class="face back">
@@ -4097,7 +4099,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Head</b> — bright lime-green head and underparts</li><li><b>Mantle</b> — black back and scapulars (♂)</li><li><b>Wing</b> — large scarlet patch on wing coverts</li><li><b>Bill</b> — coral-red bill; orange-red iris</li><li><b>Tail</b> — green, square-ended; narrow yellow tip</li></ul>
+        <ul class="feat"><li><b>Head</b> — bright lime-green head and underparts</li><li><b>Mantle</b> — black back and scapulars (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li><li><b>Wing</b> — large scarlet patch on wing coverts</li><li><b>Bill</b> — coral-red bill; orange-red iris</li><li><b>Tail</b> — green, square-ended; narrow yellow tip</li></ul>
         <div class="sexes">Male: lime-green with black mantle and scapulars, deep blue rump, large scarlet wing patch, red bill and eye. Female: duller green including the back, red reduced to a narrow strip along the wing edge, paler blue rump. Juvenile female-like, with yellowish bill and pale brown eye.</div>
         <h4>Behaviour</h4><p>Eats seeds of eucalypts, acacias and hopbush, plus mistletoe berries, fruit, nectar, blossoms and insects, mostly in the canopy, sometimes on the ground. In pairs or small parties, larger flocks after breeding; partly nomadic. Fairly common.</p>
       </div>
@@ -4129,7 +4131,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Forehead</b> narrow red band (not Cloncurry)</li><li><i>2</i><b>Collar</b> yellow band across the hindneck</li><li><i>3</i><b>Mantle</b> dark slaty blue-black back</li><li><i>4</i><b>Belly</b> orange-yellow band across belly</li><li><i>5</i><b>Wing</b> pale yellow-green coverts</li></ol>
     
-    <span class="sex">Adult ♂  (♀ duller)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> duller)</span>
     <span class="num">No. LXXXIV</span>
   </div>
   <div class="face back">
@@ -4176,7 +4178,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Head</b> bright red head and upper breast</li><li><i>2</i><b>Cheek</b> clean white cheek patch</li><li><i>3</i><b>Breast</b> yellow lower breast</li><li><i>4</i><b>Mantle</b> black feathers edged golden-yellow</li><li><i>5</i><b>Wing</b> violet-blue shoulder and outer wing</li></ol>
     
-    <span class="sex">Adult ♂  (♀ duller)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> duller)</span>
     <span class="num">No. LXXXV</span>
   </div>
   <div class="face back">
@@ -4223,7 +4225,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Head</b> pale lemon to creamy white head</li><li><i>2</i><b>Cheek</b> white patch</li><li><i>3</i><b>Mantle</b> black feathers edged yellow</li><li><i>4</i><b>Shoulder</b> violet-blue shoulder and wing edge</li><li><i>5</i><b>Underparts</b> pale blue below; red vent</li></ol>
     
-    <span class="sex">Adult ♂ southern ssp. (♀ duller)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> southern ssp. (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> duller)</span>
     <span class="num">No. LXXXVI</span>
   </div>
   <div class="face back">
@@ -4266,11 +4268,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/budgerigar.5247e767.webp" loading="lazy" decoding="async" alt="Mystery bird plate LXXXVII">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="81.5" y1="11.0" x2="75.7" y2="20.0"/><line x1="81.5" y1="39.0" x2="72.8" y2="29.9"/><line x1="81.5" y1="25.0" x2="76.4" y2="25.8"/><line x1="18.5" y1="15.0" x2="59.9" y2="35.0"/><line x1="81.5" y1="57.0" x2="66.5" y2="46.6"/></svg>
-      <i class="dot" data-k="1" style="left:75.7%;top:20.0%"></i><i class="dot" data-k="2" style="left:72.8%;top:29.9%"></i><i class="dot" data-k="3" style="left:76.4%;top:25.8%"></i><i class="dot" data-k="4" style="left:59.9%;top:35.0%"></i><i class="dot" data-k="5" style="left:66.5%;top:46.6%"></i><div class="co r" style="top:11.0%"><b>Face</b><span>yellow, unbarred face</span></div><div class="co r" style="top:39.0%"><b>Cheek</b><span>violet spot, black throat spots</span></div><div class="co r" style="top:25.0%"><b>Cere</b><span>deep blue in ♂</span></div><div class="co l" style="top:15.0%"><b>Upperparts</b><span>barred black and yellow</span></div><div class="co r" style="top:57.0%"><b>Underparts</b><span>bright grass-green</span></div>
+      <i class="dot" data-k="1" style="left:75.7%;top:20.0%"></i><i class="dot" data-k="2" style="left:72.8%;top:29.9%"></i><i class="dot" data-k="3" style="left:76.4%;top:25.8%"></i><i class="dot" data-k="4" style="left:59.9%;top:35.0%"></i><i class="dot" data-k="5" style="left:66.5%;top:46.6%"></i><div class="co r" style="top:11.0%"><b>Face</b><span>yellow, unbarred face</span></div><div class="co r" style="top:39.0%"><b>Cheek</b><span>violet spot, black throat spots</span></div><div class="co r" style="top:25.0%"><b>Cere</b><span>deep blue in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></span></div><div class="co l" style="top:15.0%"><b>Upperparts</b><span>barred black and yellow</span></div><div class="co r" style="top:57.0%"><b>Underparts</b><span>bright grass-green</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Face</b> yellow, unbarred face</li><li><i>2</i><b>Cheek</b> violet spot, black throat spots</li><li><i>3</i><b>Cere</b> deep blue in ♂</li><li><i>4</i><b>Upperparts</b> barred black and yellow</li><li><i>5</i><b>Underparts</b> bright grass-green</li></ol>
+    <ol class="legend"><li><i>1</i><b>Face</b> yellow, unbarred face</li><li><i>2</i><b>Cheek</b> violet spot, black throat spots</li><li><i>3</i><b>Cere</b> deep blue in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></li><li><i>4</i><b>Upperparts</b> barred black and yellow</li><li><i>5</i><b>Underparts</b> bright grass-green</li></ol>
     
-    <span class="sex">Adult ♂  (♀ cere pale/brown)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> cere pale/brown)</span>
     <span class="num">No. LXXXVII</span>
   </div>
   <div class="face back">
@@ -4285,8 +4287,8 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Face</b> — yellow forehead, face and throat; unbarred</li><li><b>Cheek</b> — violet-blue spot; black throat spots</li><li><b>Cere</b> — deep blue in ♂; pale blue/brown in ♀</li><li><b>Upperparts</b> — barred black and yellow; nape to wings</li><li><b>Underparts</b> — bright grass-green; long blue-green tail</li></ul>
-        <div class="sexes">Plumage alike. Adult ♂ cere deep blue; ♀ cere pale blue-white, turning buff-brown when breeding. Adults have a pale iris ring. Juvenile duller, with barring down to the cere, all-dark eyes and small throat spots; young males have a pinkish-violet cere.</div>
+        <ul class="feat"><li><b>Face</b> — yellow forehead, face and throat; unbarred</li><li><b>Cheek</b> — violet-blue spot; black throat spots</li><li><b>Cere</b> — deep blue in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>; pale blue/brown in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg></li><li><b>Upperparts</b> — barred black and yellow; nape to wings</li><li><b>Underparts</b> — bright grass-green; long blue-green tail</li></ul>
+        <div class="sexes">Plumage alike. Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> cere deep blue; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> cere pale blue-white, turning buff-brown when breeding. Adults have a pale iris ring. Juvenile duller, with barring down to the cere, all-dark eyes and small throat spots; young males have a pinkish-violet cere.</div>
         <h4>Behaviour</h4><p>Eats seeds of grasses and herbs such as spinifex and saltbush, taken mostly from the ground. Gregarious, in flocks of a few to 100+, at times tens of thousands. Drinks often, mainly in the morning. Abundant but erratic, moving with rain.</p>
       </div>
       <div class="col colr">
@@ -4313,11 +4315,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/common-bronzewing.d308a259.webp" loading="lazy" decoding="async" alt="Mystery bird plate LXXXVIII">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="81.5" y1="17.0" x2="74.4" y2="16.2"/><line x1="18.5" y1="15.0" x2="67.1" y2="20.4"/><line x1="81.5" y1="39.0" x2="68.4" y2="38.3"/><line x1="18.5" y1="35.0" x2="51.3" y2="51.5"/><line x1="81.5" y1="55.0" x2="54.6" y2="73.2"/></svg>
-      <i class="dot" data-k="1" style="left:74.4%;top:16.2%"></i><i class="dot" data-k="2" style="left:67.1%;top:20.4%"></i><i class="dot" data-k="3" style="left:68.4%;top:38.3%"></i><i class="dot" data-k="4" style="left:51.3%;top:51.5%"></i><i class="dot" data-k="5" style="left:54.6%;top:73.2%"></i><div class="co r" style="top:17.0%"><b>Forehead</b><span>cream-buff (♂); grey (♀)</span></div><div class="co l" style="top:15.0%"><b>Face</b><span>white line under eye</span></div><div class="co r" style="top:39.0%"><b>Breast</b><span>pinkish-grey in ♂</span></div><div class="co l" style="top:35.0%"><b>Wing</b><span>metallic green, blue and copper bars</span></div><div class="co r" style="top:55.0%"><b>Legs</b><span>short and pinkish-red</span></div>
+      <i class="dot" data-k="1" style="left:74.4%;top:16.2%"></i><i class="dot" data-k="2" style="left:67.1%;top:20.4%"></i><i class="dot" data-k="3" style="left:68.4%;top:38.3%"></i><i class="dot" data-k="4" style="left:51.3%;top:51.5%"></i><i class="dot" data-k="5" style="left:54.6%;top:73.2%"></i><div class="co r" style="top:17.0%"><b>Forehead</b><span>cream-buff (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>); grey (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>)</span></div><div class="co l" style="top:15.0%"><b>Face</b><span>white line under eye</span></div><div class="co r" style="top:39.0%"><b>Breast</b><span>pinkish-grey in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></span></div><div class="co l" style="top:35.0%"><b>Wing</b><span>metallic green, blue and copper bars</span></div><div class="co r" style="top:55.0%"><b>Legs</b><span>short and pinkish-red</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Forehead</b> cream-buff (♂); grey (♀)</li><li><i>2</i><b>Face</b> white line under eye</li><li><i>3</i><b>Breast</b> pinkish-grey in ♂</li><li><i>4</i><b>Wing</b> metallic green, blue and copper bars</li><li><i>5</i><b>Legs</b> short and pinkish-red</li></ol>
+    <ol class="legend"><li><i>1</i><b>Forehead</b> cream-buff (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>); grey (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>)</li><li><i>2</i><b>Face</b> white line under eye</li><li><i>3</i><b>Breast</b> pinkish-grey in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></li><li><i>4</i><b>Wing</b> metallic green, blue and copper bars</li><li><i>5</i><b>Legs</b> short and pinkish-red</li></ol>
     
-    <span class="sex">Adult ♂  (♀ grey forehead)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> grey forehead)</span>
     <span class="num">No. LXXXVIII</span>
   </div>
   <div class="face back">
@@ -4332,7 +4334,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Forehead</b> — cream-buff in ♂; grey in ♀</li><li><b>Face</b> — white line under eye; dark eye-stripe</li><li><b>Breast</b> — pinkish-grey in ♂; greyer in ♀</li><li><b>Wing</b> — metallic green, blue and copper bars</li><li><b>Legs</b> — short and pinkish-red</li></ul>
+        <ul class="feat"><li><b>Forehead</b> — cream-buff in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>; grey in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg></li><li><b>Face</b> — white line under eye; dark eye-stripe</li><li><b>Breast</b> — pinkish-grey in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>; greyer in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg></li><li><b>Wing</b> — metallic green, blue and copper bars</li><li><b>Legs</b> — short and pinkish-red</li></ul>
         <div class="sexes">Male has a cream-buff forehead, purplish-brown crown and pinkish-grey breast. Female duller, with a grey forehead and a greyer, less pink breast. Both sexes have a white line under the eye. Juvenile duller and browner, with little or no metallic sheen in the wing.</div>
         <h4>Behaviour</h4><p>Feeds on the ground on seeds of acacias, grasses, herbs and weeds, plus some leaves. Usually alone, in pairs or small groups; drinks regularly, often at dusk. Common and widespread; tolerates cleared land wherever some shrub cover remains.</p>
       </div>
@@ -4360,11 +4362,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/large-tailed-nightjar.54fcb655.webp" loading="lazy" decoding="async" alt="Mystery bird plate LXXXIX">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="18.5" y1="15.0" x2="34.1" y2="26.4"/><line x1="81.5" y1="7.0" x2="36.8" y2="35.3"/><line x1="18.5" y1="41.0" x2="29.8" y2="38.7"/><line x1="81.5" y1="29.0" x2="46.0" y2="41.0"/><line x1="81.5" y1="53.0" x2="73.1" y2="61.5"/></svg>
-      <i class="dot" data-k="1" style="left:34.1%;top:26.4%"></i><i class="dot" data-k="2" style="left:36.8%;top:35.3%"></i><i class="dot" data-k="3" style="left:29.8%;top:38.7%"></i><i class="dot" data-k="4" style="left:46.0%;top:41.0%"></i><i class="dot" data-k="5" style="left:73.1%;top:61.5%"></i><div class="co l" style="top:15.0%"><b>Crown</b><span>grey, bold dark central streak</span></div><div class="co r" style="top:7.0%"><b>Ear patch</b><span>rich rufous-brown ear-coverts</span></div><div class="co l" style="top:41.0%"><b>Throat</b><span>white patch on lower throat</span></div><div class="co r" style="top:29.0%"><b>Scapulars</b><span>row of black feathers edged buff</span></div><div class="co r" style="top:53.0%"><b>Tail</b><span>long; broad white tips (♂)</span></div>
+      <i class="dot" data-k="1" style="left:34.1%;top:26.4%"></i><i class="dot" data-k="2" style="left:36.8%;top:35.3%"></i><i class="dot" data-k="3" style="left:29.8%;top:38.7%"></i><i class="dot" data-k="4" style="left:46.0%;top:41.0%"></i><i class="dot" data-k="5" style="left:73.1%;top:61.5%"></i><div class="co l" style="top:15.0%"><b>Crown</b><span>grey, bold dark central streak</span></div><div class="co r" style="top:7.0%"><b>Ear patch</b><span>rich rufous-brown ear-coverts</span></div><div class="co l" style="top:41.0%"><b>Throat</b><span>white patch on lower throat</span></div><div class="co r" style="top:29.0%"><b>Scapulars</b><span>row of black feathers edged buff</span></div><div class="co r" style="top:53.0%"><b>Tail</b><span>long; broad white tips (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Crown</b> grey, bold dark central streak</li><li><i>2</i><b>Ear patch</b> rich rufous-brown ear-coverts</li><li><i>3</i><b>Throat</b> white patch on lower throat</li><li><i>4</i><b>Scapulars</b> row of black feathers edged buff</li><li><i>5</i><b>Tail</b> long; broad white tips (♂)</li></ol>
+    <ol class="legend"><li><i>1</i><b>Crown</b> grey, bold dark central streak</li><li><i>2</i><b>Ear patch</b> rich rufous-brown ear-coverts</li><li><i>3</i><b>Throat</b> white patch on lower throat</li><li><i>4</i><b>Scapulars</b> row of black feathers edged buff</li><li><i>5</i><b>Tail</b> long; broad white tips (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>)</li></ol>
     
-    <span class="sex">Adult ♂  (♀ buff tail spots)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> buff tail spots)</span>
     <span class="num">No. LXXXIX</span>
   </div>
   <div class="face back">
@@ -4379,7 +4381,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Crown</b> — greyish; bold dark central streak</li><li><b>Ear patch</b> — rich rufous-brown ear-coverts</li><li><b>Throat</b> — white patch on lower throat</li><li><b>Scapulars</b> — row of black feathers edged buff</li><li><b>Tail</b> — long; ♂ broad white outer tips</li></ul>
+        <ul class="feat"><li><b>Crown</b> — greyish; bold dark central streak</li><li><b>Ear patch</b> — rich rufous-brown ear-coverts</li><li><b>Throat</b> — white patch on lower throat</li><li><b>Scapulars</b> — row of black feathers edged buff</li><li><b>Tail</b> — long; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> broad white outer tips</li></ul>
         <div class="sexes">Male has large white patches on the outer primaries and broad white tips to the outer tail feathers. Female very similar but slightly paler, with smaller buff wing patches and narrower buff tail tips. Juvenile paler and buffier, with dusky, indistinct tail patches.</div>
         <h4>Behaviour</h4><p>Eats flying insects (moths, beetles, crickets, termite swarms), caught in sallies from a low perch or in flight over clearings, roads and around lights. Solitary or in pairs; sedentary and territorial. Common within its range.</p>
       </div>
@@ -4411,7 +4413,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Head</b> two black bands meet on nape</li><li><i>2</i><b>Eye</b> large, dark brown; no eyeshine</li><li><i>3</i><b>Bill</b> tiny, hidden in bristles</li><li><i>4</i><b>Underparts</b> whitish, finely barred grey</li><li><i>5</i><b>Tail</b> long, finely barred grey and dusky</li></ol>
     
-    <span class="sex">Adult grey morph (♀ may be rufous)</span>
+    <span class="sex">Adult grey morph (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> may be rufous)</span>
     <span class="num">No. XC</span>
   </div>
   <div class="face back">
@@ -4642,11 +4644,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/stubble-quail.3874d481.webp" loading="lazy" decoding="async" alt="Mystery bird plate XCV">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="18.5" y1="35.0" x2="31.5" y2="32.9"/><line x1="18.5" y1="49.0" x2="32.2" y2="47.0"/><line x1="81.5" y1="13.0" x2="56.6" y2="35.1"/><line x1="18.5" y1="9.0" x2="33.3" y2="17.1"/><line x1="18.5" y1="85.0" x2="47.4" y2="73.3"/></svg>
-      <i class="dot" data-k="1" style="left:31.5%;top:32.9%"></i><i class="dot" data-k="2" style="left:32.2%;top:47.0%"></i><i class="dot" data-k="3" style="left:56.6%;top:35.1%"></i><i class="dot" data-k="4" style="left:33.3%;top:17.1%"></i><i class="dot" data-k="5" style="left:47.4%;top:73.3%"></i><div class="co l" style="top:35.0%"><b>Throat</b><span>♂ orange-buff face and throat</span></div><div class="co l" style="top:49.0%"><b>Breast</b><span>♂ black central patch</span></div><div class="co r" style="top:13.0%"><b>Upperparts</b><span>bold cream-white shaft streaks</span></div><div class="co l" style="top:9.0%"><b>Head</b><span>pale crown stripe and eyebrow</span></div><div class="co l" style="top:85.0%"><b>Legs</b><span>pale pinkish legs and feet</span></div>
+      <i class="dot" data-k="1" style="left:31.5%;top:32.9%"></i><i class="dot" data-k="2" style="left:32.2%;top:47.0%"></i><i class="dot" data-k="3" style="left:56.6%;top:35.1%"></i><i class="dot" data-k="4" style="left:33.3%;top:17.1%"></i><i class="dot" data-k="5" style="left:47.4%;top:73.3%"></i><div class="co l" style="top:35.0%"><b>Throat</b><span><svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> orange-buff face and throat</span></div><div class="co l" style="top:49.0%"><b>Breast</b><span><svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> black central patch</span></div><div class="co r" style="top:13.0%"><b>Upperparts</b><span>bold cream-white shaft streaks</span></div><div class="co l" style="top:9.0%"><b>Head</b><span>pale crown stripe and eyebrow</span></div><div class="co l" style="top:85.0%"><b>Legs</b><span>pale pinkish legs and feet</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Throat</b> ♂ orange-buff face and throat</li><li><i>2</i><b>Breast</b> ♂ black central patch</li><li><i>3</i><b>Upperparts</b> bold cream-white shaft streaks</li><li><i>4</i><b>Head</b> pale crown stripe and eyebrow</li><li><i>5</i><b>Legs</b> pale pinkish legs and feet</li></ol>
+    <ol class="legend"><li><i>1</i><b>Throat</b> <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> orange-buff face and throat</li><li><i>2</i><b>Breast</b> <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> black central patch</li><li><i>3</i><b>Upperparts</b> bold cream-white shaft streaks</li><li><i>4</i><b>Head</b> pale crown stripe and eyebrow</li><li><i>5</i><b>Legs</b> pale pinkish legs and feet</li></ol>
     
-    <span class="sex">Adult ♂  (♀ cream-throated)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> cream-throated)</span>
     <span class="num">No. XCV</span>
   </div>
   <div class="face back">
@@ -4661,7 +4663,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Throat</b> — ♂ orange-buff face and throat; ♀ cream</li><li><b>Breast</b> — ♂ black central patch; white streaks</li><li><b>Upperparts</b> — grey-brown; bold cream-white shaft streaks</li><li><b>Head</b> — pale crown stripe and eyebrow</li><li><b>Legs</b> — pale pinkish legs and feet</li></ul>
+        <ul class="feat"><li><b>Throat</b> — <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> orange-buff face and throat; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> cream</li><li><b>Breast</b> — <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> black central patch; white streaks</li><li><b>Upperparts</b> — grey-brown; bold cream-white shaft streaks</li><li><b>Head</b> — pale crown stripe and eyebrow</li><li><b>Legs</b> — pale pinkish legs and feet</li></ul>
         <div class="sexes">Male: orange-buff face and throat, black central breast patch and black-streaked flanks, all crossed by white shaft streaks. Female: slightly larger, cream throat, breast buff with dark spotting and no black patch. Juvenile like female but duller and more mottled.</div>
         <h4>Behaviour</h4><p>Eats seeds, grain, green shoots and some insects, scratching on the ground by day. In pairs or small coveys; highly nomadic, moving with rainfall and crop growth. Common in good seasons on the Darling Downs; reluctant to fly until flushed.</p>
       </div>
@@ -4693,7 +4695,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Plumage</b> rich brown, fine wavy barring</li><li><i>2</i><b>Back</b> thin white shaft streaks on brown</li><li><i>3</i><b>Eye</b> iris red to orange-yellow</li><li><i>4</i><b>Bill</b> short, stout, blackish-grey</li><li><i>5</i><b>Legs</b> orange-yellow legs and feet</li></ol>
     
-    <span class="sex">Adult ♂  (♀ blotched black above)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> blotched black above)</span>
     <span class="num">No. XCVI</span>
   </div>
   <div class="face back">
@@ -4736,11 +4738,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/black-breasted-buttonquail.8f0afeea.webp" loading="lazy" decoding="async" alt="Mystery bird plate XCVII">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="18.5" y1="27.0" x2="28.2" y2="23.3"/><line x1="18.5" y1="41.0" x2="36.8" y2="41.1"/><line x1="18.5" y1="13.0" x2="24.8" y2="16.1"/><line x1="81.5" y1="32.0" x2="56.6" y2="32.2"/><line x1="81.5" y1="52.0" x2="61.6" y2="65.6"/></svg>
-      <i class="dot" data-k="1" style="left:28.2%;top:23.3%"></i><i class="dot" data-k="2" style="left:36.8%;top:41.1%"></i><i class="dot" data-k="3" style="left:24.8%;top:16.1%"></i><i class="dot" data-k="4" style="left:56.6%;top:32.2%"></i><i class="dot" data-k="5" style="left:61.6%;top:65.6%"></i><div class="co l" style="top:27.0%"><b>Head</b><span>♀ black face and throat</span></div><div class="co l" style="top:41.0%"><b>Breast</b><span>♀ black, with bold white crescents</span></div><div class="co l" style="top:13.0%"><b>Eye</b><span>pale white-to-cream iris</span></div><div class="co r" style="top:32.0%"><b>Upperparts</b><span>chestnut, streaked and spotted white</span></div><div class="co r" style="top:52.0%"><b>Legs</b><span>bright yellow legs and feet</span></div>
+      <i class="dot" data-k="1" style="left:28.2%;top:23.3%"></i><i class="dot" data-k="2" style="left:36.8%;top:41.1%"></i><i class="dot" data-k="3" style="left:24.8%;top:16.1%"></i><i class="dot" data-k="4" style="left:56.6%;top:32.2%"></i><i class="dot" data-k="5" style="left:61.6%;top:65.6%"></i><div class="co l" style="top:27.0%"><b>Head</b><span><svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> black face and throat</span></div><div class="co l" style="top:41.0%"><b>Breast</b><span><svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> black, with bold white crescents</span></div><div class="co l" style="top:13.0%"><b>Eye</b><span>pale white-to-cream iris</span></div><div class="co r" style="top:32.0%"><b>Upperparts</b><span>chestnut, streaked and spotted white</span></div><div class="co r" style="top:52.0%"><b>Legs</b><span>bright yellow legs and feet</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Head</b> ♀ black face and throat</li><li><i>2</i><b>Breast</b> ♀ black, with bold white crescents</li><li><i>3</i><b>Eye</b> pale white-to-cream iris</li><li><i>4</i><b>Upperparts</b> chestnut, streaked and spotted white</li><li><i>5</i><b>Legs</b> bright yellow legs and feet</li></ol>
-    <figure class="inset tr"><img src="img/black-breasted-buttonquail-inset.32c1eb6f.webp" loading="lazy" decoding="async" alt="Male ♂ detail"><figcaption>Male ♂</figcaption></figure>
-    <span class="sex">Adult ♀  (♂ pale-faced)</span>
+    <ol class="legend"><li><i>1</i><b>Head</b> <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> black face and throat</li><li><i>2</i><b>Breast</b> <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> black, with bold white crescents</li><li><i>3</i><b>Eye</b> pale white-to-cream iris</li><li><i>4</i><b>Upperparts</b> chestnut, streaked and spotted white</li><li><i>5</i><b>Legs</b> bright yellow legs and feet</li></ol>
+    <figure class="inset tr"><img src="img/black-breasted-buttonquail-inset.32c1eb6f.webp" loading="lazy" decoding="async" alt="Male ♂ detail"><figcaption>Male <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></figcaption></figure>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> pale-faced)</span>
     <span class="num">No. XCVII</span>
   </div>
   <div class="face back">
@@ -4750,12 +4752,12 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
         <p class="sci">Turnix melanogaster</p>
         <p class="fam">Turnicidae · Buttonquails</p>
       </div>
-      <div class="hmeta"><span class="num">No. XCVII</span><span class="size">17–19 cm; ♀ larger</span><span class="chip chip-warn">EPBC Vulnerable · QLD Vulnerable</span></div>
+      <div class="hmeta"><span class="num">No. XCVII</span><span class="size">17–19 cm; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span><span class="chip chip-warn">EPBC Vulnerable · QLD Vulnerable</span></div>
     </header>
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Head</b> — ♀ black face and throat; white-flecked</li><li><b>Breast</b> — ♀ black, with bold white crescents</li><li><b>Eye</b> — pale white-to-cream iris</li><li><b>Upperparts</b> — chestnut, streaked and spotted white</li><li><b>Legs</b> — bright yellow legs and feet</li></ul>
+        <ul class="feat"><li><b>Head</b> — <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> black face and throat; white-flecked</li><li><b>Breast</b> — <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> black, with bold white crescents</li><li><b>Eye</b> — pale white-to-cream iris</li><li><b>Upperparts</b> — chestnut, streaked and spotted white</li><li><b>Legs</b> — bright yellow legs and feet</li></ul>
         <div class="sexes">Reversed dimorphism. Female larger: black face, throat and breast, the breast boldly marked with white crescents; chestnut upperparts streaked white. Male smaller: whitish face and throat speckled black, breast scalloped black and white, far less black. Juvenile like a dull male.</div>
         <h4>Behaviour</h4><p>Eats beetles, ants, earwigs and other invertebrates, pivot-feeding in deep leaf litter. Females hold territories of about 2–10 ha. In pairs or small groups; sedentary, secretive and reluctant to fly. Uncommon and very patchily distributed.</p>
       </div>
@@ -4786,8 +4788,8 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
       <i class="dot" data-k="1" style="left:69.7%;top:18.3%"></i><i class="dot" data-k="2" style="left:60.2%;top:26.8%"></i><i class="dot" data-k="3" style="left:63.2%;top:41.1%"></i><i class="dot" data-k="4" style="left:38.0%;top:41.1%"></i><i class="dot" data-k="5" style="left:45.8%;top:76.8%"></i><div class="co r" style="top:30.7%"><b>Eye</b><span>orange-red iris</span></div><div class="co l" style="top:5.0%"><b>Mantle</b><span>rich chestnut neck sides, shoulders</span></div><div class="co r" style="top:44.7%"><b>Breast</b><span>grey, boldly spotted white</span></div><div class="co l" style="top:31.0%"><b>Wing</b><span>black, white-edged bars on chestnut</span></div><div class="co l" style="top:75.0%"><b>Legs</b><span>bright yellow legs and feet</span></div>
     </div>
     <ol class="legend"><li><i>1</i><b>Eye</b> orange-red iris</li><li><i>2</i><b>Mantle</b> rich chestnut neck sides, shoulders</li><li><i>3</i><b>Breast</b> grey, boldly spotted white</li><li><i>4</i><b>Wing</b> black, white-edged bars on chestnut</li><li><i>5</i><b>Legs</b> bright yellow legs and feet</li></ol>
-    <figure class="inset tr"><img src="img/painted-buttonquail-inset.a754cb49.webp" loading="lazy" decoding="async" alt="Male ♂ detail"><figcaption>Male ♂</figcaption></figure>
-    <span class="sex">Adult ♀  (♂ duller, smaller)</span>
+    <figure class="inset tr"><img src="img/painted-buttonquail-inset.a754cb49.webp" loading="lazy" decoding="async" alt="Male ♂ detail"><figcaption>Male <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></figcaption></figure>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> duller, smaller)</span>
     <span class="num">No. XCVIII</span>
   </div>
   <div class="face back">
@@ -4797,7 +4799,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
         <p class="sci">Turnix varius</p>
         <p class="fam">Turnicidae · Button-quails</p>
       </div>
-      <div class="hmeta"><span class="num">No. XCVIII</span><span class="size">17–23 cm; ♀ larger</span><span class="chip ">Least Concern</span></div>
+      <div class="hmeta"><span class="num">No. XCVIII</span><span class="size">17–23 cm; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span><span class="chip ">Least Concern</span></div>
     </header>
     <div class="cols">
       <div class="col">
@@ -4833,8 +4835,8 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
       <i class="dot" data-k="1" style="left:33.8%;top:25.2%"></i><i class="dot" data-k="2" style="left:37.4%;top:31.0%"></i><i class="dot" data-k="3" style="left:40.1%;top:50.0%"></i><i class="dot" data-k="4" style="left:59.9%;top:31.8%"></i><i class="dot" data-k="5" style="left:56.2%;top:70.6%"></i><div class="co l" style="top:21.0%"><b>Eye</b><span>pale cream iris</span></div><div class="co l" style="top:37.0%"><b>Face</b><span>orange-buff face and throat</span></div><div class="co l" style="top:51.0%"><b>Breast</b><span>orange-rufous; flanks barred</span></div><div class="co r" style="top:28.6%"><b>Upperparts</b><span>grey-brown, finely streaked buff</span></div><div class="co r" style="top:62.6%"><b>Legs</b><span>pinkish legs and feet</span></div>
     </div>
     <ol class="legend"><li><i>1</i><b>Eye</b> pale cream iris</li><li><i>2</i><b>Face</b> orange-buff face and throat</li><li><i>3</i><b>Breast</b> orange-rufous; flanks barred</li><li><i>4</i><b>Upperparts</b> grey-brown, finely streaked buff</li><li><i>5</i><b>Legs</b> pinkish legs and feet</li></ol>
-    <figure class="inset tr"><img src="img/red-chested-buttonquail-inset.edcb07b8.webp" loading="lazy" decoding="async" alt="Male ♂ detail"><figcaption>Male ♂</figcaption></figure>
-    <span class="sex">Adult ♀  (♂ paler, barred)</span>
+    <figure class="inset tr"><img src="img/red-chested-buttonquail-inset.edcb07b8.webp" loading="lazy" decoding="async" alt="Male ♂ detail"><figcaption>Male <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg></figcaption></figure>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> paler, barred)</span>
     <span class="num">No. XCIX</span>
   </div>
   <div class="face back">
@@ -4844,7 +4846,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
         <p class="sci">Turnix pyrrhothorax</p>
         <p class="fam">Turnicidae · Button-quails</p>
       </div>
-      <div class="hmeta"><span class="num">No. XCIX</span><span class="size">12–16 cm; ♀ larger</span><span class="chip ">Least Concern</span></div>
+      <div class="hmeta"><span class="num">No. XCIX</span><span class="size">12–16 cm; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span><span class="chip ">Least Concern</span></div>
     </header>
     <div class="cols">
       <div class="col">
@@ -4928,7 +4930,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Facial disc</b> long heart-shape</li><li><i>2</i><b>Upperparts</b> dark chocolate, small pale spots</li><li><i>3</i><b>Wing</b> golden-buff primaries, barred dark</li><li><i>4</i><b>Underparts</b> white to buff</li><li><i>5</i><b>Legs</b> very long, sparsely feathered, pale</li></ol>
     
-    <span class="sex">Adult — sexes similar; ♀ larger</span>
+    <span class="sex">Adult — sexes similar; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger</span>
     <span class="num">No. CI</span>
   </div>
   <div class="face back">
@@ -4938,7 +4940,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
         <p class="sci">Tyto longimembris</p>
         <p class="fam">Tytonidae · Barn &amp; masked owls</p>
       </div>
-      <div class="hmeta"><span class="num">No. CI</span><span class="size">32–42 cm; ♀ larger; wingspan 1–1.16 m</span><span class="chip ">Least Concern</span></div>
+      <div class="hmeta"><span class="num">No. CI</span><span class="size">32–42 cm; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger; wingspan 1–1.16 m</span><span class="chip ">Least Concern</span></div>
     </header>
     <div class="cols">
       <div class="col">
@@ -4975,7 +4977,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Facial disc</b> white, rimmed dark brown</li><li><i>2</i><b>Eye</b> dark eyes in dusky smudges</li><li><i>3</i><b>Upperparts</b> grey-brown, mottled buff</li><li><i>4</i><b>Underparts</b> white to rufous</li><li><i>5</i><b>Feet</b> fully feathered legs, huge feet</li></ol>
     
-    <span class="sex">Adult pale morph; ♀ larger, darker</span>
+    <span class="sex">Adult pale morph; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger, darker</span>
     <span class="num">No. CII</span>
   </div>
   <div class="face back">
@@ -4985,7 +4987,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
         <p class="sci">Tyto novaehollandiae</p>
         <p class="fam">Tytonidae · Barn &amp; masked owls</p>
       </div>
-      <div class="hmeta"><span class="num">No. CII</span><span class="size">35–50 cm; ♀ larger; wingspan 0.9–1.2 m</span><span class="chip chip-warn">Least Concern · N QLD birds EPBC &amp; QLD Vulnerable</span></div>
+      <div class="hmeta"><span class="num">No. CII</span><span class="size">35–50 cm; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> larger; wingspan 0.9–1.2 m</span><span class="chip chip-warn">Least Concern · N QLD birds EPBC &amp; QLD Vulnerable</span></div>
     </header>
     <div class="cols">
       <div class="col">
@@ -5022,7 +5024,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Eye</b> large, bright yellow</li><li><i>2</i><b>Head</b> plain grey-brown; no facial disc</li><li><i>3</i><b>Underparts</b> white, boldly streaked grey-brown</li><li><i>4</i><b>Wing</b> grey-brown with bold white spots</li><li><i>5</i><b>Feet</b> yellowish toes</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♂ larger</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg> larger</span>
     <span class="num">No. CIII</span>
   </div>
   <div class="face back">
@@ -5535,11 +5537,11 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="fit">
       <img class="plate" src="img/brown-honeyeater.3cbe57af.webp" loading="lazy" decoding="async" alt="Mystery bird plate CXIV">
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="18.5" y1="13.0" x2="57.5" y2="17.8"/><line x1="81.5" y1="5.0" x2="73.1" y2="17.1"/><line x1="81.5" y1="23.0" x2="67.9" y2="18.9"/><line x1="18.5" y1="35.0" x2="45.0" y2="42.6"/><line x1="81.5" y1="37.0" x2="60.7" y2="36.4"/></svg>
-      <i class="dot" data-k="1" style="left:57.5%;top:17.8%"></i><i class="dot" data-k="2" style="left:73.1%;top:17.1%"></i><i class="dot" data-k="3" style="left:67.9%;top:18.9%"></i><i class="dot" data-k="4" style="left:45.0%;top:42.6%"></i><i class="dot" data-k="5" style="left:60.7%;top:36.4%"></i><div class="co l" style="top:13.0%"><b>Ear</b><span>small yellow spot behind the eye</span></div><div class="co r" style="top:5.0%"><b>Bill</b><span>long, slender, decurved, black</span></div><div class="co r" style="top:23.0%"><b>Gape</b><span>black (breeding ♂); yellow ♀</span></div><div class="co l" style="top:35.0%"><b>Wing</b><span>olive-yellow panel on folded wing</span></div><div class="co r" style="top:37.0%"><b>Body</b><span>plain grey-brown</span></div>
+      <i class="dot" data-k="1" style="left:57.5%;top:17.8%"></i><i class="dot" data-k="2" style="left:73.1%;top:17.1%"></i><i class="dot" data-k="3" style="left:67.9%;top:18.9%"></i><i class="dot" data-k="4" style="left:45.0%;top:42.6%"></i><i class="dot" data-k="5" style="left:60.7%;top:36.4%"></i><div class="co l" style="top:13.0%"><b>Ear</b><span>small yellow spot behind the eye</span></div><div class="co r" style="top:5.0%"><b>Bill</b><span>long, slender, decurved, black</span></div><div class="co r" style="top:23.0%"><b>Gape</b><span>black (breeding <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>); yellow <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg></span></div><div class="co l" style="top:35.0%"><b>Wing</b><span>olive-yellow panel on folded wing</span></div><div class="co r" style="top:37.0%"><b>Body</b><span>plain grey-brown</span></div>
     </div>
-    <ol class="legend"><li><i>1</i><b>Ear</b> small yellow spot behind the eye</li><li><i>2</i><b>Bill</b> long, slender, decurved, black</li><li><i>3</i><b>Gape</b> black (breeding ♂); yellow ♀</li><li><i>4</i><b>Wing</b> olive-yellow panel on folded wing</li><li><i>5</i><b>Body</b> plain grey-brown</li></ol>
+    <ol class="legend"><li><i>1</i><b>Ear</b> small yellow spot behind the eye</li><li><i>2</i><b>Bill</b> long, slender, decurved, black</li><li><i>3</i><b>Gape</b> black (breeding <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>); yellow <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg></li><li><i>4</i><b>Wing</b> olive-yellow panel on folded wing</li><li><i>5</i><b>Body</b> plain grey-brown</li></ol>
     
-    <span class="sex">Adult ♂  (♀ yellow gape)</span>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> yellow gape)</span>
     <span class="num">No. CXIV</span>
   </div>
   <div class="face back">
@@ -5554,7 +5556,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     <div class="cols">
       <div class="col">
         <h4>Description</h4>
-        <ul class="feat"><li><b>Ear</b> — small yellow spot behind the eye</li><li><b>Bill</b> — long, slender, decurved, black</li><li><b>Gape</b> — black in breeding ♂; yellow in ♀</li><li><b>Wing</b> — olive-yellow panel on folded wing</li><li><b>Body</b> — plain grey-brown; paler buff-grey below</li></ul>
+        <ul class="feat"><li><b>Ear</b> — small yellow spot behind the eye</li><li><b>Bill</b> — long, slender, decurved, black</li><li><b>Gape</b> — black in breeding <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>; yellow in <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg></li><li><b>Wing</b> — olive-yellow panel on folded wing</li><li><b>Body</b> — plain grey-brown; paler buff-grey below</li></ul>
         <div class="sexes">Male: grey-brown with darker grey-brown crown, small yellow spot behind eye, olive-yellow wing panel, and a black gape when breeding. Female slightly smaller, olive-brown crown, gape always pale yellow. Juvenile like female, with a bright yellow swollen gape and faint eye-spot.</div>
         <h4>Behaviour</h4><p>Mainly nectar from mistletoe, mangroves, eucalypts, paperbarks, banksias and grevilleas, plus insects gleaned or caught in flight. Usually single, in pairs or small groups; joins mixed honeyeater flocks. Locally nomadic, following flowering. Abundant.</p>
       </div>
@@ -5680,7 +5682,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
     </div>
     <ol class="legend"><li><i>1</i><b>Head</b> solid black head and neck</li><li><i>2</i><b>Face</b> bare warty cream skin around eye</li><li><i>3</i><b>Breast</b> black, scalloped pale yellow</li><li><i>4</i><b>Wing</b> broad bright-yellow panels</li><li><i>5</i><b>Tail</b> black centre, yellow sides</li></ol>
     
-    <span class="sex">Adult — sexes alike; ♀ smaller</span>
+    <span class="sex">Adult — sexes alike; <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> smaller</span>
     <span class="num">No. CXVII</span>
   </div>
   <div class="face back">
@@ -5820,8 +5822,8 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
       <i class="dot" data-k="1" style="left:62.3%;top:10.7%"></i><i class="dot" data-k="2" style="left:67.2%;top:21.4%"></i><i class="dot" data-k="3" style="left:64.1%;top:36.6%"></i><i class="dot" data-k="4" style="left:64.1%;top:15.1%"></i><i class="dot" data-k="5" style="left:36.5%;top:50.9%"></i><div class="co l" style="top:7.0%"><b>Crown</b><span>crimson crown, dark eye-mask</span></div><div class="co r" style="top:33.2%"><b>Throat</b><span>clean white throat, sharply defined</span></div><div class="co r" style="top:47.2%"><b>Breast</b><span>brilliant crimson breast and belly</span></div><div class="co l" style="top:21.0%"><b>Eye</b><span>pale cream iris in the dark mask</span></div><div class="co l" style="top:51.0%"><b>Rump</b><span>crimson rump</span></div>
     </div>
     <ol class="legend"><li><i>1</i><b>Crown</b> crimson crown, dark eye-mask</li><li><i>2</i><b>Throat</b> clean white throat, sharply defined</li><li><i>3</i><b>Breast</b> brilliant crimson breast and belly</li><li><i>4</i><b>Eye</b> pale cream iris in the dark mask</li><li><i>5</i><b>Rump</b> crimson rump</li></ol>
-    <figure class="inset tr"><img src="img/crimson-chat-inset.3e49d870.webp" loading="lazy" decoding="async" alt="Female ♀ detail"><figcaption>Female ♀</figcaption></figure>
-    <span class="sex">Adult ♂  (♀ brown, pink-washed)</span>
+    <figure class="inset tr"><img src="img/crimson-chat-inset.3e49d870.webp" loading="lazy" decoding="async" alt="Female ♀ detail"><figcaption>Female <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg></figcaption></figure>
+    <span class="sex">Adult <svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="male"><circle cx="10" cy="14" r="5"/><path d="M13.6 10.4 20 4M15 4h5v5"/></svg>  (<svg class="ic sx" viewBox="0 0 24 24" role="img" aria-label="female"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M8.5 18.5h7"/></svg> brown, pink-washed)</span>
     <span class="num">No. CXX</span>
   </div>
   <div class="face back">
@@ -6007,7 +6009,7 @@ body.study .studybar{display:flex;align-items:center;justify-content:space-betwe
   <button class="got" id="got">Got it ✓</button>
   <button class="nav" id="next" aria-label="Next card">›</button>
 </nav>
-<div class="installhint" role="note">Install on your iPhone: tap <span class="shr">Share ⬆︎</span> then <b>Add to Home Screen</b>. It then works offline in the field.<button aria-label="Dismiss">×</button></div>
+<div class="installhint" role="note">Install on your iPhone: tap <span class="shr">Share <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M8 11H6v9h12v-9h-2"/></svg></span> then <b>Add to Home Screen</b>. It then works offline in the field.<button aria-label="Dismiss">×</button></div>
 
 <footer class="colophon"><p>Fronts carry the annotated plate, the sex illustrated and the card number — names stay on the back
 for blind identification practice. Species with distinct breeding-season ornaments carry a small breeding inset on the
@@ -6055,7 +6057,7 @@ function render(){
   $('#kn').textContent=`✓ ${known.size} of ${cards.length} known`;
   const rv=$('[data-filter="review"]');if(rv)rv.textContent=`Not yet known (${cards.length-known.size})`;
   $('#fsel option[value="review"]').textContent=`Not yet known (${cards.length-known.size})`;
-  $('#mode').textContent=isStudy()?'▦':'Study mode ▶';
+  $('#mode').textContent=isStudy()?'Grid view':'Study mode ▶';
   $('#mode').title=isStudy()?'Grid view':'Study one card at a time';
 }
 function setMode(m){st.mode=m;document.body.classList.toggle('study',m==='study');save();render();window.scrollTo(0,0);}
