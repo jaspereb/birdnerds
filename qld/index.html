@@ -6252,10 +6252,11 @@ deck.addEventListener('touchstart',e=>{const t=e.changedTouches[0];tx=t.clientX;
 deck.addEventListener('touchend',e=>{if(!isStudy())return;const t=e.changedTouches[0],dx=t.clientX-tx,dy=t.clientY-ty;
   if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5&&Date.now()-tt<800)go(dx<0?1:-1);},{passive:true});
 
-// first run: phones default to study mode
+// first run: phones default to study mode. The app always opens on the flashcards: a quiz left running last time
+// opens as study mode (grid view is still remembered)
 const standalone=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
 if(!st.mode)st.mode=(window.innerWidth<700||standalone)?'study':'grid';
-setMode(st.mode);
+setMode(st.mode==='quiz'?'study':st.mode);
 
 // iOS install hint
 const ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
