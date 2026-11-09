@@ -122,7 +122,7 @@ body.study{padding:0 env(safe-area-inset-right) 0 env(safe-area-inset-left);heig
 body.study .masthead,body.study .controls,body.study .colophon{display:none}
 body.study .appbar{display:flex;align-items:center;gap:6px;overflow:hidden;padding:calc(env(safe-area-inset-top) + 8px) 12px 8px;border-bottom:1px solid var(--line)}
 /* home links with the Bird Nerd logo, as on the homepage */
-.home{display:flex;align-items:center;gap:6px;margin-right:auto;min-width:0;color:inherit;text-decoration:none}
+.home{display:flex;align-items:center;gap:6px;margin-right:auto;min-width:0;flex:none;color:inherit;text-decoration:none}
 .home .logo{font-size:22px;line-height:1}
 .homebar{position:absolute;left:18px;top:14px;display:flex;align-items:center;gap:9px;color:var(--pagetext);text-decoration:none}
 .homebar .logo{font-size:26px;line-height:1}
@@ -130,9 +130,10 @@ body.study .appbar{display:flex;align-items:center;gap:6px;overflow:hidden;paddi
 body.study .homebar{display:none}
 .appbar .ttl{font-weight:600;font-size:15px;white-space:nowrap}
 .appbar .ttl em{color:var(--acc);font-style:normal}
-.appbar select,.appbar button,.studybar button{font:inherit;font-size:14px;color:var(--pagetext);background:var(--btnbg);border:1px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;-webkit-appearance:none;appearance:none}
+.appbar select,.appbar button,.appbar .lbtn,.studybar button{font:inherit;font-size:14px;color:var(--pagetext);background:var(--btnbg);border:1px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;-webkit-appearance:none;appearance:none}
 .appbar select{flex:0 1 auto;min-width:0;max-width:min(240px,31vw);padding-right:24px;background-image:linear-gradient(45deg,transparent 50%,var(--mut) 50%),linear-gradient(135deg,var(--mut) 50%,transparent 50%);background-position:calc(100% - 13px) 55%,calc(100% - 8px) 55%;background-size:5px 5px;background-repeat:no-repeat}
 .appbar button{padding:7px 0;min-width:36px;flex:none}
+.appbar .lbtn{display:inline-flex;align-items:center;justify-content:center;padding:7px 0;min-width:36px;flex:none;text-decoration:none}
 body.study .deck{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:12px;margin:0;max-width:none;touch-action:pan-y;container-type:size}
 /* as wide as the space between the bars allows (the quiz bar is taller than the study bar) */
 body.study .card{display:none;width:100%;max-width:min(980px,calc(100cqh*9/7))}
@@ -224,7 +225,8 @@ body.quiz .card:not(.flipped){cursor:default}
   .foot span:last-child{text-align:left}
   .appbar .ttl{font-size:14px}
 }
-@media (max-width:440px){.appbar .ttl{display:none}}   /* phones: the logo alone is the home link */
+@media (max-width:440px){.appbar .ttl{display:none}   /* phones: the logo alone is the home link */
+  body.study .appbar{gap:4px}.appbar button,.appbar .lbtn{min-width:34px}}   /* room for all seven controls */
 
 /* phones held sideways: plate left, legend right; scrollable back */
 @media screen and (max-height:500px) and (orientation:landscape){
@@ -334,17 +336,16 @@ body.playing{overflow:hidden}
   <button data-filter="eastcoast">East Coast &amp; Wetlands</button>
   <button data-filter="inland">Inland &amp; West</button>
   <button data-filter="statewide">Statewide</button>
-  <button data-filter="review">Not yet known</button><span class="sep"></span><button id="shuffle">Shuffle <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 4h4v4M4 20 20 4M20 16v4h-4M14 14l6 6M4 4l5 5"/></svg></button><button id="order">In order</button>
+  <button data-filter="review">Not yet known</button><span class="sep"></span><button id="shuffle">Shuffle <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 4h4v4M4 20 20 4M20 16v4h-4M14 14l6 6M4 4l5 5"/></svg></button><button id="order">In order</button><button id="birdlist">Bird list <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></button>
   <button id="flipall">Flip deck <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4v6h6M5.5 15a8 8 0 1 0 1.9-8.4L3 10"/></svg></button><button id="mode">Study mode ▶</button><button id="quizmode">Quiz mode <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.6.3-1 .8-1 1.5v.4M12 17.2v.1"/></svg></button><button id="playmode">Play a friend <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M3 20c0-3 2.2-5 5-5s5 2 5 5M13.6 19.5c.1-2.4 1.5-4 3.4-4s3.4 1.6 3.5 4"/></svg></button><button id="pdf" data-href="birds-of-queensland.82cec526.pdf">Save as PDF <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v4h4M12 10v7M9 14l3 3 3-3"/></svg></button><button class="install" hidden>Install app ⤓</button>
 </div>
 <div class="appbar">
   <a class="home" href="../" title="Bird Nerd home page"><span class="logo" aria-hidden="true">🦜</span><span class="ttl">Birds of <em>QLD</em></span></a>
   <select id="fsel" aria-label="Filter cards">
-    <option value="all">All 123</option><option value="wettropics">Wet Tropics</option>
-    <option value="capeyork">Cape York</option><option value="eastcoast">East Coast &amp; Wetlands</option>
-    <option value="inland">Inland &amp; West</option><option value="statewide">Statewide</option>
+    <option value="all">All 123</option><option value="wettropics">Wet Tropics</option><option value="capeyork">Cape York</option><option value="eastcoast">East Coast &amp; Wetlands</option><option value="inland">Inland &amp; West</option><option value="statewide">Statewide</option>
     <option value="review">Not yet known</option>
   </select>
+  <a class="lbtn" href="birds.html" title="Bird list" aria-label="Bird list"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></a>
   <button id="shuffle2" title="Shuffle" aria-label="Shuffle"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 4h4v4M4 20 20 4M20 16v4h-4M14 14l6 6M4 4l5 5"/></svg></button>
   <button id="order2" title="Back to field-guide order" aria-label="In order">1→</button>
   <button id="quiz2" title="Quiz" aria-label="Quiz"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.6.3-1 .8-1 1.5v.4M12 17.2v.1"/></svg></button>
@@ -352,7 +353,7 @@ body.playing{overflow:hidden}
   <button id="mode2" title="Grid view" aria-label="Grid view"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></button>
 </div>
 <main class="deck">
-<article class="card" data-slug="southern-cassowary" data-n="1" data-zone="WET_TROPICS_PLUS_CY" tabindex="0" role="button" aria-label="Card I — press to flip">
+<article class="card" data-slug="southern-cassowary" data-n="1" data-regions="wettropics capeyork" data-zone="WET_TROPICS_PLUS_CY" tabindex="0" role="button" aria-label="Card I — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -394,7 +395,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="brolga" data-n="2" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card II — press to flip">
+<article class="card" data-slug="brolga" data-n="2" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card II — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -436,7 +437,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="victorias-riflebird" data-n="3" data-zone="WET_TROPICS" tabindex="0" role="button" aria-label="Card III — press to flip">
+<article class="card" data-slug="victorias-riflebird" data-n="3" data-regions="wettropics" data-zone="WET_TROPICS" tabindex="0" role="button" aria-label="Card III — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -478,7 +479,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="golden-bowerbird" data-n="4" data-zone="WET_TROPICS" tabindex="0" role="button" aria-label="Card IV — press to flip">
+<article class="card" data-slug="golden-bowerbird" data-n="4" data-regions="wettropics" data-zone="WET_TROPICS" tabindex="0" role="button" aria-label="Card IV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -520,7 +521,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="lovely-fairywren" data-n="5" data-zone="CAPE_YORK_COASTAL" tabindex="0" role="button" aria-label="Card V — press to flip">
+<article class="card" data-slug="lovely-fairywren" data-n="5" data-regions="capeyork" data-zone="CAPE_YORK_COASTAL" tabindex="0" role="button" aria-label="Card V — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -562,7 +563,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="golden-shouldered-parrot" data-n="6" data-zone="CAPE_YORK_INLAND" tabindex="0" role="button" aria-label="Card VI — press to flip">
+<article class="card" data-slug="golden-shouldered-parrot" data-n="6" data-regions="capeyork" data-zone="CAPE_YORK_INLAND" tabindex="0" role="button" aria-label="Card VI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -604,7 +605,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="palm-cockatoo" data-n="7" data-zone="CAPE_YORK_TIP" tabindex="0" role="button" aria-label="Card VII — press to flip">
+<article class="card" data-slug="palm-cockatoo" data-n="7" data-regions="capeyork" data-zone="CAPE_YORK_TIP" tabindex="0" role="button" aria-label="Card VII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -646,7 +647,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="eclectus-parrot" data-n="8" data-zone="CAPE_YORK_TIP" tabindex="0" role="button" aria-label="Card VIII — press to flip">
+<article class="card" data-slug="eclectus-parrot" data-n="8" data-regions="capeyork" data-zone="CAPE_YORK_TIP" tabindex="0" role="button" aria-label="Card VIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -688,7 +689,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="buff-breasted-paradise-kingfisher" data-n="9" data-zone="WET_TROPICS" tabindex="0" role="button" aria-label="Card IX — press to flip">
+<article class="card" data-slug="buff-breasted-paradise-kingfisher" data-n="9" data-regions="wettropics" data-zone="WET_TROPICS" tabindex="0" role="button" aria-label="Card IX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -730,7 +731,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="wompoo-fruit-dove" data-n="10" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card X — press to flip">
+<article class="card" data-slug="wompoo-fruit-dove" data-n="10" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card X — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -772,7 +773,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="noisy-pitta" data-n="11" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card XI — press to flip">
+<article class="card" data-slug="noisy-pitta" data-n="11" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card XI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -814,7 +815,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="laughing-kookaburra" data-n="12" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XII — press to flip">
+<article class="card" data-slug="laughing-kookaburra" data-n="12" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -856,7 +857,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="rainbow-lorikeet" data-n="13" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card XIII — press to flip">
+<article class="card" data-slug="rainbow-lorikeet" data-n="13" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card XIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -898,7 +899,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="tawny-frogmouth" data-n="14" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XIV — press to flip">
+<article class="card" data-slug="tawny-frogmouth" data-n="14" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XIV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -940,7 +941,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="australian-brush-turkey" data-n="15" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card XV — press to flip">
+<article class="card" data-slug="australian-brush-turkey" data-n="15" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card XV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -982,7 +983,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="australasian-darter" data-n="16" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XVI — press to flip">
+<article class="card" data-slug="australasian-darter" data-n="16" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XVI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1024,7 +1025,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="great-egret" data-n="17" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XVII — press to flip">
+<article class="card" data-slug="great-egret" data-n="17" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XVII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1066,7 +1067,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="little-egret" data-n="18" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XVIII — press to flip">
+<article class="card" data-slug="little-egret" data-n="18" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XVIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1108,7 +1109,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="royal-spoonbill" data-n="19" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XIX — press to flip">
+<article class="card" data-slug="royal-spoonbill" data-n="19" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XIX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1150,7 +1151,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="comb-crested-jacana" data-n="20" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card XX — press to flip">
+<article class="card" data-slug="comb-crested-jacana" data-n="20" data-regions="eastcoast" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card XX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1192,7 +1193,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="magpie-goose" data-n="21" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card XXI — press to flip">
+<article class="card" data-slug="magpie-goose" data-n="21" data-regions="eastcoast" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card XXI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1234,7 +1235,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="little-buttonquail" data-n="22" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card XXII — press to flip">
+<article class="card" data-slug="little-buttonquail" data-n="22" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card XXII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1276,7 +1277,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="crested-pigeon" data-n="23" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XXIII — press to flip">
+<article class="card" data-slug="crested-pigeon" data-n="23" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XXIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1318,7 +1319,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="spinifex-pigeon" data-n="24" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card XXIV — press to flip">
+<article class="card" data-slug="spinifex-pigeon" data-n="24" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card XXIV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1360,7 +1361,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="squatter-pigeon" data-n="25" data-zone="INLAND_EAST" tabindex="0" role="button" aria-label="Card XXV — press to flip">
+<article class="card" data-slug="squatter-pigeon" data-n="25" data-regions="inland" data-zone="INLAND_EAST" tabindex="0" role="button" aria-label="Card XXV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1402,7 +1403,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="diamond-dove" data-n="26" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card XXVI — press to flip">
+<article class="card" data-slug="diamond-dove" data-n="26" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card XXVI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1444,7 +1445,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="peaceful-dove" data-n="27" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XXVII — press to flip">
+<article class="card" data-slug="peaceful-dove" data-n="27" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XXVII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1486,7 +1487,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="pheasant-coucal" data-n="28" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card XXVIII — press to flip">
+<article class="card" data-slug="pheasant-coucal" data-n="28" data-regions="eastcoast" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card XXVIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1528,7 +1529,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="pacific-koel" data-n="29" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XXIX — press to flip">
+<article class="card" data-slug="pacific-koel" data-n="29" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XXIX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1570,7 +1571,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="white-throated-nightjar" data-n="30" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XXX — press to flip">
+<article class="card" data-slug="white-throated-nightjar" data-n="30" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XXX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1612,7 +1613,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="spotted-nightjar" data-n="31" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card XXXI — press to flip">
+<article class="card" data-slug="spotted-nightjar" data-n="31" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card XXXI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1654,7 +1655,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="bush-stone-curlew" data-n="32" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XXXII — press to flip">
+<article class="card" data-slug="bush-stone-curlew" data-n="32" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XXXII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1696,7 +1697,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="eastern-curlew" data-n="33" data-zone="COASTLINE" tabindex="0" role="button" aria-label="Card XXXIII — press to flip">
+<article class="card" data-slug="eastern-curlew" data-n="33" data-regions="eastcoast" data-zone="COASTLINE" tabindex="0" role="button" aria-label="Card XXXIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1738,7 +1739,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="black-necked-stork" data-n="34" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card XXXIV — press to flip">
+<article class="card" data-slug="black-necked-stork" data-n="34" data-regions="eastcoast" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card XXXIV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1780,7 +1781,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="pacific-baza" data-n="35" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card XXXV — press to flip">
+<article class="card" data-slug="pacific-baza" data-n="35" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card XXXV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1822,7 +1823,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="black-shouldered-kite" data-n="36" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XXXVI — press to flip">
+<article class="card" data-slug="black-shouldered-kite" data-n="36" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XXXVI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1864,7 +1865,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="black-kite" data-n="37" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XXXVII — press to flip">
+<article class="card" data-slug="black-kite" data-n="37" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XXXVII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1906,7 +1907,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="whistling-kite" data-n="38" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XXXVIII — press to flip">
+<article class="card" data-slug="whistling-kite" data-n="38" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XXXVIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1948,7 +1949,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="brahminy-kite" data-n="39" data-zone="COASTLINE" tabindex="0" role="button" aria-label="Card XXXIX — press to flip">
+<article class="card" data-slug="brahminy-kite" data-n="39" data-regions="eastcoast" data-zone="COASTLINE" tabindex="0" role="button" aria-label="Card XXXIX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -1990,7 +1991,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="white-bellied-sea-eagle" data-n="40" data-zone="COASTLINE" tabindex="0" role="button" aria-label="Card XL — press to flip">
+<article class="card" data-slug="white-bellied-sea-eagle" data-n="40" data-regions="eastcoast" data-zone="COASTLINE" tabindex="0" role="button" aria-label="Card XL — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2032,7 +2033,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="spotted-harrier" data-n="41" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XLI — press to flip">
+<article class="card" data-slug="spotted-harrier" data-n="41" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XLI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2074,7 +2075,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="wedge-tailed-eagle" data-n="42" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XLII — press to flip">
+<article class="card" data-slug="wedge-tailed-eagle" data-n="42" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XLII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2116,7 +2117,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="southern-boobook" data-n="43" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XLIII — press to flip">
+<article class="card" data-slug="southern-boobook" data-n="43" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XLIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2158,7 +2159,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="powerful-owl" data-n="44" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card XLIV — press to flip">
+<article class="card" data-slug="powerful-owl" data-n="44" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card XLIV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2200,7 +2201,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="dollarbird" data-n="45" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XLV — press to flip">
+<article class="card" data-slug="dollarbird" data-n="45" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XLV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2242,7 +2243,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="glossy-black-cockatoo" data-n="46" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card XLVI — press to flip">
+<article class="card" data-slug="glossy-black-cockatoo" data-n="46" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card XLVI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2284,7 +2285,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="yellow-throated-scrubwren" data-n="47" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card XLVII — press to flip">
+<article class="card" data-slug="yellow-throated-scrubwren" data-n="47" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card XLVII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2326,7 +2327,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="blue-faced-honeyeater" data-n="48" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XLVIII — press to flip">
+<article class="card" data-slug="blue-faced-honeyeater" data-n="48" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XLVIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2368,7 +2369,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="noisy-miner" data-n="49" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XLIX — press to flip">
+<article class="card" data-slug="noisy-miner" data-n="49" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XLIX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2410,7 +2411,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="eastern-yellow-robin" data-n="50" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card L — press to flip">
+<article class="card" data-slug="eastern-yellow-robin" data-n="50" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card L — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2452,7 +2453,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="red-browed-treecreeper" data-n="51" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card LI — press to flip">
+<article class="card" data-slug="red-browed-treecreeper" data-n="51" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card LI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2494,7 +2495,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="brown-treecreeper" data-n="52" data-zone="INLAND_EAST" tabindex="0" role="button" aria-label="Card LII — press to flip">
+<article class="card" data-slug="brown-treecreeper" data-n="52" data-regions="inland" data-zone="INLAND_EAST" tabindex="0" role="button" aria-label="Card LII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2536,7 +2537,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="spotted-pardalote" data-n="53" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card LIII — press to flip">
+<article class="card" data-slug="spotted-pardalote" data-n="53" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card LIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2578,7 +2579,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="red-browed-pardalote" data-n="54" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card LIV — press to flip">
+<article class="card" data-slug="red-browed-pardalote" data-n="54" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card LIV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2620,7 +2621,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="striated-pardalote" data-n="55" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LV — press to flip">
+<article class="card" data-slug="striated-pardalote" data-n="55" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2662,7 +2663,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="white-throated-gerygone" data-n="56" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card LVI — press to flip">
+<article class="card" data-slug="white-throated-gerygone" data-n="56" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card LVI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2704,7 +2705,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="fairy-gerygone" data-n="57" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card LVII — press to flip">
+<article class="card" data-slug="fairy-gerygone" data-n="57" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card LVII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2746,7 +2747,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="western-gerygone" data-n="58" data-zone="INLAND_EAST" tabindex="0" role="button" aria-label="Card LVIII — press to flip">
+<article class="card" data-slug="western-gerygone" data-n="58" data-regions="inland" data-zone="INLAND_EAST" tabindex="0" role="button" aria-label="Card LVIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2788,7 +2789,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="brown-gerygone" data-n="59" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card LIX — press to flip">
+<article class="card" data-slug="brown-gerygone" data-n="59" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card LIX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2830,7 +2831,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="helmeted-friarbird" data-n="60" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card LX — press to flip">
+<article class="card" data-slug="helmeted-friarbird" data-n="60" data-regions="eastcoast" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card LX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2872,7 +2873,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="noisy-friarbird" data-n="61" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card LXI — press to flip">
+<article class="card" data-slug="noisy-friarbird" data-n="61" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card LXI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2914,7 +2915,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="little-friarbird" data-n="62" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXII — press to flip">
+<article class="card" data-slug="little-friarbird" data-n="62" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2956,7 +2957,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="varied-sittella" data-n="63" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXIII — press to flip">
+<article class="card" data-slug="varied-sittella" data-n="63" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -2998,7 +2999,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="black-faced-cuckoo-shrike" data-n="64" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXIV — press to flip">
+<article class="card" data-slug="black-faced-cuckoo-shrike" data-n="64" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXIV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3040,7 +3041,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="white-bellied-cuckoo-shrike" data-n="65" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card LXV — press to flip">
+<article class="card" data-slug="white-bellied-cuckoo-shrike" data-n="65" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card LXV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3082,7 +3083,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="barred-cuckoo-shrike" data-n="66" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card LXVI — press to flip">
+<article class="card" data-slug="barred-cuckoo-shrike" data-n="66" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card LXVI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3124,7 +3125,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="ground-cuckoo-shrike" data-n="67" data-zone="INLAND_EAST" tabindex="0" role="button" aria-label="Card LXVII — press to flip">
+<article class="card" data-slug="ground-cuckoo-shrike" data-n="67" data-regions="inland" data-zone="INLAND_EAST" tabindex="0" role="button" aria-label="Card LXVII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3166,7 +3167,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="varied-triller" data-n="68" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card LXVIII — press to flip">
+<article class="card" data-slug="varied-triller" data-n="68" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card LXVIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3208,7 +3209,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="white-winged-triller" data-n="69" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXIX — press to flip">
+<article class="card" data-slug="white-winged-triller" data-n="69" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXIX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3250,7 +3251,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="red-tailed-black-cockatoo" data-n="70" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXX — press to flip">
+<article class="card" data-slug="red-tailed-black-cockatoo" data-n="70" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3292,7 +3293,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="yellow-tailed-black-cockatoo" data-n="71" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card LXXI — press to flip">
+<article class="card" data-slug="yellow-tailed-black-cockatoo" data-n="71" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card LXXI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3334,7 +3335,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="major-mitchells-cockatoo" data-n="72" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card LXXII — press to flip">
+<article class="card" data-slug="major-mitchells-cockatoo" data-n="72" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card LXXII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3376,7 +3377,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="galah" data-n="73" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXXIII — press to flip">
+<article class="card" data-slug="galah" data-n="73" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXXIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3418,7 +3419,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="cockatiel" data-n="74" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card LXXIV — press to flip">
+<article class="card" data-slug="cockatiel" data-n="74" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card LXXIV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3460,7 +3461,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="long-billed-corella" data-n="75" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card LXXV — press to flip">
+<article class="card" data-slug="long-billed-corella" data-n="75" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card LXXV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3502,7 +3503,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="little-corella" data-n="76" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXXVI — press to flip">
+<article class="card" data-slug="little-corella" data-n="76" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXXVI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3544,7 +3545,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="sulphur-crested-cockatoo" data-n="77" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXXVII — press to flip">
+<article class="card" data-slug="sulphur-crested-cockatoo" data-n="77" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXXVII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3586,7 +3587,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="scaly-breasted-lorikeet" data-n="78" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card LXXVIII — press to flip">
+<article class="card" data-slug="scaly-breasted-lorikeet" data-n="78" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card LXXVIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3628,7 +3629,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="musk-lorikeet" data-n="79" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card LXXIX — press to flip">
+<article class="card" data-slug="musk-lorikeet" data-n="79" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card LXXIX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3670,7 +3671,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="little-lorikeet" data-n="80" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card LXXX — press to flip">
+<article class="card" data-slug="little-lorikeet" data-n="80" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card LXXX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3712,7 +3713,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="swift-parrot" data-n="81" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card LXXXI — press to flip">
+<article class="card" data-slug="swift-parrot" data-n="81" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card LXXXI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3754,7 +3755,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="australian-king-parrot" data-n="82" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card LXXXII — press to flip">
+<article class="card" data-slug="australian-king-parrot" data-n="82" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card LXXXII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3796,7 +3797,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="red-winged-parrot" data-n="83" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXXXIII — press to flip">
+<article class="card" data-slug="red-winged-parrot" data-n="83" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXXXIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3838,7 +3839,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="australian-ringneck" data-n="84" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card LXXXIV — press to flip">
+<article class="card" data-slug="australian-ringneck" data-n="84" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card LXXXIV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3880,7 +3881,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="eastern-rosella" data-n="85" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card LXXXV — press to flip">
+<article class="card" data-slug="eastern-rosella" data-n="85" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card LXXXV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3922,7 +3923,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="pale-headed-rosella" data-n="86" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card LXXXVI — press to flip">
+<article class="card" data-slug="pale-headed-rosella" data-n="86" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card LXXXVI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -3964,7 +3965,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="budgerigar" data-n="87" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card LXXXVII — press to flip">
+<article class="card" data-slug="budgerigar" data-n="87" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card LXXXVII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4006,7 +4007,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="common-bronzewing" data-n="88" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXXXVIII — press to flip">
+<article class="card" data-slug="common-bronzewing" data-n="88" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card LXXXVIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4048,7 +4049,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="large-tailed-nightjar" data-n="89" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card LXXXIX — press to flip">
+<article class="card" data-slug="large-tailed-nightjar" data-n="89" data-regions="eastcoast" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card LXXXIX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4090,7 +4091,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="australian-owlet-nightjar" data-n="90" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XC — press to flip">
+<article class="card" data-slug="australian-owlet-nightjar" data-n="90" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XC — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4132,7 +4133,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="white-faced-heron" data-n="91" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XCI — press to flip">
+<article class="card" data-slug="white-faced-heron" data-n="91" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XCI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4174,7 +4175,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="white-necked-heron" data-n="92" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XCII — press to flip">
+<article class="card" data-slug="white-necked-heron" data-n="92" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XCII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4216,7 +4217,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="pied-heron" data-n="93" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card XCIII — press to flip">
+<article class="card" data-slug="pied-heron" data-n="93" data-regions="eastcoast" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card XCIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4258,7 +4259,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="orange-footed-scrubfowl" data-n="94" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card XCIV — press to flip">
+<article class="card" data-slug="orange-footed-scrubfowl" data-n="94" data-regions="eastcoast" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card XCIV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4300,7 +4301,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="stubble-quail" data-n="95" data-zone="INLAND_EAST" tabindex="0" role="button" aria-label="Card XCV — press to flip">
+<article class="card" data-slug="stubble-quail" data-n="95" data-regions="inland" data-zone="INLAND_EAST" tabindex="0" role="button" aria-label="Card XCV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4342,7 +4343,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="brown-quail" data-n="96" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XCVI — press to flip">
+<article class="card" data-slug="brown-quail" data-n="96" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XCVI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4384,7 +4385,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="black-breasted-buttonquail" data-n="97" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card XCVII — press to flip">
+<article class="card" data-slug="black-breasted-buttonquail" data-n="97" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card XCVII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4426,7 +4427,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="painted-buttonquail" data-n="98" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XCVIII — press to flip">
+<article class="card" data-slug="painted-buttonquail" data-n="98" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card XCVIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4468,7 +4469,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="red-chested-buttonquail" data-n="99" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XCIX — press to flip">
+<article class="card" data-slug="red-chested-buttonquail" data-n="99" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card XCIX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4510,7 +4511,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="eastern-barn-owl" data-n="100" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card C — press to flip">
+<article class="card" data-slug="eastern-barn-owl" data-n="100" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card C — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4552,7 +4553,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="eastern-grass-owl" data-n="101" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card CI — press to flip">
+<article class="card" data-slug="eastern-grass-owl" data-n="101" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card CI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4594,7 +4595,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="australian-masked-owl" data-n="102" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card CII — press to flip">
+<article class="card" data-slug="australian-masked-owl" data-n="102" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card CII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4636,7 +4637,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="barking-owl" data-n="103" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card CIII — press to flip">
+<article class="card" data-slug="barking-owl" data-n="103" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card CIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4678,7 +4679,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="singing-honeyeater" data-n="104" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card CIV — press to flip">
+<article class="card" data-slug="singing-honeyeater" data-n="104" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card CIV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4720,7 +4721,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="yellow-honeyeater" data-n="105" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card CV — press to flip">
+<article class="card" data-slug="yellow-honeyeater" data-n="105" data-regions="eastcoast" data-zone="NORTH_QLD_COASTAL" tabindex="0" role="button" aria-label="Card CV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4762,7 +4763,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="grey-fronted-honeyeater" data-n="106" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card CVI — press to flip">
+<article class="card" data-slug="grey-fronted-honeyeater" data-n="106" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card CVI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4804,7 +4805,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="white-plumed-honeyeater" data-n="107" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card CVII — press to flip">
+<article class="card" data-slug="white-plumed-honeyeater" data-n="107" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card CVII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4846,7 +4847,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="yellow-tufted-honeyeater" data-n="108" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card CVIII — press to flip">
+<article class="card" data-slug="yellow-tufted-honeyeater" data-n="108" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card CVIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4888,7 +4889,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="white-eared-honeyeater" data-n="109" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card CIX — press to flip">
+<article class="card" data-slug="white-eared-honeyeater" data-n="109" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card CIX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4930,7 +4931,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="black-chinned-honeyeater" data-n="110" data-zone="INLAND_EAST" tabindex="0" role="button" aria-label="Card CX — press to flip">
+<article class="card" data-slug="black-chinned-honeyeater" data-n="110" data-regions="inland" data-zone="INLAND_EAST" tabindex="0" role="button" aria-label="Card CX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -4972,7 +4973,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="white-throated-honeyeater" data-n="111" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card CXI — press to flip">
+<article class="card" data-slug="white-throated-honeyeater" data-n="111" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card CXI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -5014,7 +5015,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="lewins-honeyeater" data-n="112" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card CXII — press to flip">
+<article class="card" data-slug="lewins-honeyeater" data-n="112" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card CXII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -5056,7 +5057,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="yellow-faced-honeyeater" data-n="113" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card CXIII — press to flip">
+<article class="card" data-slug="yellow-faced-honeyeater" data-n="113" data-regions="eastcoast" data-zone="EAST_COAST_BROAD" tabindex="0" role="button" aria-label="Card CXIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -5098,7 +5099,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="brown-honeyeater" data-n="114" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card CXIV — press to flip">
+<article class="card" data-slug="brown-honeyeater" data-n="114" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card CXIV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -5140,7 +5141,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="spiny-cheeked-honeyeater" data-n="115" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card CXV — press to flip">
+<article class="card" data-slug="spiny-cheeked-honeyeater" data-n="115" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card CXV — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -5182,7 +5183,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="striped-honeyeater" data-n="116" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card CXVI — press to flip">
+<article class="card" data-slug="striped-honeyeater" data-n="116" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card CXVI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -5224,7 +5225,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="regent-honeyeater" data-n="117" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card CXVII — press to flip">
+<article class="card" data-slug="regent-honeyeater" data-n="117" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card CXVII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -5266,7 +5267,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="yellow-throated-miner" data-n="118" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card CXVIII — press to flip">
+<article class="card" data-slug="yellow-throated-miner" data-n="118" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card CXVIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -5308,7 +5309,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="bell-miner" data-n="119" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card CXIX — press to flip">
+<article class="card" data-slug="bell-miner" data-n="119" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card CXIX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -5350,7 +5351,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="crimson-chat" data-n="120" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card CXX — press to flip">
+<article class="card" data-slug="crimson-chat" data-n="120" data-regions="inland" data-zone="WEST_INLAND" tabindex="0" role="button" aria-label="Card CXX — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -5392,7 +5393,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="eastern-whipbird" data-n="121" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card CXXI — press to flip">
+<article class="card" data-slug="eastern-whipbird" data-n="121" data-regions="eastcoast" data-zone="EAST_COAST" tabindex="0" role="button" aria-label="Card CXXI — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -5434,7 +5435,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="grey-crowned-babbler" data-n="122" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card CXXII — press to flip">
+<article class="card" data-slug="grey-crowned-babbler" data-n="122" data-regions="statewide" data-zone="STATEWIDE" tabindex="0" role="button" aria-label="Card CXXII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -5476,7 +5477,7 @@ body.playing{overflow:hidden}
   </div>
  </div>
 </article>
-<article class="card" data-slug="white-browed-babbler" data-n="123" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card CXXIII — press to flip">
+<article class="card" data-slug="white-browed-babbler" data-n="123" data-regions="eastcoast" data-zone="SOUTHEAST" tabindex="0" role="button" aria-label="Card CXXIII — press to flip">
  <div class="inner">
   <div class="face front">
     <div class="pbox"><div class="fit">
@@ -5556,15 +5557,13 @@ if(Array.isArray(st.order)){st.order.forEach(s=>bySlug[s]&&deck.appendChild(bySl
   cards.filter(c=>!st.order.includes(c.dataset.slug)).forEach(c=>deck.appendChild(c));}
 cards.forEach(c=>c.classList.toggle('known',known.has(c.dataset.slug)));
 
-const groups={all:()=>true,wettropics:z=>z.startsWith('WET_TROPICS'),
- capeyork:z=>z.startsWith('CAPE_YORK')||z==='WET_TROPICS_PLUS_CY',
- eastcoast:z=>z.startsWith('EAST_COAST')||z==='NORTH_QLD_COASTAL'||z==='SOUTHEAST'||z==='COASTLINE',
- inland:z=>z==='WEST_INLAND'||z==='INLAND_EAST',
- statewide:z=>z==='STATEWIDE'};
+// regions: each card lists the ones it's in (data-regions, set by tools/make_pwa.py from REGIONS there)
+if(!document.querySelector(`#fsel option[value="${st.filter}"]`))st.filter='all';
+const inFilter=c=>st.filter==='review'?!known.has(c.dataset.slug):st.filter==='all'||c.dataset.regions.split(' ').includes(st.filter);
 const isStudy=()=>document.body.classList.contains('study');
 const isQuiz=()=>document.body.classList.contains('quiz');
 const passes=c=>(!isQuiz()||!!c.querySelector('.front img'))&&   // the quiz skips cards still waiting for a plate
-  (st.filter==='review'?!known.has(c.dataset.slug):(groups[st.filter]||groups.all)(c.dataset.zone));
+  inFilter(c);
 const order=()=>[...deck.querySelectorAll('.card')];
 const visible=()=>order().filter(passes);
 
@@ -5637,6 +5636,7 @@ $('#shuffle').addEventListener('click',e=>{e.stopPropagation();shuffle();});
 $('#shuffle2').addEventListener('click',shuffle);
 $('#order').addEventListener('click',inOrder);
 $('#order2').addEventListener('click',inOrder);
+$('#birdlist').addEventListener('click',e=>{e.stopPropagation();location.href='birds.html';});
 
 // Save as PDF: the whole deck, front above back, one card per page (built by tools/make_pdf.py)
 $('#pdf')?.addEventListener('click',e=>{e.stopPropagation();const a=document.createElement('a');
@@ -5674,6 +5674,15 @@ deck.addEventListener('touchend',e=>{if(!isStudy())return;const t=e.changedTouch
 const standalone=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
 if(!st.mode)st.mode=(window.innerWidth<700||standalone)?'study':'grid';
 setMode(st.mode==='quiz'?'study':st.mode);
+
+// a link to one card (the bird list links to index.html#<slug>): open it in study mode, showing all cards if the
+// current filter hides it
+function openLinked(){const c=bySlug[decodeURIComponent(location.hash.slice(1))];if(!c)return;
+  history.replaceState(null,'',location.pathname+location.search);
+  if(!inFilter(c))st.filter='all';
+  cards.forEach(x=>x.classList.remove('flipped'));st.pos=c.dataset.slug;setMode('study');}
+openLinked();
+window.addEventListener('hashchange',openLinked);
 
 // iOS install hint
 const ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
