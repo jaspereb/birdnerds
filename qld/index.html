@@ -115,6 +115,10 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
 .pbox{display:contents}   /* wraps the plate; only phone study/quiz give it a box (below) */
 .ic.sx{width:.95em;height:.95em;vertical-align:-.12em;stroke-width:2.4}
 
+/* grid view: a card that's off screen isn't laid out or painted until it scrolls near, so a phone doesn't hold all
+   124 cards' maps, text and pictures at once. Faces already clip (overflow:hidden), so nothing visible changes */
+@media screen{body:not(.study) .face{content-visibility:auto}}
+
 /* study mode: one card at a time */
 body.study{padding:0 env(safe-area-inset-right) 0 env(safe-area-inset-left);height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden;overscroll-behavior:none}
 body.study .masthead,body.study .controls,body.study .colophon{display:none}
@@ -163,6 +167,7 @@ body.quiz .card:not(.flipped){cursor:default}
 .empty{display:none;text-align:center;color:var(--mut);padding:40px 20px;font-size:15px;line-height:1.6}
 .empty.on{display:block}
 
+.notice{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom) + 76px);z-index:21;max-width:520px;margin:0 auto;background:var(--acc);color:#fff;border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.4;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);cursor:pointer}
 .installhint{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom) + 76px);z-index:20;background:var(--acc);color:#fff;border-radius:14px;padding:12px 40px 12px 14px;font-size:14px;line-height:1.4;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
 .installhint.on{display:block}
 .installhint button{position:absolute;right:8px;top:8px;background:none;border:0;color:#fff;font-size:20px;line-height:1;padding:4px 8px;cursor:pointer}
@@ -303,7 +308,7 @@ body.playing{overflow:hidden}
 @media print{
   :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--paper:#fff;--mut:#5c614f;--acc:#2e6e5e;--line:#d8d6c8;--pagetext:#22251e}   /* light colours even in dark mode */
   html,body,body.study{background:#fff !important;display:block;height:auto;overflow:visible;padding:0}
-  #game,.psheet,.homebar,.masthead,.rule,.controls,.colophon,.appbar,.studybar,.quizbar,.installhint,.empty{display:none !important}
+  #game,.psheet,.homebar,.masthead,.rule,.controls,.colophon,.appbar,.studybar,.quizbar,.installhint,.notice,.empty{display:none !important}
   .deck,body.study .deck{display:block;max-width:none;margin:0;padding:0}
   .card,.card.hide,body.study .card{display:block !important;width:172mm;max-width:none;height:auto;aspect-ratio:auto;margin:0 auto;perspective:none;break-inside:avoid;break-after:page}
   .card:last-child{break-after:auto}
@@ -5457,15 +5462,48 @@ species accounts compiled from BirdLife Australia, the Australian Museum, Queens
 IUCN assessments, and independently fact-checked, October 2026. Tap any card to turn it over.</p><p class="lic">© 2026 Hannah Barrenger. All rights reserved. Free for personal study; no copying, redistribution or commercial use without permission. <a href="LICENSE.txt">Licence</a> · <a href="#" id="reset">Reset “known” progress</a></p></footer>
 <script>
 (()=>{
-const KEY='qldbirds.v1';
+const KEY='qldbirds.v1',OPEN='qldbirds.open';
 const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return{}}};
-const st=Object.assign({mode:null,filter:'all',order:null,pos:null,known:[],hint:0},load());
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
-const known=new Set(st.known);
 const deck=document.querySelector('.deck');
 const cards=[...deck.querySelectorAll('.card')];
 const bySlug=Object.fromEntries(cards.map(c=>[c.dataset.slug,c]));
 const $=s=>document.querySelector(s);
+
+// Getting unstuck. The saved view (mode, filter, order, current card) is what decides how heavy the page's first
+// render is, so two things put it back to the defaults, keeping the "known" ticks:
+//  - ?reset in the address: a link to send someone whose app won't open. It also drops the offline copy and reloads.
+//  - the page dying while on screen last time. OPEN is set while the page is visible and cleared when it's hidden or
+//    left, so if it's still set now the last visit ended in a crash (usually out of memory), not a normal close.
+const asked=new URLSearchParams(location.search).has('reset');
+let crashed=false;try{crashed=localStorage.getItem(OPEN)==='1';}catch(e){}
+const saved=asked||crashed?{known:load().known,hint:load().hint}:load();
+if(asked){
+  const jobs=[];
+  if('caches' in window)jobs.push(caches.keys().then(ks=>Promise.all(ks.filter(k=>k.startsWith('qldbirds-')).map(k=>caches.delete(k)))));
+  if('serviceWorker' in navigator)jobs.push(navigator.serviceWorker.getRegistrations().then(rs=>Promise.all(rs.map(r=>r.unregister()))));
+  try{localStorage.removeItem('qldbirds.list');}catch(e){}
+  Promise.allSettled(jobs).then(()=>location.replace(location.pathname+location.hash));
+}
+const onScreen=v=>{try{v?localStorage.setItem(OPEN,'1'):localStorage.removeItem(OPEN);}catch(e){}};
+onScreen(document.visibilityState==='visible');
+document.addEventListener('visibilitychange',()=>onScreen(document.visibilityState==='visible'));
+window.addEventListener('pagehide',()=>onScreen(false));
+window.addEventListener('pageshow',e=>{if(e.persisted)onScreen(document.visibilityState==='visible');});
+
+// saved state is only trusted field by field: anything an older (or broken) version left behind is dropped
+const st={mode:null,filter:'all',order:null,pos:null,known:[],hint:0};
+if(['grid','study','quiz'].includes(saved.mode))st.mode=saved.mode;
+if(typeof saved.filter==='string')st.filter=saved.filter;
+if(Array.isArray(saved.order))st.order=saved.order.filter(s=>bySlug[s]);
+if(typeof saved.pos==='string'&&bySlug[saved.pos])st.pos=saved.pos;
+if(Array.isArray(saved.known))st.known=saved.known.filter(s=>bySlug[s]);
+if(saved.hint)st.hint=1;
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+save();
+const known=new Set(st.known);
+if(crashed&&!asked){const n=document.createElement('div');n.className='notice';n.setAttribute('role','status');
+  n.textContent="The app didn't close properly last time, so it has gone back to its starting view. Your known cards are kept.";
+  document.body.appendChild(n);setTimeout(()=>n.remove(),7000);n.addEventListener('click',()=>n.remove());}
 
 // restore saved order
 if(Array.isArray(st.order)){st.order.forEach(s=>bySlug[s]&&deck.appendChild(bySlug[s]));
