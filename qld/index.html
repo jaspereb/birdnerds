@@ -83,7 +83,7 @@ ul.feat li::before{content:"▸";position:absolute;left:0;color:var(--acc);font-
 .sexes{background:#f1efe3;border-radius:6px;padding:5px 7px;margin:5px 0 0;font-size:clamp(8.5px,1.85cqw,10.8px);line-height:1.27;color:#3c3f33}
 .hscale{display:flex;align-items:flex-end;justify-content:flex-end;gap:12px}
 .sizecmp{display:block;flex:none}
-.facts{display:grid;grid-template-columns:1fr 1fr 1.12fr;gap:14px;padding:1px 0 4px;margin-bottom:1px;border-bottom:1px solid var(--line)}
+.facts{display:grid;grid-template-columns:1fr 1.15fr;gap:14px;padding:1px 0 4px;margin-bottom:1px;border-bottom:1px solid var(--line)}
 .fact{min-width:0}
 .fact h4{margin:0 0 2px}
 .ruler{position:relative;height:7px;background:#e7e9e0;border-radius:3px}
@@ -91,14 +91,10 @@ ul.feat li::before{content:"▸";position:absolute;left:0;color:var(--acc);font-
 .ticks{position:relative;height:8px;font-size:7px;line-height:8px;color:var(--mut)}
 .ticks span{position:absolute;transform:translateX(-50%)}
 .ticks .u{right:0;transform:none}
-.scale,.months{display:grid;gap:2px}
-.scale{grid-template-columns:repeat(5,minmax(0,1fr))}
+.months{display:grid;gap:2px}
 .months{grid-template-columns:repeat(12,minmax(0,1fr));gap:1.5px}
-.scale span,.months span{display:block;text-align:center;font-weight:700;border-radius:2px;background:#eceee6;color:#9da191;line-height:1;padding:2.5px 0 2px}
-.scale span{font-size:8.5px}
+.months span{display:block;text-align:center;font-weight:700;border-radius:2px;background:#eceee6;color:#9da191;line-height:1;padding:2.5px 0 2px}
 .months span{font-size:7.5px}
-.scale .on{background:var(--acc);color:#fff}
-.scale .on.warn{background:var(--warn)}
 .months .m{background:var(--acc);color:#fff}
 .months .p{background:#a8c9bd;color:#fff}
 .months.abroad .m{background:#fff;color:var(--acc);box-shadow:inset 0 0 0 1.2px var(--acc)}
@@ -220,13 +216,11 @@ body.quiz .card:not(.flipped){cursor:default}
   .sexes{font-size:14px;line-height:1.42;padding:8px 10px;margin-top:8px}
   .qmap{width:32%;max-width:130px}
   .zlabel{font-size:14px}
-  /* length · status · breeding: two across, the month strip on its own row so the letters stay readable */
-  .facts{grid-template-columns:1fr 1fr;gap:6px 16px;padding-bottom:9px;margin-top:6px}
-  .fact:last-child{grid-column:1/-1}
+  /* length, then breeding: one above the other, so the month strip is full width and its letters stay readable */
+  .facts{grid-template-columns:1fr;gap:6px;padding-bottom:9px;margin-top:6px}
   .fact h4{margin:4px 0 4px}
   .ruler{height:9px}
   .ticks{height:11px;font-size:9px;line-height:11px}
-  .scale span{font-size:10.5px;padding:4px 0 3px}
   .months span{font-size:10px;padding:4px 0 3px}
   .back .fv{font-size:12.5px;margin-top:4px}
   .habs span{font-size:12.5px;padding:2px 9px}
@@ -346,7 +340,7 @@ body.playing{overflow:hidden}
   <button data-filter="inland">Inland &amp; West</button>
   <button data-filter="statewide">Statewide</button>
   <button data-filter="review">Not yet known</button><span class="sep"></span><button id="shuffle">Shuffle <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 4h4v4M4 20 20 4M20 16v4h-4M14 14l6 6M4 4l5 5"/></svg></button><button id="order">In order</button>
-  <button id="flipall">Flip deck <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4v6h6M5.5 15a8 8 0 1 0 1.9-8.4L3 10"/></svg></button><button id="mode">Study mode ▶</button><button id="quizmode">Quiz mode <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.6.3-1 .8-1 1.5v.4M12 17.2v.1"/></svg></button><button id="playmode">Play a friend <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M3 20c0-3 2.2-5 5-5s5 2 5 5M13.6 19.5c.1-2.4 1.5-4 3.4-4s3.4 1.6 3.5 4"/></svg></button><button id="pdf" data-href="birds-of-queensland.0c45ed4f.pdf">Save as PDF <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v4h4M12 10v7M9 14l3 3 3-3"/></svg></button><button class="install" hidden>Install app ⤓</button>
+  <button id="flipall">Flip deck <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4v6h6M5.5 15a8 8 0 1 0 1.9-8.4L3 10"/></svg></button><button id="mode">Study mode ▶</button><button id="quizmode">Quiz mode <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.6.3-1 .8-1 1.5v.4M12 17.2v.1"/></svg></button><button id="playmode">Play a friend <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M3 20c0-3 2.2-5 5-5s5 2 5 5M13.6 19.5c.1-2.4 1.5-4 3.4-4s3.4 1.6 3.5 4"/></svg></button><button id="pdf" data-href="birds-of-queensland.d8a2b4e1.pdf">Save as PDF <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v4h4M12 10v7M9 14l3 3 3-3"/></svg></button><button class="install" hidden>Install app ⤓</button>
 </div>
 <div class="appbar">
   <a class="home" href="../" title="Bird Nerd home page"><span class="logo" aria-hidden="true">🦜</span><span class="ttl">Birds of <em>QLD</em></span></a>
@@ -387,7 +381,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 130 to 170 cm"><i style="left:86.6%;width:8.3%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">130–170 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: EPBC Endangered"><span>LC</span><span>NT</span><span>VU</span><span class="on warn">EN</span><span>CR</span></div><p class="fv">EPBC Endangered</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jun–Oct"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span>N</span><span>D</span></div><p class="fv">Jun–Oct</p></div>
     </div>
     <div class="cols">
@@ -431,7 +424,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 100 to 130 cm"><i style="left:78.5%;width:8.2%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">100–130 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern (QLD)"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern (QLD)</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Feb–May, Sep–Dec"><span>J</span><span class="m">F</span><span class="m">M</span><span class="m">A</span><span class="m">M</span><span>J</span><span>J</span><span>A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Feb–May, Sep–Dec</p></div>
     </div>
     <div class="cols">
@@ -475,7 +467,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 23 to 25 cm"><i style="left:32.6%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">23–25 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: IUCN Vulnerable"><span>LC</span><span>NT</span><span class="on warn">VU</span><span>EN</span><span>CR</span></div><p class="fv">IUCN Vulnerable</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Jan"><span class="m">J</span><span class="p">F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Aug–Jan</p></div>
     </div>
     <div class="cols">
@@ -519,7 +510,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 23 to 25 cm"><i style="left:32.6%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">23–25 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: IUCN Near Threatened"><span>LC</span><span class="on">NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">IUCN Near Threatened</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Nov–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span class="p">S</span><span class="p">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Nov–Jan</p></div>
     </div>
     <div class="cols">
@@ -563,7 +553,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 12 to 14 cm"><i style="left:12.6%;width:4.8%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">12–14 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Jul–Apr; any month"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span class="m">A</span><span class="p">M</span><span class="p">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Jul–Apr; any month</p></div>
     </div>
     <div class="cols">
@@ -607,7 +596,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 25 to 27 cm"><i style="left:35.1%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">25–27 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: EPBC Endangered"><span>LC</span><span>NT</span><span>VU</span><span class="on warn">EN</span><span>CR</span></div><p class="fv">EPBC Endangered</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Apr–Jul"><span>J</span><span>F</span><span class="p">M</span><span class="m">A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span class="p">A</span><span>S</span><span>O</span><span>N</span><span>D</span></div><p class="fv">Mainly Apr–Jul</p></div>
     </div>
     <div class="cols">
@@ -651,7 +639,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 55 to 60 cm"><i style="left:59.7%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">55–60 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: EPBC Endangered · QLD Endangered"><span>LC</span><span>NT</span><span>VU</span><span class="on warn">EN</span><span>CR</span></div><p class="fv">EPBC EN · QLD EN</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Jan"><span class="m">J</span><span class="p">F</span><span class="p">M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Aug–Jan</p></div>
     </div>
     <div class="cols">
@@ -695,7 +682,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 42 to 45 cm"><i style="left:51.1%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">42–45 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: QLD Endangered"><span>LC</span><span>NT</span><span>VU</span><span class="on warn">EN</span><span>CR</span></div><p class="fv">QLD Endangered</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jul–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jul–Jan</p></div>
     </div>
     <div class="cols">
@@ -739,7 +725,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 35 to 35 cm"><i style="left:44.4%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">35 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Nov–Mar"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Nov–Mar</p></div>
     </div>
     <div class="cols">
@@ -783,7 +768,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 35 to 45 cm"><i style="left:45.9%;width:7.8%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">35–45 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Jan</p></div>
     </div>
     <div class="cols">
@@ -827,7 +811,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 19 to 21 cm"><i style="left:26.9%;width:3.1%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">19–21 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Oct–Jan"><span class="m">J</span><span class="p">F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Oct–Jan</p></div>
     </div>
     <div class="cols">
@@ -871,7 +854,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 41 to 47 cm"><i style="left:50.8%;width:4.2%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">41–47 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Sep–Dec"><span class="p">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="p">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Sep–Dec</p></div>
     </div>
     <div class="cols">
@@ -915,7 +897,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 25 to 30 cm"><i style="left:35.4%;width:5.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">25–30 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Jun–Jan; any month"><span class="m">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Jun–Jan; any month</p></div>
     </div>
     <div class="cols">
@@ -959,7 +940,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 34 to 53 cm"><i style="left:45.0%;width:13.8%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">34–53 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Dec"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Dec</p></div>
     </div>
     <div class="cols">
@@ -1003,7 +983,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 60 to 75 cm"><i style="left:62.6%;width:6.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">60–75 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Sep–Dec"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="p">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Sep–Dec</p></div>
     </div>
     <div class="cols">
@@ -1047,7 +1026,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 85 to 97 cm"><i style="left:73.4%;width:4.1%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">85–97 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Oct, Jan–Apr; any month"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span class="m">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="p">N</span><span class="p">D</span></div><p class="fv">Mainly Aug–Oct, Jan–Apr; any month</p></div>
     </div>
     <div class="cols">
@@ -1091,7 +1069,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 83 to 103 cm"><i style="left:72.7%;width:6.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">83–103 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mar–May, Oct–Dec"><span>J</span><span>F</span><span class="m">M</span><span class="m">A</span><span class="m">M</span><span>J</span><span>J</span><span>A</span><span>S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mar–May, Oct–Dec</p></div>
     </div>
     <div class="cols">
@@ -1135,7 +1112,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 55 to 65 cm"><i style="left:59.9%;width:5.2%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">55–65 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Oct–Apr"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span class="m">A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Oct–Apr</p></div>
     </div>
     <div class="cols">
@@ -1179,7 +1155,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 74 to 81 cm"><i style="left:69.0%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">74–81 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Nov–Feb"><span class="m">J</span><span class="m">F</span><span class="p">M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span class="p">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Nov–Feb</p></div>
     </div>
     <div class="cols">
@@ -1223,7 +1198,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 20 to 27 cm"><i style="left:28.5%;width:9.3%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">20–27 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Nov–Apr"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span class="m">A</span><span class="p">M</span><span>J</span><span>J</span><span>A</span><span class="p">S</span><span class="p">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Nov–Apr</p></div>
     </div>
     <div class="cols">
@@ -1267,7 +1241,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 71 to 92 cm"><i style="left:67.8%;width:8.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">71–92 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Feb–Jun"><span>J</span><span class="m">F</span><span class="m">M</span><span class="m">A</span><span class="m">M</span><span class="m">J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span></div><p class="fv">Feb–Jun</p></div>
     </div>
     <div class="cols">
@@ -1311,7 +1284,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 12 to 16 cm"><i style="left:12.6%;width:8.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">12–16 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Sep–Mar; any month"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="p">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Sep–Mar; any month</p></div>
     </div>
     <div class="cols">
@@ -1355,7 +1327,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 30 to 35 cm"><i style="left:41.1%;width:4.8%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">30–35 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Sep–Mar; any month"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="p">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Sep–Mar; any month</p></div>
     </div>
     <div class="cols">
@@ -1399,7 +1370,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 20 to 24 cm"><i style="left:28.5%;width:5.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">20–24 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="p">A</span><span class="p">S</span><span class="p">O</span><span class="p">N</span><span class="p">D</span></div><p class="fv">Any month</p></div>
     </div>
     <div class="cols">
@@ -1443,7 +1413,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 28 to 32 cm"><i style="left:38.9%;width:4.1%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">28–32 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: EPBC Vulnerable · QLD Vulnerable (southern ssp.)"><span>LC</span><span>NT</span><span class="on warn">VU</span><span>EN</span><span>CR</span></div><p class="fv">EPBC VU · QLD VU (southern ssp.)</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Apr–Oct; any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="m">A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="p">N</span><span class="p">D</span></div><p class="fv">Mainly Apr–Oct; any month</p></div>
     </div>
     <div class="cols">
@@ -1487,7 +1456,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 19 to 24 cm"><i style="left:26.9%;width:7.3%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">19–24 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="p">A</span><span class="p">S</span><span class="p">O</span><span class="p">N</span><span class="p">D</span></div><p class="fv">Any month</p></div>
     </div>
     <div class="cols">
@@ -1531,7 +1499,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 19 to 23 cm"><i style="left:26.9%;width:5.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">19–23 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Sep–Feb; any month"><span class="m">J</span><span class="m">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="p">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Sep–Feb; any month</p></div>
     </div>
     <div class="cols">
@@ -1575,7 +1542,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 50 to 70 cm"><i style="left:56.9%;width:10.5%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">50–70 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Sep–Mar"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Sep–Mar</p></div>
     </div>
     <div class="cols">
@@ -1619,7 +1585,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 39 to 46 cm"><i style="left:49.2%;width:5.1%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">39–46 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Sep–Mar"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Sep–Mar</p></div>
     </div>
     <div class="cols">
@@ -1663,7 +1628,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 30 to 35 cm"><i style="left:41.1%;width:4.8%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">30–35 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Oct–Dec"><span class="p">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span class="p">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Oct–Dec</p></div>
     </div>
     <div class="cols">
@@ -1707,7 +1671,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 25 to 31 cm"><i style="left:35.4%;width:6.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">25–31 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Sep–Dec"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Sep–Dec</p></div>
     </div>
     <div class="cols">
@@ -1751,7 +1714,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 52 to 58 cm"><i style="left:58.2%;width:3.4%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">52–58 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jul–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jul–Jan</p></div>
     </div>
     <div class="cols">
@@ -1795,7 +1757,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 60 to 66 cm"><i style="left:62.6%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">60–66 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: EPBC Critically Endangered · QLD Critically Endangered"><span>LC</span><span>NT</span><span>VU</span><span>EN</span><span class="on warn">CR</span></div><p class="fv">EPBC CR · QLD CR</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months abroad" role="img" aria-label="Breeding: Breeds in north-east Asia (May–Jul)"><span>J</span><span>F</span><span>M</span><span>A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span></div><p class="fv">Breeds in north-east Asia (May–Jul)</p></div>
     </div>
     <div class="cols">
@@ -1839,7 +1800,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 129 to 137 cm"><i style="left:85.8%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">129–137 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Mar–May"><span>J</span><span>F</span><span class="m">M</span><span class="m">A</span><span class="m">M</span><span class="p">J</span><span class="p">J</span><span class="p">A</span><span>S</span><span>O</span><span>N</span><span>D</span></div><p class="fv">Mainly Mar–May</p></div>
     </div>
     <div class="cols">
@@ -1883,7 +1843,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 35 to 46 cm"><i style="left:45.9%;width:8.5%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">35–46 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Oct–Jan"><span class="m">J</span><span class="p">F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span class="p">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Oct–Jan</p></div>
     </div>
     <div class="cols">
@@ -1927,7 +1886,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 35 to 38 cm"><i style="left:45.6%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">35–38 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Jul–Dec; any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Jul–Dec; any month</p></div>
     </div>
     <div class="cols">
@@ -1971,7 +1929,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 47 to 55 cm"><i style="left:55.0%;width:4.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">47–55 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jun–Dec"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jun–Dec</p></div>
     </div>
     <div class="cols">
@@ -2015,7 +1972,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 50 to 60 cm"><i style="left:56.9%;width:5.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">50–60 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jul–Dec"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jul–Dec</p></div>
     </div>
     <div class="cols">
@@ -2059,7 +2015,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 45 to 51 cm"><i style="left:53.7%;width:3.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">45–51 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Apr–Oct"><span>J</span><span>F</span><span>M</span><span class="m">A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span>N</span><span>D</span></div><p class="fv">Apr–Oct</p></div>
     </div>
     <div class="cols">
@@ -2103,7 +2058,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 75 to 85 cm"><i style="left:69.5%;width:3.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">75–85 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: May–Oct"><span>J</span><span>F</span><span>M</span><span>A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span>N</span><span>D</span></div><p class="fv">May–Oct</p></div>
     </div>
     <div class="cols">
@@ -2147,7 +2101,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 50 to 61 cm"><i style="left:56.9%;width:6.2%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">50–61 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Dec"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Dec</p></div>
     </div>
     <div class="cols">
@@ -2191,7 +2144,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 89 to 106 cm"><i style="left:74.8%;width:5.4%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">89–106 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Apr–Sep"><span>J</span><span>F</span><span>M</span><span class="m">A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span>O</span><span>N</span><span>D</span></div><p class="fv">Apr–Sep</p></div>
     </div>
     <div class="cols">
@@ -2235,7 +2187,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 27 to 36 cm"><i style="left:37.8%;width:8.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">27–36 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Oct"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span>N</span><span>D</span></div><p class="fv">Aug–Oct</p></div>
     </div>
     <div class="cols">
@@ -2279,7 +2230,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 45 to 60 cm"><i style="left:53.7%;width:8.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">45–60 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: QLD Vulnerable"><span>LC</span><span>NT</span><span class="on warn">VU</span><span>EN</span><span>CR</span></div><p class="fv">QLD Vulnerable</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Apr–Sep"><span>J</span><span>F</span><span>M</span><span class="m">A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span>O</span><span>N</span><span>D</span></div><p class="fv">Apr–Sep</p></div>
     </div>
     <div class="cols">
@@ -2323,7 +2273,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 27 to 31 cm"><i style="left:37.8%;width:4.3%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">27–31 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Oct–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Oct–Jan</p></div>
     </div>
     <div class="cols">
@@ -2367,7 +2316,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 46 to 50 cm"><i style="left:54.1%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">46–50 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: EPBC Vulnerable (ssp. lathami) · QLD Vulnerable"><span>LC</span><span>NT</span><span class="on warn">VU</span><span>EN</span><span>CR</span></div><p class="fv">EPBC VU (ssp. lathami) · QLD VU</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mar–Aug"><span>J</span><span>F</span><span class="m">M</span><span class="m">A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span>S</span><span>O</span><span>N</span><span>D</span></div><p class="fv">Mar–Aug</p></div>
     </div>
     <div class="cols">
@@ -2411,7 +2359,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 12 to 15 cm"><i style="left:12.6%;width:6.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">12–15 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Feb"><span class="m">J</span><span class="m">F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Feb</p></div>
     </div>
     <div class="cols">
@@ -2455,7 +2402,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 26 to 32 cm"><i style="left:36.6%;width:6.5%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">26–32 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jun–Feb"><span class="m">J</span><span class="m">F</span><span>M</span><span>A</span><span>M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jun–Feb</p></div>
     </div>
     <div class="cols">
@@ -2499,7 +2445,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 24 to 28 cm"><i style="left:34.1%;width:4.8%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">24–28 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jul–Dec"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jul–Dec</p></div>
     </div>
     <div class="cols">
@@ -2543,7 +2488,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 15 to 17 cm"><i style="left:19.5%;width:3.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">15–17 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jul–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jul–Jan</p></div>
     </div>
     <div class="cols">
@@ -2587,7 +2531,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 14 to 16 cm"><i style="left:17.4%;width:4.1%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">14–16 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Sep–Jan"><span class="m">J</span><span class="p">F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="p">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Sep–Jan</p></div>
     </div>
     <div class="cols">
@@ -2631,7 +2574,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 16 to 18 cm"><i style="left:21.5%;width:3.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">16–18 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern · SE ssp. EPBC &amp; QLD Vulnerable"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern · SE ssp. EPBC &amp; QLD VU</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jun–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jun–Jan</p></div>
     </div>
     <div class="cols">
@@ -2675,7 +2617,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 8 to 10 cm"><i style="left:0.0%;width:6.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">8–10 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Jan</p></div>
     </div>
     <div class="cols">
@@ -2719,7 +2660,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 10 to 12 cm"><i style="left:6.9%;width:5.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">10–12 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jul–Dec"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jul–Dec</p></div>
     </div>
     <div class="cols">
@@ -2763,7 +2703,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 9.5 to 11.5 cm"><i style="left:5.3%;width:5.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">9.5–11.5 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jul–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jul–Jan</p></div>
     </div>
     <div class="cols">
@@ -2807,7 +2746,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 10 to 11.5 cm"><i style="left:6.9%;width:4.3%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">10–11.5 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Sep–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Sep–Jan</p></div>
     </div>
     <div class="cols">
@@ -2851,7 +2789,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 10 to 11.5 cm"><i style="left:6.9%;width:4.3%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">10–11.5 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Sep–Feb"><span class="m">J</span><span class="m">F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Sep–Feb</p></div>
     </div>
     <div class="cols">
@@ -2895,7 +2832,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 10 to 11.5 cm"><i style="left:6.9%;width:4.3%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">10–11.5 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Sep–Dec"><span class="p">J</span><span class="p">F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="p">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Sep–Dec</p></div>
     </div>
     <div class="cols">
@@ -2939,7 +2875,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 9.5 to 11 cm"><i style="left:5.3%;width:4.6%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">9.5–11 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Feb"><span class="m">J</span><span class="m">F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Feb</p></div>
     </div>
     <div class="cols">
@@ -2983,7 +2918,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 32 to 36 cm"><i style="left:43.1%;width:3.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">32–36 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Sep–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Sep–Jan</p></div>
     </div>
     <div class="cols">
@@ -3027,7 +2961,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 31 to 35 cm"><i style="left:42.1%;width:3.8%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">31–35 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jul–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jul–Jan</p></div>
     </div>
     <div class="cols">
@@ -3071,7 +3004,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 25 to 29 cm"><i style="left:35.4%;width:4.6%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">25–29 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Apr"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span class="m">A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Apr</p></div>
     </div>
     <div class="cols">
@@ -3115,7 +3047,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 10 to 12 cm"><i style="left:6.9%;width:5.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">10–12 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Jan</p></div>
     </div>
     <div class="cols">
@@ -3159,7 +3090,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 30 to 36 cm"><i style="left:41.1%;width:5.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">30–36 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Feb"><span class="m">J</span><span class="m">F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Feb</p></div>
     </div>
     <div class="cols">
@@ -3203,7 +3133,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 26 to 28 cm"><i style="left:36.3%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">26–28 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Mar"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Mar</p></div>
     </div>
     <div class="cols">
@@ -3247,7 +3176,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 24 to 28 cm"><i style="left:34.1%;width:4.8%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">24–28 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Oct–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Oct–Jan</p></div>
     </div>
     <div class="cols">
@@ -3291,7 +3219,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 33 to 37 cm"><i style="left:44.0%;width:3.6%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">33–37 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Nov"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span>D</span></div><p class="fv">Aug–Nov</p></div>
     </div>
     <div class="cols">
@@ -3335,7 +3262,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 18 to 20 cm"><i style="left:25.2%;width:3.3%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">18–20 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Feb"><span class="m">J</span><span class="m">F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Feb</p></div>
     </div>
     <div class="cols">
@@ -3379,7 +3305,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 16 to 19 cm"><i style="left:21.5%;width:5.3%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">16–19 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Sep–Dec"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Sep–Dec</p></div>
     </div>
     <div class="cols">
@@ -3423,7 +3348,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 55 to 60 cm"><i style="left:59.7%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">55–60 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: May–Sep"><span>J</span><span>F</span><span>M</span><span>A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span>O</span><span>N</span><span>D</span></div><p class="fv">May–Sep</p></div>
     </div>
     <div class="cols">
@@ -3467,7 +3391,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 55 to 65 cm"><i style="left:59.9%;width:5.2%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">55–65 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Apr–Jul"><span>J</span><span>F</span><span>M</span><span class="m">A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span></div><p class="fv">Apr–Jul</p></div>
     </div>
     <div class="cols">
@@ -3511,7 +3434,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 35 to 40 cm"><i style="left:45.9%;width:4.1%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">35–40 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: EPBC Endangered · QLD Endangered"><span>LC</span><span>NT</span><span>VU</span><span class="on warn">EN</span><span>CR</span></div><p class="fv">EPBC EN · QLD EN</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Dec"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Dec</p></div>
     </div>
     <div class="cols">
@@ -3555,7 +3477,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 34 to 38 cm"><i style="left:45.0%;width:3.5%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">34–38 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Feb–Dec"><span>J</span><span class="m">F</span><span class="m">M</span><span class="m">A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Feb–Dec</p></div>
     </div>
     <div class="cols">
@@ -3599,7 +3520,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 30 to 33 cm"><i style="left:41.0%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">30–33 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Dec; any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Aug–Dec; any month</p></div>
     </div>
     <div class="cols">
@@ -3643,7 +3563,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 38 to 41 cm"><i style="left:48.1%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">38–41 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern · introduced in QLD"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern · introduced in QLD</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jul–Nov"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span>D</span></div><p class="fv">Jul–Nov</p></div>
     </div>
     <div class="cols">
@@ -3687,7 +3606,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 35 to 42 cm"><i style="left:45.9%;width:5.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">35–42 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: May–Oct"><span>J</span><span>F</span><span>M</span><span>A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span>N</span><span>D</span></div><p class="fv">May–Oct</p></div>
     </div>
     <div class="cols">
@@ -3731,7 +3649,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 45 to 50 cm"><i style="left:53.7%;width:3.3%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">45–50 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: May–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">May–Jan</p></div>
     </div>
     <div class="cols">
@@ -3775,7 +3692,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 22 to 24 cm"><i style="left:31.3%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">22–24 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Feb"><span class="m">J</span><span class="m">F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Feb</p></div>
     </div>
     <div class="cols">
@@ -3819,7 +3735,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 20 to 23 cm"><i style="left:28.5%;width:4.3%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">20–23 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Jan</p></div>
     </div>
     <div class="cols">
@@ -3863,7 +3778,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 15 to 18 cm"><i style="left:19.5%;width:5.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">15–18 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: May–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">May–Jan</p></div>
     </div>
     <div class="cols">
@@ -3907,7 +3821,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 25 to 25 cm"><i style="left:33.9%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">25 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: EPBC Critically Endangered · QLD Endangered"><span>LC</span><span>NT</span><span>VU</span><span>EN</span><span class="on warn">CR</span></div><p class="fv">EPBC CR · QLD EN</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Sep–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Sep–Jan</p></div>
     </div>
     <div class="cols">
@@ -3951,7 +3864,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 41 to 43 cm"><i style="left:50.0%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">41–43 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Sep–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Sep–Jan</p></div>
     </div>
     <div class="cols">
@@ -3995,7 +3907,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 31 to 33 cm"><i style="left:41.6%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">31–33 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Feb"><span class="m">J</span><span class="m">F</span><span>M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Aug–Feb</p></div>
     </div>
     <div class="cols">
@@ -4039,7 +3950,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 33 to 37 cm"><i style="left:44.0%;width:3.6%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">33–37 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Dec"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span class="p">J</span><span class="p">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Aug–Dec</p></div>
     </div>
     <div class="cols">
@@ -4083,7 +3993,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 28 to 32 cm"><i style="left:38.9%;width:4.1%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">28–32 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Feb"><span class="m">J</span><span class="m">F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Feb</p></div>
     </div>
     <div class="cols">
@@ -4127,7 +4036,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 28 to 34 cm"><i style="left:38.9%;width:6.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">28–34 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Sep–Jan"><span class="m">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span>J</span><span>A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Sep–Jan</p></div>
     </div>
     <div class="cols">
@@ -4171,7 +4079,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 17 to 18 cm"><i style="left:22.8%;width:3.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">17–18 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="p">A</span><span class="p">S</span><span class="p">O</span><span class="p">N</span><span class="p">D</span></div><p class="fv">Any month</p></div>
     </div>
     <div class="cols">
@@ -4215,7 +4122,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 30 to 36 cm"><i style="left:41.1%;width:5.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">30–36 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Jan; any month"><span class="m">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Aug–Jan; any month</p></div>
     </div>
     <div class="cols">
@@ -4259,7 +4165,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 25 to 29 cm"><i style="left:35.4%;width:4.6%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">25–29 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Jan</p></div>
     </div>
     <div class="cols">
@@ -4303,7 +4208,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 21 to 25 cm"><i style="left:30.0%;width:5.4%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">21–25 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Dec"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Dec</p></div>
     </div>
     <div class="cols">
@@ -4347,7 +4251,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 60 to 70 cm"><i style="left:62.6%;width:4.8%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">60–70 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Dec; any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Aug–Dec; any month</p></div>
     </div>
     <div class="cols">
@@ -4391,7 +4294,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 76 to 106 cm"><i style="left:69.9%;width:10.3%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">76–106 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Sep–Mar; any month"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="p">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Sep–Mar; any month</p></div>
     </div>
     <div class="cols">
@@ -4435,7 +4337,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 43 to 55 cm"><i style="left:52.2%;width:7.6%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">43–55 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Feb–Apr"><span class="p">J</span><span class="m">F</span><span class="m">M</span><span class="m">A</span><span class="p">M</span><span class="p">J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span></div><p class="fv">Mainly Feb–Apr</p></div>
     </div>
     <div class="cols">
@@ -4479,7 +4380,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 42 to 47 cm"><i style="left:51.5%;width:3.5%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">42–47 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jul–Mar"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span>A</span><span>M</span><span>J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jul–Mar</p></div>
     </div>
     <div class="cols">
@@ -4523,7 +4423,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 16 to 20 cm"><i style="left:21.5%;width:6.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">16–20 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Apr; any month"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span class="m">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Aug–Apr; any month</p></div>
     </div>
     <div class="cols">
@@ -4567,7 +4466,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 17 to 22 cm"><i style="left:23.4%;width:8.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">17–22 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Sep–Mar; any month"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="p">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Sep–Mar; any month</p></div>
     </div>
     <div class="cols">
@@ -4611,7 +4509,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 17 to 19 cm"><i style="left:23.4%;width:3.5%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">17–19 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: EPBC Vulnerable · QLD Vulnerable"><span>LC</span><span>NT</span><span class="on warn">VU</span><span>EN</span><span>CR</span></div><p class="fv">EPBC VU · QLD VU</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Sep–Apr"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span class="m">A</span><span>M</span><span>J</span><span>J</span><span>A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Sep–Apr</p></div>
     </div>
     <div class="cols">
@@ -4655,7 +4552,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 17 to 23 cm"><i style="left:23.4%;width:9.4%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">17–23 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Feb"><span class="m">J</span><span class="m">F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Feb</p></div>
     </div>
     <div class="cols">
@@ -4699,7 +4595,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 12 to 16 cm"><i style="left:12.6%;width:8.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">12–16 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Sep–Jul"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span class="m">A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span>A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Sep–Jul</p></div>
     </div>
     <div class="cols">
@@ -4743,7 +4638,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 30 to 39 cm"><i style="left:41.1%;width:8.2%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">30–39 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="p">A</span><span class="p">S</span><span class="p">O</span><span class="p">N</span><span class="p">D</span></div><p class="fv">Any month</p></div>
     </div>
     <div class="cols">
@@ -4787,7 +4681,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 32 to 42 cm"><i style="left:43.1%;width:8.4%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">32–42 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Mar–Jun; any month"><span class="p">J</span><span class="p">F</span><span class="m">M</span><span class="m">A</span><span class="m">M</span><span class="m">J</span><span class="p">J</span><span class="p">A</span><span class="p">S</span><span class="p">O</span><span class="p">N</span><span class="p">D</span></div><p class="fv">Mainly Mar–Jun; any month</p></div>
     </div>
     <div class="cols">
@@ -4831,7 +4724,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 35 to 50 cm"><i style="left:45.9%;width:11.1%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">35–50 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern · N QLD birds EPBC &amp; QLD Vulnerable"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern · N QLD birds EPBC &amp; QLD VU</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Mar–Aug; any month"><span class="p">J</span><span class="p">F</span><span class="m">M</span><span class="m">A</span><span class="m">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="p">S</span><span class="p">O</span><span class="p">N</span><span class="p">D</span></div><p class="fv">Mainly Mar–Aug; any month</p></div>
     </div>
     <div class="cols">
@@ -4875,7 +4767,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 35 to 45 cm"><i style="left:45.9%;width:7.8%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">35–45 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jul–Oct"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span>N</span><span>D</span></div><p class="fv">Jul–Oct</p></div>
     </div>
     <div class="cols">
@@ -4919,7 +4810,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 17 to 24 cm"><i style="left:23.4%;width:10.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">17–24 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Nov; any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="p">D</span></div><p class="fv">Mainly Aug–Nov; any month</p></div>
     </div>
     <div class="cols">
@@ -4963,7 +4853,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 17 to 19 cm"><i style="left:23.4%;width:3.5%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">17–19 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Feb"><span class="m">J</span><span class="m">F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Feb</p></div>
     </div>
     <div class="cols">
@@ -5007,7 +4896,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 15 to 17 cm"><i style="left:19.5%;width:3.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">15–17 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Jul–Dec; any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Jul–Dec; any month</p></div>
     </div>
     <div class="cols">
@@ -5051,7 +4939,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 15 to 17 cm"><i style="left:19.5%;width:3.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">15–17 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Dec; any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Aug–Dec; any month</p></div>
     </div>
     <div class="cols">
@@ -5095,7 +4982,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 17 to 21 cm"><i style="left:23.4%;width:6.6%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">17–21 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jul–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jul–Jan</p></div>
     </div>
     <div class="cols">
@@ -5139,7 +5025,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 18 to 21 cm"><i style="left:25.2%;width:4.8%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">18–21 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Jan; any month"><span class="m">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Aug–Jan; any month</p></div>
     </div>
     <div class="cols">
@@ -5183,7 +5068,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 15 to 17 cm"><i style="left:19.5%;width:3.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">15–17 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jun–Dec"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jun–Dec</p></div>
     </div>
     <div class="cols">
@@ -5227,7 +5111,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 12 to 14.5 cm"><i style="left:12.6%;width:5.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">12–14.5 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jun–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jun–Jan</p></div>
     </div>
     <div class="cols">
@@ -5271,7 +5154,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 19 to 22 cm"><i style="left:26.9%;width:4.6%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">19–22 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Sep–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Sep–Jan</p></div>
     </div>
     <div class="cols">
@@ -5315,7 +5197,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 15 to 18 cm"><i style="left:19.5%;width:5.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">15–18 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jul–Mar"><span class="m">J</span><span class="m">F</span><span class="m">M</span><span>A</span><span>M</span><span>J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jul–Mar</p></div>
     </div>
     <div class="cols">
@@ -5359,7 +5240,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 12 to 16 cm"><i style="left:12.6%;width:8.9%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">12–16 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Jul–Jan; any month"><span class="m">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Jul–Jan; any month</p></div>
     </div>
     <div class="cols">
@@ -5403,7 +5283,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 22 to 27 cm"><i style="left:31.4%;width:6.4%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">22–27 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Nov; any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="p">D</span></div><p class="fv">Mainly Aug–Nov; any month</p></div>
     </div>
     <div class="cols">
@@ -5447,7 +5326,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 22 to 25 cm"><i style="left:31.4%;width:4.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">22–25 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Jan</p></div>
     </div>
     <div class="cols">
@@ -5491,7 +5369,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 20 to 24 cm"><i style="left:28.5%;width:5.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">20–24 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: EPBC Critically Endangered · QLD Critically Endangered"><span>LC</span><span>NT</span><span>VU</span><span>EN</span><span class="on warn">CR</span></div><p class="fv">EPBC CR · QLD CR</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Aug–Jan"><span class="m">J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Aug–Jan</p></div>
     </div>
     <div class="cols">
@@ -5535,7 +5412,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 22 to 28 cm"><i style="left:31.4%;width:7.5%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">22–28 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Oct; any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="p">N</span><span class="p">D</span></div><p class="fv">Mainly Aug–Oct; any month</p></div>
     </div>
     <div class="cols">
@@ -5579,7 +5455,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 17 to 20 cm"><i style="left:23.4%;width:5.0%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">17–20 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Jun–Nov; any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="p">D</span></div><p class="fv">Mainly Jun–Nov; any month</p></div>
     </div>
     <div class="cols">
@@ -5623,7 +5498,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 11 to 13 cm"><i style="left:9.9%;width:5.2%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">11–13 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Aug–Oct; any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="p">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="p">N</span><span class="p">D</span></div><p class="fv">Mainly Aug–Oct; any month</p></div>
     </div>
     <div class="cols">
@@ -5667,7 +5541,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 25 to 30 cm"><i style="left:35.4%;width:5.7%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">25–30 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Jul–Dec"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Jul–Dec</p></div>
     </div>
     <div class="cols">
@@ -5711,7 +5584,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 25 to 29 cm"><i style="left:35.4%;width:4.6%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">25–29 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Jul–Feb; any month"><span class="m">J</span><span class="m">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="p">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span></div><p class="fv">Mainly Jul–Feb; any month</p></div>
     </div>
     <div class="cols">
@@ -5755,7 +5627,6 @@ body.playing{overflow:hidden}
     </header>
     <div class="facts">
       <div class="fact"><h4>Length</h4><div class="ruler" role="img" aria-label="Length 17 to 21 cm"><i style="left:23.4%;width:6.6%"></i></div><div class="ticks" aria-hidden="true"><span style="left:6.9%">10</span><span style="left:28.5%">20</span><span style="left:56.9%">50</span><span style="left:78.5%">100</span><span class="u">cm</span></div><p class="fv">17–21 cm</p></div>
-      <div class="fact"><h4>Status</h4><div class="scale" role="img" aria-label="Status: Least Concern"><span class="on">LC</span><span>NT</span><span>VU</span><span>EN</span><span>CR</span></div><p class="fv">Least Concern</p></div>
       <div class="fact"><h4>Breeding</h4><div class="months" role="img" aria-label="Breeding: Mainly Jun–Nov; any month"><span class="p">J</span><span class="p">F</span><span class="p">M</span><span class="p">A</span><span class="p">M</span><span class="m">J</span><span class="m">J</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="p">D</span></div><p class="fv">Mainly Jun–Nov; any month</p></div>
     </div>
     <div class="cols">
